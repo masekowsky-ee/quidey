@@ -76,7 +76,7 @@ const subDataOrganizer = () => {     //push subs to organizedSubData from lowest
     for (sub of orderedSubData){
         let li = document.createElement('li');
         li.textContent = sub.name
-        document.getElementById("prioList").appendChild('li');
+        document.getElementById("prioList").appendChild(li);
     };
 }
 
