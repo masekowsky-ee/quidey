@@ -31,7 +31,6 @@ const subDataCreator = () => { //create both arrays
         sub.urgency = studyDaysAvailable * sub.confidence;
         let urgency = sub.urgency;
         // assign to first task so it has a default value for later
-        firstTask = sub;
         //create new dueDate object and sort it in
         subData.push({name: sub.subjectTitle, studyDays: studyDaysAvailable, studyTime: studyTime, urgency: urgency, daysAvailable: daysAvailable, date: sub.date}); // adds object to array
     }
@@ -64,13 +63,14 @@ const dueDateCreator = () => {
 
 const firstTaskAssigner = () => { //assign and display a first task to user
     //check for highest urgency
+    firstTask = subData[0];
     for (sub of subData) {
         if (sub.urgency < firstTask.urgency){
             firstTask = sub;
         };
     }
     //create first task element
-    document.getElementById('firstTaskH1').textContent = firstTask.name;
+    document.getElementById('firstTaskH1').textContent = firstTask.name.toUpperCase();
 }
 
 const subDataOrganizer = () => {     //push subs to organizedSubData from lowest to highest value
@@ -84,7 +84,7 @@ const subDataOrganizer = () => {     //push subs to organizedSubData from lowest
         }else{ //sort elements into order
             for(let i = 0; i < orderedSubData.length - 1; i++){
                 if(sub.urgency > orderedSubData[i].urgency && sub.urgency < orderedSubData[i+1].urgency){
-                    orderedSubData = orderedSubData.splice(i+1, 0, sub);
+                    orderedSubData.splice(i+1, 0, sub);
                     break;
                 };
             };
@@ -93,9 +93,10 @@ const subDataOrganizer = () => {     //push subs to organizedSubData from lowest
     //add items to prio list
     for (sub of orderedSubData){
         let li = document.createElement('li');
-        li.textContent = sub.name;
+        li.textContent = sub.name.toUpperCase();
         document.getElementById("prioList").appendChild(li);
     };
+    console.log(orderedSubData);
 }
 
 //create the planned sessions
@@ -177,14 +178,16 @@ const dayConstructor = () => { //generate collapsed divs in days ol
         let div = document.createElement('div');
         div.id = `day${i}Div`;
         div.className = "dayListChild";
-        div.addEventListener('click', (event)=>{
+        div.addEventListener('click', function(){
             document.getElementById(`day${i}Ul`).classList.toggle('display');
         });
         document.getElementById(`day${i}`).appendChild(div);
         //create a h3 with name in div
         let h3 = document.createElement('h3');
         h3.className = "dayListChild";
-        h3.textContent = new Date(Date.now()+i*24*60*60*1000).toLocaleDateString;
+        let h3Date = new Date(Date.now()+i*24*60*60*1000).toString();
+        h3Date = h3Date.substring(0, 11);
+        h3.textContent = h3Date;
         document.getElementById(`day${i}Div`).appendChild(h3);
         //create a h4 with date in div
         /*let h4 = document.createElement('h4');
