@@ -152,31 +152,37 @@ const dayConstructor = () => { //generate collapsed divs in days ol
     for (let i = 0; i < dueDates[dueDates.length-1].studyDays; i++){//do for every study day
         //create a li in the list
         let li = document.createElement('li');
+        li.className = "dayListChild";
         li.id = `day${i}`;
         document.getElementById('dayList').appendChild(li);
         //create a div in the li
         let div = document.createElement('div');
         div.id = `day${i}Div`;
+        div.className = "dayListChild";
         div.addEventListener('click', (event)=>{
             document.getElementById(`day${i}Ul`).classList.toggle('display');
         });
         document.getElementById(`day${i}`).appendChild(div);
         //create a h3 with name in div
         let h3 = document.createElement('h3');
+        h3.className = "dayListChild";
         h3.textContent = dueDates[i].name;
         document.getElementById(`day${i}Div`).appendChild(h3);
         //create a h4 with date in div
         let h4 = document.createElement('h4');
-        h3.textContent = dueDates[i].date;
+        h4.className = "dayListChild";
+        h4.textContent = dueDates[i].date;
         document.getElementById(`day${i}Div`).appendChild(h4);
         //create a ul in div
         let ul = document.createElement('ul');
         ul.id = `day${i}Ul`;
+        ul.className = "dayListChild";
         document.getElementById(`day${i}Div`).appendChild(ul);
 
         for (let j = 0; j < sessionArray.length-1; j++){
             let innerLi = document.createElement('li');
             innerLi.id = `day${i}li${j}`;
+            innerLi.className = "dayListChild";
             if (j === 0 || j%2 === 0){
                 innerLi.textContent = `Lernen: ${sessionArray[j]} Minuten`
             } else if (j%2 !== 0){
@@ -188,9 +194,10 @@ const dayConstructor = () => { //generate collapsed divs in days ol
 };
 
 const dayRegenerator = () => { //removes first task, removes it from all arrays and Objects; adds new, deletes all day content and regenerates it
-    
-
-
+    const dayDestructor = () => {   
+        const dayList = document.getElementById('dayList').querySelectorAll(':scope > .dayListChild');
+        dayList.forEach(child => child.remove());
+    };
     dayConstructor();
 };
 
