@@ -1,5 +1,10 @@
-let subjectArray = [{name: 'a', date: "2026-05-19", confidence: 2},{name: 'b', date: "2026-05-20", confidence: 5},{name: 'c', date: "2026-05-21", confidence: 3}];
-let userTime = {frequency: 2, minutes: 90};
+//let subjectArray = [{name: 'a', date: "2026-05-19", confidence: 2},{name: 'b', date: "2026-05-20", confidence: 5},{name: 'c', date: "2026-05-21", confidence: 3}];
+//let userTime = {frequency: 2, minutes: 90};
+console.log(JSON.parse(localStorage.getItem("learnItemsData")));
+console.log(JSON.parse(localStorage.getItem("userTime")));
+let subjectArray = JSON.parse(localStorage.getItem("learnItemsData"));
+let userTime = JSON.parse(localStorage.getItem("userTime"));
+
 console.log(subjectArray);
 console.log(userTime);
 //generate new subject info
@@ -232,3 +237,4 @@ const switchToQ = () => {
     console.log(1)
 };
 document.getElementById("backToQ").addEventListener("click", switchToQ);
+
