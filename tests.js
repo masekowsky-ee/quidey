@@ -3,21 +3,31 @@ let userTime = {frequency: 2, minutes: 90};
 
 //generate new subject info
 let subData = [];
-let subCounter = 0;
-for (sub of subjectArray){
-    subData.push({name: subjectArray[subCounter].name, studyDays: 0, studyTime: 0, urgency: 0});
-    
+let firstTask;
+for (sub of subjectArray){   //create array of subject with values needed for the creation of the plan
+    subData.push({name: sub.name, studyDays: 0, studyTime: 0, urgency: 0}); // adds object to array
+    //create object and calculate time, urgency, etc
     let studyDaysAvailable;
     let today = new Date();
-    let due = new Date(subjectArray[subCounter].date);
+    let due = new Date(sub.date);
     let msPerDay = 1000 * 60 * 60 * 24;
     studyDaysAvailable = Math.ceil((due - today)/msPerDay);
     studyDaysAvailable /= userTime.frequency;
-    subData[subCounter].studyDays = studyDaysAvailable;
-
-    subData[subCounter].studyTime = studyDaysAvailable * userTime.minutes;
-
-    subData[subCounter].urgency = studyDaysAvailable * subjectArray[subCounter].confidence;
-    subCounter++;
+    sub.studyDays = studyDaysAvailable;
+    sub.studyTime = studyDaysAvailable * userTime.minutes;
+    sub.urgency = studyDaysAvailable * sub.confidence;
+    // assign to first task so it has a default value for later
+    firstTask = sub;
 }
 console.log(subData);
+
+for (sub of subData) {
+    if (sub.urgency < firstTask.urgency){
+        firstTask = sub;
+    };
+}
+
+const h1 = document.createElement('h1');
+h1.textContent = firstTask.name;
+h1.id = "firstTaskDisplay";
+document.getElementById('displayPlan').appendChild(h1);
