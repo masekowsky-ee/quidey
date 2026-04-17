@@ -33,7 +33,7 @@ const subDataCreator = () => { //create both arrays
         // assign to first task so it has a default value for later
         firstTask = sub;
         //create new dueDate object and sort it in
-        subData.push({name: sub.subjectTitle, studyDays: studyDaysAvailable, studyTime: studyTime, urgency: urgency, daysAvailable: daysAvailable}); // adds object to array
+        subData.push({name: sub.subjectTitle, studyDays: studyDaysAvailable, studyTime: studyTime, urgency: urgency, daysAvailable: daysAvailable, date: sub.date}); // adds object to array
     }
     console.log(subData);
 }
