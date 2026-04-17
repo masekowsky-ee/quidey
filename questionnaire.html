@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learney</title>
+    <link rel="stylesheet" href="./qStyles.css" type="text/css">
+</head>
+<body id="questionnaire">
+    <section id="home" class="hidden display">
+        <div class="container" id="intro">
+            <h1>Willkommen bei Learney</h1>
+            <h2>Lernen ist kein Chaos - es ist ein Weg.</h2>
+            <h4>Learney gibt dir einen klaren Pfad: Schritt für Schritt, Ziel für Ziel. Du weißt immer, wo du stehst und was als Nächstes kommt.</h4>
+            <h4>Kein Raten. Kein Verlaufen. Nur Fortschritt.</h4>
+            <h3>Deine Journey beginnt hier.</h3>
+        </div>
+        <div class="container" id="begin">
+            <h1>Bereit, loszulegen?</h1>
+        </div>
+    </section>
+    <section id="subjects" class="hidden">
+        <div>
+            <h1>Lass uns loslegen!</h1>
+            <h2>Was möchtest du lernen?</h2>
+        </div>
+        <div id="subjectsDiv">
+            <h2>Was steht an?</h2>
+            <input type="text" id="subjectInput" placeholder="Fach eingeben..." list="subjectOptions">
+            <label for="subjectInput">Fach eingeben</label>
+            <datalist id="subjectOptions">
+                <option value="Mathematik">
+                <option value="Deutsch">
+                <option value="Englisch">
+                <option value="Biologie">
+                <option value="Chemie">
+                <option value="Physik">
+                <option value="Geschichte">
+                <option value="Geografie">
+                <option value="Informatik">
+                <option value="Latein">
+                <option value="Französisch">
+                </datalist>
+            <button id="addSubjectButton">Fach hinzufügen</button>
+            <ul id="subjectList">
+
+            </ul>
+            <h2>Alles klar!</h2>
+        </div>
+    </section>
+    <section id="dates" class="hidden">
+        <div>
+            <h1>Füge das Datum hinzu!</h1>
+        </div>
+        <div id="dateDiv">
+            <h1 id="dateProgress"></h1>
+            <h2>Wann möchtest du fertig sein mit:</h2>
+            <h2 id="currentDateSubject"></h2>
+            <input type="date" id="dateInput">
+            <label for="dateInput">Datum eingeben</label>
+        </div>
+    </section>
+    <section id="confidence" class="hidden">
+        <h2>Wie gut kennst du dich bereits aus?</h2>
+        <div id="sliderDiv">
+
+        </div>
+    </section>
+    <section id="time" class="hidden">
+        <h1>Wie oft kannst du lernen?</h1>
+        <input type="radio" id="1everyDay" value="1" name="days">
+        <label for="1everyDay">Jeden Tag</label>
+        <input type="radio" id="2everyOther" value="2" name="days" checked>
+        <label for="2everyOther">Jeden zweiten Tag</label>
+        <input type="radio" id="3everyThird" value="3" name="days">
+        <label for="3everyThird">Jeden dritten Tag</label>
+        <h1>Wie viel Zeit hast du am Tag?</h1>
+        <input id="hoursPerDay" type="number" min="0" max="3" value="0">
+        <label for="hoursPerDay">h</label>
+        <input id="minsPerDay" type="number" min="15" max="45" step="15" value="30">
+        <label for="minsPerDay">mins</label>
+
+    </section>
+    <section id="summarize" class="hidden">
+        <h1>Ist alles korrekt?</h1>
+        <div id="summarizeDiv"></div>
+        <h1>Weiter zum Lernplan</h1>
+    </section>
+    <section id="wait" class="hidden">
+        <h2>Moment noch...</h2>
+        <h1>Ich bereite deinen Plan vor.</h1>
+    </section>
+    <div id="navDiv" class="display">
+        <button id="backButton">Zurück</button>
+        <button id="continueButton">Weiter</button>
+        <button id="leaveButton">Verlassen</button>
+    </div>
+
+    <script src="./qScript.js"></script>
+</body>
+</html>
