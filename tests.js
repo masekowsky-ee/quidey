@@ -15,9 +15,8 @@ let firstTask;
 let sessionObject;
 let sessionArray = [];
 
-const subDataDueDateCreator = () => { //create both arrays
+const subDataCreator = () => { //create both arrays
     for (sub of subjectArray){   //create array of subject with values needed for the creation of the plan
-        subData.push({name: sub.name, studyDays: 0, studyTime: 0, urgency: 0, daysAvailable: 0}); // adds object to array
         //create object and calculate time, urgency, etc
         let studyDaysAvailable;
         let today = new Date();
@@ -28,29 +27,40 @@ const subDataDueDateCreator = () => { //create both arrays
         studyDaysAvailable = daysAvailable / userTime.frequency;
         sub.studyDays = studyDaysAvailable;
         sub.studyTime = studyDaysAvailable * userTime.minutes;
+        let studyTime = sub.studyTime;
         sub.urgency = studyDaysAvailable * sub.confidence;
+        let urgency = sub.urgency;
         // assign to first task so it has a default value for later
         firstTask = sub;
         //create new dueDate object and sort it in
-        let dueDatesNew = {name: sub.name, due: sub.date, studyDays: sub.studyDays, totalDays: daysAvailable};
+        subData.push({name: sub.subjectTitle, studyDays: studyDaysAvailable, studyTime: studyTime, urgency: urgency, daysAvailable: daysAvailable}); // adds object to array
+    }
+    console.log(subData);
+}
+
+const dueDateCreator = () => {
+    for (sub of subData){
+        let dueDatesNew = {name: sub.name, due: sub.date, studyDays: sub.studyDays, totalDays: sub.daysAvailable};
         if(dueDates.length === 0){
             dueDates.push(dueDatesNew);
-        } else if(dueDates[0].daysAvailable > dueDatesNew.daysAvailable){
+        } else if(dueDates[0].studyDays > dueDatesNew.studyDays){
             dueDates.unshift(dueDatesNew);
-        } else if(dueDates[dueDates.length-1].daysAvailable < dueDatesNew.daysAvailable){
+        } else if(dueDates[dueDates.length-1].studyDays < dueDatesNew.studyDays){
             dueDates.push(dueDatesNew);
-        } else {
+        } else if(dueDates[dueDates.length-1].studyDays === dueDatesNew.studyDays){
+            dueDates.push(dueDatesNew);
+        }else {
             for (let i = 0; i < dueDates.length-1; i++){
-                if(dueDatesNew.daysAvailable > dueDates[i].daysAvailable && dueDatesNew.daysAvailable < dueDates[i+1].daysAvailable){
+                if(dueDatesNew.studyDays > dueDates[i].studyDays && dueDatesNew.studyDays < dueDates[i+1].daysAvailable){
+                    dueDates.splice(i+1, 0, dueDatesNew);
+                } else if(dueDatesNew.studyDays === dueDates[i].studyDays){
                     dueDates.splice(i+1, 0, dueDatesNew);
                 };
             }
         }
     }
     console.log(dueDates);
-    console.log(subData);
-}
-console.log(subData);
+};
 
 const firstTaskAssigner = () => { //assign and display a first task to user
     //check for highest urgency
@@ -210,7 +220,8 @@ const regenerator = () => { //removes first task, removes it from all arrays and
 };
 
 const generateWhole = () => { //call to execute all the functions above in order
-    subDataDueDateCreator();
+    subDataCreator();
+    dueDateCreator();
     firstTaskAssigner();
     subDataOrganizer();
     determineSessions();
