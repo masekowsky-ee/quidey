@@ -1,6 +1,7 @@
 let subjectArray = [{name: 'a', date: "2026-05-19", confidence: 2},{name: 'b', date: "2026-05-20", confidence: 5},{name: 'c', date: "2026-05-21", confidence: 3}];
 let userTime = {frequency: 2, minutes: 90};
-
+console.log(subjectArray);
+console.log(userTime);
 //generate new subject info
 let subData = []; //unordered subject objects
 let orderedSubData = []; //ordered subject object array by urgency
@@ -41,6 +42,8 @@ const subDataDueDateCreator = () => { //create both arrays
             }
         }
     }
+    console.log(dueDates);
+    console.log(subData);
 }
 console.log(subData);
 
@@ -75,7 +78,7 @@ const subDataOrganizer = () => {     //push subs to organizedSubData from lowest
     //add items to prio list
     for (sub of orderedSubData){
         let li = document.createElement('li');
-        li.textContent = sub.name
+        li.textContent = sub.name;
         document.getElementById("prioList").appendChild(li);
     };
 }
@@ -83,7 +86,7 @@ const subDataOrganizer = () => {     //push subs to organizedSubData from lowest
 //create the planned sessions
 const determineSessions = () => { //determine amount of pomodoro sessions per study day
     const createSession = (amount, length, breakLength, extra) => {
-        return {sessions, length, breakLength, extra};
+        return {amount, length, breakLength, extra};
     };
     switch (userTime.minutes){
         case 15: 
@@ -166,13 +169,13 @@ const dayConstructor = () => { //generate collapsed divs in days ol
         //create a h3 with name in div
         let h3 = document.createElement('h3');
         h3.className = "dayListChild";
-        h3.textContent = dueDates[i].name;
+        h3.textContent = new Date(Date.now()+i*24*60*60*1000).toLocaleDateString;
         document.getElementById(`day${i}Div`).appendChild(h3);
         //create a h4 with date in div
-        let h4 = document.createElement('h4');
+        /*let h4 = document.createElement('h4');
         h4.className = "dayListChild";
         h4.textContent = dueDates[i].date;
-        document.getElementById(`day${i}Div`).appendChild(h4);
+        document.getElementById(`day${i}Div`).appendChild(h4);*/
         //create a ul in div
         let ul = document.createElement('ul');
         ul.id = `day${i}Ul`;
@@ -219,6 +222,13 @@ document.getElementById('finishButton').addEventListener('click', (event)=>{
 
 //back to q page
 const switchToQ = () => {
-    window.location.href = window.location.href.replace("planner.html", "questionnaire.html");
+    if (window.location.href.includes("planner.html")) {
+        window.location.href = window.location.href.replace("planner.html", "questionnaire.html");
+        console.log(1);
+    } else {
+        window.location.href = "questionnaire.html";
+        console.log(2);
+    }
+    console.log(1)
 };
 document.getElementById("backToQ").addEventListener("click", switchToQ);
