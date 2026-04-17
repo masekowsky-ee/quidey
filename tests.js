@@ -193,7 +193,7 @@ const dayConstructor = () => { //generate collapsed divs in days ol
     };
 };
 
-const dayRegenerator = () => { //removes first task, removes it from all arrays and Objects; adds new, deletes all day content and regenerates it
+const regenerator = () => { //removes first task, removes it from all arrays and Objects; adds new, deletes all day content and regenerates it
     const dayDestructor = () => {   
         const dayList = document.getElementById('dayList').querySelectorAll(':scope > .dayListChild');
         dayList.forEach(child => child.remove());
@@ -211,3 +211,14 @@ const generateWhole = () => { //call to execute all the functions above in order
 };
 
 generateWhole();
+
+//finish button
+document.getElementById('finishButton').addEventListener('click', (event)=>{
+    regenerator();
+});
+
+//back to q page
+const switchToQ = () => {
+    window.location.href = window.location.href.replace("planner.html", "questionnaire.html");
+};
+document.getElementById("backToQ").addEventListener("click", switchToQ);
