@@ -241,6 +241,8 @@ const regenerator = () => { //removes first task, removes it from all arrays and
 };
 */
 
+
+
 const generateWhole = () => { //call to execute all the functions above in order
     subDataCreator();
     dueDateCreator();
