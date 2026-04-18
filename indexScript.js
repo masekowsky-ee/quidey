@@ -241,7 +241,7 @@ document.getElementById('finishButton').addEventListener('click', (event)=>{
 
 //back to q page
 const switchToQ = () => {
-    window.location.href = './questionnaire.html';
+    window.location.href = 'learney/questionnaire.html';
 };
 document.getElementById("backToQ").addEventListener("click", switchToQ);
 
