@@ -158,7 +158,7 @@ const renderUpdate = () => {
         }*/
         if (state.currentStep === 'dates'){ //update the date info on rendering
             document.getElementById("currentDateSubject").textContent = subjectNames[state.currentIndex];                          //removed .toUpperCase();
-            document.getElementById("dateProgress").textContent = `${state.currentIndex+1}/${subjectList.length}`;
+            document.getElementById("dateProgress").textContent = `${state.currentIndex+1}/${subjectNames.length}`;
         } else if (state.currentStep === 'confidence'){ //build the elements on the confidence page when rendered
             buildConfidencePage();
         } else if (state.currentStep === 'summarize'){ //build the elements on the summarize page when rendered

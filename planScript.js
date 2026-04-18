@@ -174,8 +174,8 @@ const sessionArrayConstructor = () => { //convert the session object to an array
         };
 };
 
-const dayConstructor = () => { //generate collapsed divs in days ol
-    for (let i = 0; i < dueDates[dueDates.length-1].studyDays; i++){//do for every study day
+const dayConstructor = (lastDueDateStudyDays) => { //generate collapsed divs in days ol
+    for (let i = 0; i < lastDueDateStudyDays; i++){//do for every study day
         //create a li in the list
         let li = document.createElement('li');
         li.className = "dayListChild";
@@ -185,8 +185,12 @@ const dayConstructor = () => { //generate collapsed divs in days ol
         let div = document.createElement('div');
         div.id = `day${i}Div`;
         div.className = "dayListChild";
-        div.addEventListener('click', function(){
-            document.getElementById(`day${i}Ul`).classList.toggle('display');
+        let button = document.createElement('button');
+        button.id = `hideButton${i}`;
+        button.textContent = 'Verstecken';
+        button.addEventListener('click', function(){
+            let ol = document.getElementById(`day${i}Ol`);
+            ol.classList.toggle('hidden');
         });
         document.getElementById(`day${i}`).appendChild(div);
         //create a h3 with name in div
@@ -196,37 +200,40 @@ const dayConstructor = () => { //generate collapsed divs in days ol
         h3Date = h3Date.substring(0, 11);
         h3.textContent = h3Date;
         document.getElementById(`day${i}Div`).appendChild(h3);
+        document.getElementById(`day${i}Div`).appendChild(button);
         //create a h4 with date in div
         /*let h4 = document.createElement('h4');
         h4.className = "dayListChild";
         h4.textContent = dueDates[i].date;
         document.getElementById(`day${i}Div`).appendChild(h4);*/
         //create a ul in div
-        let ul = document.createElement('ul');
-        ul.id = `day${i}Ul`;
-        ul.className = "dayListChild";
-        document.getElementById(`day${i}Div`).appendChild(ul);
-
+        let ol = document.createElement('ol');
+        ol.id = `day${i}Ol`;
+        ol.className = "dayListChild";
         for (let j = 0; j < sessionArray.length-1; j++){
             let innerLi = document.createElement('li');
             innerLi.id = `day${i}li${j}`;
             innerLi.className = "dayListChild";
             if (j === 0 || j%2 === 0){
-                innerLi.textContent = `Lernen: ${sessionArray[j]} Minuten`
+                innerLi.textContent = `Lernen: ${sessionArray[j]} Minuten`;
+                ol.appendChild(innerLi);
             } else if (j%2 !== 0){
-                innerLi.textContent = `Pause: ${sessionArray[j]} Minuten`
+                innerLi.textContent = `Pause: ${sessionArray[j]} Minuten`;
+                ol.appendChild(innerLi);
             };
-            document.getElementById(`day${i}Div`).appendChild('innerLi');
         }
+        document.getElementById(`day${i}Div`).appendChild(ol);
     };
 };
 
 const regenerator = () => { //removes first task, removes it from all arrays and Objects; adds new, deletes all day content and regenerates it
     const dayDestructor = () => {   
-        const dayList = document.getElementById('dayList').querySelectorAll(':scope > .dayListChild');
-        dayList.forEach(child => child.remove());
+        document.getElementById('dayList').innerHTML = '';
     };
-    dayConstructor();
+    dayDestructor();
+    for (let i = 0; i < dueDates.length-1; i++){
+    };
+    dayConstructor(dueDates[dueDates.length-1].studyDays);
 };
 
 const generateWhole = () => { //call to execute all the functions above in order
@@ -236,7 +243,7 @@ const generateWhole = () => { //call to execute all the functions above in order
     subDataOrganizer();
     determineSessions();
     sessionArrayConstructor();
-    dayConstructor();
+    dayConstructor(dueDates[dueDates.length-1].studyDays);
 };
 
 generateWhole();
