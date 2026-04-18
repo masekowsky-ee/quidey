@@ -39,7 +39,7 @@ const subDataCreator = () => { //create both arrays
         let urgency = sub.urgency;
         // assign to first task so it has a default value for later
         //create new dueDate object and sort it in
-        subData.push({name: sub.subjectTitle, studyDays: studyDaysAvailable, studyTime: studyTime, urgency: urgency, daysAvailable: daysAvailable, date: sub.date}); // adds object to array
+        subData.push({name: sub.subjectTitle, studyDays: studyDaysAvailable, studyTime: studyTime, urgency: urgency, daysAvailable: daysAvailable, date: sub.date, sessions: 1}); // adds object to array
     }
     console.log(subData);
 }
@@ -177,12 +177,8 @@ const sessionArrayConstructor = () => { //convert the session object to an array
     console.log(sessionArray);
 };
 
-let iConstructor = 0;
-let iConstructorAdd = 0;
-
 const dayConstructor = (lastDueDateStudyDays) => { //generate collapsed divs in days ol
-    iConstructor += iConstructorAdd;
-    for (iConstructor; iConstructor < lastDueDateStudyDays; iConstructor++){//do for every study day
+    for ( let iConstructor = 0; iConstructor < lastDueDateStudyDays; iConstructor++){//do for every study day
         //create a li in the list
         let li = document.createElement('li');
         li.className = "dayListChild";
@@ -217,6 +213,7 @@ const dayConstructor = (lastDueDateStudyDays) => { //generate collapsed divs in 
         });
         div.appendChild(button);
         div.appendChild(ol);
+        //generate list elements mit pomodoro sessions
         for (let j = 0; j < sessionArray.length; j++){
             let innerLi = document.createElement('li');
             innerLi.id = `day${iConstructor}li${j}`;
@@ -229,7 +226,6 @@ const dayConstructor = (lastDueDateStudyDays) => { //generate collapsed divs in 
             ol.appendChild(innerLi);
         }
     };
-    iConstructor = 0;
 };
 /*
 const regenerator = () => { //removes first task, removes it from all arrays and Objects; adds new, deletes all day content and regenerates it
@@ -255,16 +251,68 @@ const generateWhole = () => { //call to execute all the functions above in order
 
 generateWhole();
 
+
+
+//logic to add subjects to the session Li elements
+for (i = 0; i < dueDates[dueDates.length-1].studyDays; i++){
+
+
+    let dateLi = document.getElementById(`day${i}`);
+    for (j = 0; j < sessionArray.length; j++){
+        if(j%2 === 0){
+            let studySub = 0;
+            for (sub of subData){
+                let value;
+                sub.studyDays = Math.ceil(sub.studyDays);
+                console.log(sub)
+                if (studySub === 0){
+                    value = sub.urgency*sub.sessions*sub.studyDays;
+                    if (value !== 0){
+                        studySub = {name: sub.name, value: value};
+                    };
+                } else {
+                    value = sub.urgency*sub.sessions*sub.studyDays;
+                    if (value < studySub.value && value !== 0){
+                        studySub = {name: sub.name, value: value};
+                    };
+                };
+                if(sub.studyDays > 0){
+                    sub.studyDays--;
+                }
+            };
+            for (sub of subData){
+                if(sub.name === studySub.name){
+                    sub.sessions++;
+                };
+            };
+            sessionLi = document.getElementById(`day${i}li${j}`);
+            sessionLi.textContent = sessionLi.textContent + ': ' + studySub.name.toUpperCase();
+        };
+    };
+};
+/*
 // logic for finishing days, evaluating what subject to study in what session, and reassigning the prio list and first task after a day is finished
+const regenerator = () => {
+    //get date of next day for comparison
+    let tmrDate = new Date(Date.now()+24*60*60*1000);
+    console.log(tmrDate);
+    for (let i = dueDates.length - 1; i >= 0; i--){
+        let dueDateOfDue = new Date(Date.now()+24*60*60*1000*dueDates[i].totalDays);
+        console.log('Duedate '+ dueDateOfDue);
+        if (tmrDate === dueDateOfDue){
+            dueDates.splice(i, 1);
+        };
+    }
+};
+
+regenerator();
 
 
 
 
 
 
-
-
-//finish button
+finish button
 document.getElementById('finishButton').addEventListener('click', (event)=>{
     iConstructorAdd++;
     regenerator();
@@ -276,5 +324,5 @@ document.getElementById('unfinishButton').addEventListener('click', (event)=>{
         regenerator();
     }
 });
-
+*/
 
