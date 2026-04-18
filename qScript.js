@@ -257,7 +257,7 @@ const callRenderFunctionContinue = () => {
 
 //pageSwitcher
 const pageSwitch = () => {
-        window.location.href = "caligula09.github.io/learney/index.html";
+        window.location.href = "index.html";
     }
 const initializePageSwitch = () => {
     setTimeout(pageSwitch, 5000);
