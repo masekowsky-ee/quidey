@@ -241,8 +241,8 @@ document.getElementById('finishButton').addEventListener('click', (event)=>{
 
 //back to q page
 const switchToQ = () => {
-    if (window.location.href.includes("planner.html")) {
-        window.location.href = window.location.href.replace("planner.html", "questionnaire.html");
+    if (window.location.href.includes("index.html")) {
+        window.location.href = window.location.href.replace("index.html", "questionnaire.html");
         console.log(1);
     } else {
         window.location.href = "questionnaire.html";
