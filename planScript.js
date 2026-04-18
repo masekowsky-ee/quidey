@@ -31,7 +31,7 @@ const subDataCreator = () => { //create both arrays
         let msPerDay = 1000 * 60 * 60 * 24;
         let daysAvailable = Math.ceil((due - today)/msPerDay);
         sub.daysAvailable = daysAvailable;
-        studyDaysAvailable = daysAvailable / userTime.frequency;
+        studyDaysAvailable = daysAvailable / userTime.frequency; //adds days for regeneration
         sub.studyDays = studyDaysAvailable;
         sub.studyTime = studyDaysAvailable * userTime.minutes;
         let studyTime = sub.studyTime;
@@ -162,8 +162,10 @@ const determineSessions = () => { //determine amount of pomodoro sessions per st
 
 const sessionArrayConstructor = () => { //convert the session object to an array with study-break-study-break... pattern with length in mins
     sessionObject = determineSessions(); //generate the session object
-    for (let i; i < sessionObject.amount; i++){
-        sessionArray.push(sessionObject.length)
+    console.log(sessionObject);
+    //sessionArray.push('hello');
+    for (let i = 0; i < sessionObject['amount']; i++){
+        sessionArray.push(sessionObject.length);
         if(sessionArray.length !== sessionObject.amount*2 -1 || sessionObject.extra >= 15){
             sessionArray.push(sessionObject.breakLength);
         };
@@ -171,70 +173,73 @@ const sessionArrayConstructor = () => { //convert the session object to an array
     //push the extra time at the end if >= 15 mins
     if(sessionObject.extra >= 15 && sessionArray.length === sessionObject.amount*2){
             sessionArray.push(sessionObject.extra)
-        };
+    };
+    console.log(sessionArray);
 };
 
+let iConstructor = 0;
+let iConstructorAdd = 0;
+
 const dayConstructor = (lastDueDateStudyDays) => { //generate collapsed divs in days ol
-    for (let i = 0; i < lastDueDateStudyDays; i++){//do for every study day
+    iConstructor += iConstructorAdd;
+    for (iConstructor; iConstructor < lastDueDateStudyDays; iConstructor++){//do for every study day
         //create a li in the list
         let li = document.createElement('li');
         li.className = "dayListChild";
-        li.id = `day${i}`;
+        li.id = `day${iConstructor}`;
         document.getElementById('dayList').appendChild(li);
         //create a div in the li
         let div = document.createElement('div');
-        div.id = `day${i}Div`;
+        div.id = `day${iConstructor}Div`;
         div.className = "dayListChild";
-        let button = document.createElement('button');
-        button.id = `hideButton${i}`;
-        button.textContent = 'Verstecken';
-        button.addEventListener('click', function(){
-            let ol = document.getElementById(`day${i}Ol`);
-            ol.classList.toggle('hidden');
-        });
-        document.getElementById(`day${i}`).appendChild(div);
+        document.getElementById(`day${iConstructor}`).appendChild(div);
         //create a h3 with name in div
         let h3 = document.createElement('h3');
         h3.className = "dayListChild";
-        let h3Date = new Date(Date.now()+i*24*60*60*1000).toString();
+        let h3Date = new Date(Date.now()+iConstructor*24*60*60*1000).toString();
         h3Date = h3Date.substring(0, 11);
         h3.textContent = h3Date;
-        document.getElementById(`day${i}Div`).appendChild(h3);
-        document.getElementById(`day${i}Div`).appendChild(button);
-        //create a h4 with date in div
-        /*let h4 = document.createElement('h4');
-        h4.className = "dayListChild";
-        h4.textContent = dueDates[i].date;
-        document.getElementById(`day${i}Div`).appendChild(h4);*/
+        div.appendChild(h3);
         //create a ul in div
         let ol = document.createElement('ol');
-        ol.id = `day${i}Ol`;
-        ol.className = "dayListChild";
-        for (let j = 0; j < sessionArray.length-1; j++){
+        ol.id = `day${iConstructor}Ol`;
+        ol.className = "dayListChild hidden";
+        let button = document.createElement('button');
+        button.id = `hideButton${iConstructor}`;
+        button.textContent = 'Schritte';
+        button.addEventListener('click', function(){
+            ol.classList.toggle('hidden');
+            if (ol.classList.contains('hidden')){
+                document.getElementById(`hideButton${iConstructor}`).textContent = 'Schritte';
+            } else {
+                document.getElementById(`hideButton${iConstructor}`).textContent = 'Ausblenden';
+            }
+        });
+        div.appendChild(button);
+        div.appendChild(ol);
+        for (let j = 0; j < sessionArray.length; j++){
             let innerLi = document.createElement('li');
-            innerLi.id = `day${i}li${j}`;
+            innerLi.id = `day${iConstructor}li${j}`;
             innerLi.className = "dayListChild";
-            if (j === 0 || j%2 === 0){
+            if (j%2 === 0){
                 innerLi.textContent = `Lernen: ${sessionArray[j]} Minuten`;
-                ol.appendChild(innerLi);
             } else if (j%2 !== 0){
                 innerLi.textContent = `Pause: ${sessionArray[j]} Minuten`;
-                ol.appendChild(innerLi);
             };
+            ol.appendChild(innerLi);
         }
-        document.getElementById(`day${i}Div`).appendChild(ol);
     };
+    iConstructor = 0;
 };
-
+/*
 const regenerator = () => { //removes first task, removes it from all arrays and Objects; adds new, deletes all day content and regenerates it
     const dayDestructor = () => {   
         document.getElementById('dayList').innerHTML = '';
     };
     dayDestructor();
-    for (let i = 0; i < dueDates.length-1; i++){
-    };
     dayConstructor(dueDates[dueDates.length-1].studyDays);
 };
+*/
 
 const generateWhole = () => { //call to execute all the functions above in order
     subDataCreator();
@@ -248,9 +253,26 @@ const generateWhole = () => { //call to execute all the functions above in order
 
 generateWhole();
 
+// logic for finishing days, evaluating what subject to study in what session, and reassigning the prio list and first task after a day is finished
+
+
+
+
+
+
+
+
 //finish button
 document.getElementById('finishButton').addEventListener('click', (event)=>{
+    iConstructorAdd++;
     regenerator();
+});
+
+document.getElementById('unfinishButton').addEventListener('click', (event)=>{
+    if (iConstructorAdd !== 0){
+        iConstructorAdd--;
+        regenerator();
+    }
 });
 
 
