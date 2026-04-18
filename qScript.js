@@ -257,8 +257,7 @@ const callRenderFunctionContinue = () => {
 
 //pageSwitcher
 const pageSwitch = () => {
-        const newUrl = new URL("index.html", window.location.href);
-        window.location.href = newUrl;
+        window.location.href = "./index.html";
     }
 const initializePageSwitch = () => {
     setTimeout(pageSwitch, 5000);
