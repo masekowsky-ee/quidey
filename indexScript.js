@@ -241,7 +241,7 @@ document.getElementById('finishButton').addEventListener('click', (event)=>{
 
 //back to q page
 const switchToQ = () => {
-    window.location.href = 'learney/questionnaire.html';
+    window.location.href = 'caligula09.github.io/learney/questionnaire.html';
 };
 document.getElementById("backToQ").addEventListener("click", switchToQ);
 
