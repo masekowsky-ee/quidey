@@ -1,3 +1,10 @@
+//back to q page
+const switchToQ = () => {
+    window.location.href = 'caligula09.github.io/learney/questionnaire.html';
+};
+document.getElementById("backToQ").addEventListener("click", switchToQ);
+
+
 //let subjectArray = [{name: 'a', date: "2026-05-19", confidence: 2},{name: 'b', date: "2026-05-20", confidence: 5},{name: 'c', date: "2026-05-21", confidence: 3}];
 //let userTime = {frequency: 2, minutes: 90};
 console.log(JSON.parse(localStorage.getItem("learnItemsData")));
@@ -239,9 +246,4 @@ document.getElementById('finishButton').addEventListener('click', (event)=>{
     regenerator();
 });
 
-//back to q page
-const switchToQ = () => {
-    window.location.href = 'caligula09.github.io/learney/questionnaire.html';
-};
-document.getElementById("backToQ").addEventListener("click", switchToQ);
 
