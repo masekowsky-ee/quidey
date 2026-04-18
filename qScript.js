@@ -15,11 +15,15 @@ steps = [
     }}, 
 
     {name: 'subjects', next(){
-        state.currentStep = 'dates';
-        state.currentIndex = 0;
-        updateLocalStorage();
-        printState();
-        renderUpdate();
+        if(subjectList.length > 0){
+            state.currentStep = 'dates';
+            state.currentIndex = 0;
+            updateLocalStorage();
+            printState();
+            renderUpdate();
+        } else {
+            window.alert('Gib ein Fach ein');
+        }
     }, back(){
         state.currentStep = 'home';
         printState();
@@ -69,12 +73,20 @@ steps = [
     }}, 
 
     {name: 'time', next(){
-        storeData();
-        state.currentStep = 'summarize';
-        state.currentIndex = 0;
-        updateLocalStorage();
-        printState();
-        renderUpdate();
+        if(Number(document.getElementById("minsPerDay").value) === 15 || Number(document.getElementById("minsPerDay").value) === 30 || Number(document.getElementById("minsPerDay").value) === 45){
+            if(document.getElementById("hoursPerDay").value <= 3){
+                storeData();
+                state.currentStep = 'summarize';
+                state.currentIndex = 0;
+                updateLocalStorage();
+                printState();
+                renderUpdate();
+            } else{
+                window.alert('Gib maximal drei Stunden ein');
+            };
+        } else {
+            window.alert('Bitte nutze 15 Minuten Schritte');
+        }
     }, back(){
         state.currentStep = 'confidence';
         printState();
@@ -260,6 +272,7 @@ const pageSwitch = () => {
         window.location.href = "plan.html";
 };
 const initializePageSwitch = () => {
+    
     setTimeout(pageSwitch, 5000);
 };
 
