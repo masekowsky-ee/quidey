@@ -257,7 +257,7 @@ const callRenderFunctionContinue = () => {
 
 //pageSwitcher
 const pageSwitch = () => {
-        window.location.href = window.location.href.replace("questionnaire.html", "planner.html");
+        window.location.href = window.location.href.replace("questionnaire.html", "index.html");
     }
 const initializePageSwitch = () => {
     setTimeout(pageSwitch, 5000);
