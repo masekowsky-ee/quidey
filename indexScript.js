@@ -241,14 +241,8 @@ document.getElementById('finishButton').addEventListener('click', (event)=>{
 
 //back to q page
 const switchToQ = () => {
-    if (window.location.href.includes("index.html")) {
-        window.location.href = window.location.href.replace("index.html", "questionnaire.html");
-        console.log(1);
-    } else {
-        window.location.href = "questionnaire.html";
-        console.log(2);
-    }
-    console.log(1)
+    const newUrl = new URL("questionnaire.html", window.location.href);
+    window.location.href = newUrl;
 };
 document.getElementById("backToQ").addEventListener("click", switchToQ);
 
