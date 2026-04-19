@@ -5,16 +5,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Learney</title>
         <link rel="stylesheet" href="./planStyles.css" type="text/css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Orbitron:wght@400..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     </head>
     <body>
         <main>
-            <h2>Plan Seite</h2>
+            <h2>Dein Plan</h2>
             <section id="planSection">
                 <div id="firstTask">
                     <h3>Deine aktuelle Aufgabe:</h3>
                     <h1 id="firstTaskH1"></h1>
-                    <button id="finishButton">Erledigt!</button>
+                </div>
+                <div id="firstTaskNav">                          
                     <button id="unfinishButton">Zurück</button>
+                    <button id="finishButton">Erledigt!</button>                    
                 </div>
                 <div id="prioListDiv">
                     <h3>Deine Prioritäten</h3>
@@ -22,8 +27,8 @@
 
                     </ol>
                 </div>
-                <div id="displayPlan">
-                    <h3>Deine Lerntage</h3>
+                <h3 id="lerntage">Deine Lerntage</h3>
+                <div id="displayPlan">                    
                     <ol id="dayList">
 
                     </ol>

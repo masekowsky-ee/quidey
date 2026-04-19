@@ -66,23 +66,33 @@
     </section>
     <section id="time" class="hidden">
         <h1>Wie oft kannst du lernen?</h1>
-        <input type="radio" id="1everyDay" value="1" name="days">
-        <label for="1everyDay">Jeden Tag</label>
-        <input type="radio" id="2everyOther" value="2" name="days" checked>
-        <label for="2everyOther">Jeden zweiten Tag</label>
-        <input type="radio" id="3everyThird" value="3" name="days">
-        <label for="3everyThird">Jeden dritten Tag</label>
+        <label for="1everyDay">
+            <input type="radio" id="1everyDay" value="1" name="days">
+            Jeden Tag
+        </label>
+        <label for="2everyOther">
+            <input type="radio" id="2everyOther" value="2" name="days" checked>
+            Jeden zweiten Tag
+        </label>
+        <label for="3everyThird">
+            <input type="radio" id="3everyThird" value="3" name="days">
+            Jeden dritten Tag
+        </label>
         <h1>Wie viel Zeit hast du am Tag?</h1>
-        <input id="hoursPerDay" type="number" min="0" max="3" value="0">
-        <label for="hoursPerDay">h</label>
-        <input id="minsPerDay" type="number" min="15" max="45" step="15" value="30">
-        <label for="minsPerDay">mins</label>
+        <label for="hoursPerDay">
+            <input id="hoursPerDay" type="number" min="0" max="3" value="0">
+            h
+        </label>
+        <label for="minsPerDay">
+            <input id="minsPerDay" type="number" min="15" max="45" step="15" value="30">
+            mins
+        </label>
 
     </section>
     <section id="summarize" class="hidden">
         <h1>Ist alles korrekt?</h1>
         <div id="summarizeDiv"></div>
-        <h1>Weiter zum Lernplan</h1>
+        <h2>Weiter zum Lernplan</h2>
     </section>
     <section id="wait" class="hidden">
         <h2>Moment noch...</h2>

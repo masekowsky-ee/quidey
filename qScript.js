@@ -379,13 +379,14 @@ const buildSummarizePage = () => {
 
         let textSumInput = document.createElement('input');
         textSumInput.id = `textSumInput${summarizeCounter}`;
+        textSumInput.type = 'text';
         textSumInput.class = summarizeCounter;
         textSumInput.placeholder = subjectNames[textSumInput.class];
         textSumInput.addEventListener('input', (event)=>{
             subjectList[textSumInput.class].subjectTitle = textSumInput.value.toLowerCase().trim();
             console.log(subjectList[textSumInput.class]);
         });
-        div.appendChild(textSumInput);
+        textSumLabel.appendChild(textSumInput);
 
         //date input for date of subject 
         let dateSumLabel = document.createElement('label');
@@ -403,7 +404,7 @@ const buildSummarizePage = () => {
             subjectList[dateSumInput.class].date = dateSumInput.value;
             console.log(subjectList[dateSumInput.class]);
         });
-        div.appendChild(dateSumInput);
+        dateSumLabel.appendChild(dateSumInput);
 
         //range input for subjects confidence
         let rangeSumLabel = document.createElement('label');
@@ -423,7 +424,7 @@ const buildSummarizePage = () => {
             subjectList[rangeSumInput.class].confidence = rangeSumInput.value;
             console.log(subjectList[rangeSumInput.class]);
         });
-        div.appendChild(rangeSumInput);
+        rangeSumLabel.appendChild(rangeSumInput);
 
         summarizeCounter++;
     }
