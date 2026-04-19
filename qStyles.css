@@ -242,6 +242,7 @@ input[type="date"]{
     padding: 0.5rem;
     margin: 2rem;
     cursor: text; 
+    min-width: 8rem;
 }
 
 #dateInput:focus{
@@ -296,7 +297,7 @@ input[type="date"]{
     margin-bottom: 3rem;
 }
 
-#confidence input[type='range']{
+* input[type='range']{
     -webkit-appearance: none;
     appearance: none;
     background: transparent;
@@ -305,19 +306,19 @@ input[type="date"]{
     margin: 0 10px;
 }
 
-input[type="range"]::-webkit-slider-runnable-track {
+* input[type="range"]::-webkit-slider-runnable-track {
   height: 6px;
   background: #cdedb3;
   border-radius: 999px;
 }
 
-input[type="range"]::-moz-range-track {
+* input[type="range"]::-moz-range-track {
   height: 6px;
   background: #cdedb3;
   border-radius: 999px;
 }
 
-input[type="range"]::-webkit-slider-thumb {
+* input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
 
@@ -332,7 +333,7 @@ input[type="range"]::-webkit-slider-thumb {
   margin-top: -5px; /* wichtig fürs centering */
 }
 
-input[type="range"]::-moz-range-thumb {
+* input[type="range"]::-moz-range-thumb {
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -343,15 +344,15 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
 }
 
-input[type="range"]::-webkit-slider-thumb:hover {
+* input[type="range"]::-webkit-slider-thumb:hover {
   transform: scale(1.2);
 }
 
-input[type="range"]::-webkit-slider-thumb:active {
+* input[type="range"]::-webkit-slider-thumb:active {
   transform: scale(1.1);
 }
 
-input[type="range"] {
+* input[type="range"] {
   accent-color: white; /* super simple moderne Lösung */
 }
 
