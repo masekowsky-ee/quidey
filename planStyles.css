@@ -10,5 +10,10 @@ body{
     display: block!important;
 }
 
+.liHover:hover {
+    cursor: pointer;
+}
 
-
+.crossOff {
+    text-decoration: line-through;
+}

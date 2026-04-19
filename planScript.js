@@ -67,7 +67,7 @@ const dueDateCreator = () => {
     }
     console.log(dueDates);
 };
-
+/*
 const firstTaskAssigner = () => { //assign and display a first task to user
     //check for highest urgency
     firstTask = subData[0];
@@ -79,18 +79,18 @@ const firstTaskAssigner = () => { //assign and display a first task to user
     //create first task element
     document.getElementById('firstTaskH1').textContent = firstTask.name.toUpperCase();
 }
-
+*/
 const subDataOrganizer = () => {     //push subs to organizedSubData from lowest to highest value
     for (sub of subData){
         if(orderedSubData.length === 0){//add if empty
             orderedSubData.push(sub);
-        } else if(sub.urgency < orderedSubData[0].urgency){//add first
+        } else if(sub.urgency*sub.studyDays < orderedSubData[0].urgency*orderedSubData[0].studyDays){//add first
             orderedSubData.unshift(sub);
-        } else if (sub.urgency > orderedSubData[orderedSubData.length-1].urgency){//add last
+        } else if (sub.urgency*sub.studyDays > orderedSubData[orderedSubData.length-1].urgency*orderedSubData[orderedSubData.length-1].studyDays){//add last
             orderedSubData.push(sub);
         }else{ //sort elements into order
             for(let i = 0; i < orderedSubData.length - 1; i++){
-                if(sub.urgency > orderedSubData[i].urgency && sub.urgency < orderedSubData[i+1].urgency){
+                if(sub.urgency*sub.studyDays > orderedSubData[i].urgency*orderedSubData[i].studyDays && sub.urgency*sub.studyDays < orderedSubData[i+1].urgency*orderedSubData[i+1].studyDays){
                     orderedSubData.splice(i+1, 0, sub);
                     break;
                 };
@@ -217,7 +217,10 @@ const dayConstructor = (lastDueDateStudyDays) => { //generate collapsed divs in 
         for (let j = 0; j < sessionArray.length; j++){
             let innerLi = document.createElement('li');
             innerLi.id = `day${iConstructor}li${j}`;
-            innerLi.className = "dayListChild";
+            innerLi.className = "dayListChild liHover";
+            innerLi.addEventListener('click', function(){
+                document.getElementById(`day${iConstructor}li${j}`).classList.toggle('crossOff');
+            });
             if (j%2 === 0){
                 innerLi.textContent = `Lernen: ${sessionArray[j]} Minuten`;
             } else if (j%2 !== 0){
@@ -242,7 +245,7 @@ const regenerator = () => { //removes first task, removes it from all arrays and
 const generateWhole = () => { //call to execute all the functions above in order
     subDataCreator();
     dueDateCreator();
-    firstTaskAssigner();
+    //firstTaskAssigner();
     subDataOrganizer();
     determineSessions();
     sessionArrayConstructor();
@@ -251,7 +254,7 @@ const generateWhole = () => { //call to execute all the functions above in order
 
 generateWhole();
 
-
+let sessionSubjects = [];
 
 //logic to add subjects to the session Li elements
 for (i = 0; i < dueDates[dueDates.length-1].studyDays; i++){//for every day
@@ -267,11 +270,13 @@ for (i = 0; i < dueDates[dueDates.length-1].studyDays; i++){//for every day
                     value = sub.urgency*sub.sessions*sub.studyDays;
                     if (value !== 0){
                         studySub = {name: sub.name, value: value};
+                        sessionSubjects.push(sub.name);
                     };
                 } else {
                     value = sub.urgency*sub.sessions*sub.studyDays;
                     if (value < studySub.value && value !== 0){
                         studySub = {name: sub.name, value: value};
+                        sessionSubjects.push(sub.name);
                     };
                 };
             };
@@ -290,6 +295,25 @@ for (i = 0; i < dueDates[dueDates.length-1].studyDays; i++){//for every day
         };
     }
 };
+//assign first Task
+document.getElementById('firstTaskH1').textContent = sessionSubjects[0].toUpperCase();
+
+//button logic
+let sessionSubjectsPosition = 0;
+document.getElementById('finishButton').addEventListener('click', (event)=>{
+    if (sessionSubjectsPosition < sessionSubjects.length-1){
+        sessionSubjectsPosition++;
+    };
+    document.getElementById('firstTaskH1').textContent = sessionSubjects[sessionSubjectsPosition].toUpperCase();
+});
+
+document.getElementById('unfinishButton').addEventListener('click', (event)=>{
+    if (sessionSubjectsPosition > 0){
+        sessionSubjectsPosition--;
+    };
+    document.getElementById('firstTaskH1').textContent = sessionSubjects[sessionSubjectsPosition].toUpperCase();
+});
+
 /*
 // logic for finishing days, evaluating what subject to study in what session, and reassigning the prio list and first task after a day is finished
 const regenerator = () => {
