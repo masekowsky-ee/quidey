@@ -1,6 +1,6 @@
 /*functional*/
 .hidden{
-    display: none;
+    display: none!important;
 }
 
 body{
@@ -12,6 +12,10 @@ body{
 }
 
 /*main styles*/
+*{
+    font-family: 'Orbitron';
+}
+
 html, body{
     margin: 0;
     padding: 0;
@@ -35,6 +39,38 @@ main{
     height: 90%;
     min-height: 550px;
     padding: 1rem;
+    margin-top: 10%;
+    box-shadow: 0px 4px 4px black;
+    border-radius: 3px;
+}
+
+/*home styles*/
+#home{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    min-height: 550px;
+    min-width: 450px;
+    height: 90%;
+}
+
+#home #intro{
+    width: 100%;
+    height: 100%;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#home #begin{
+    margin-top: 20%;
+    height: auto;
+    width: 100%;
 }
 
 
@@ -50,8 +86,8 @@ main{
 }
 
 #navDiv button {
-    background-color: #084734;
-    color: #CEF17B;
+    background-color: #CEF17B;
+    color: #084734;
     margin: 0!important;
     padding: 1rem;
     box-sizing: border-box;
@@ -59,8 +95,10 @@ main{
     max-width: 160px;
     min-width: 120px;
     font-size: large;
+    font-weight: 600;
     text-align: center;
     box-shadow: 0px 5px 2px black;
+    border-radius: 5px;
 }
 
 #navDiv button:active{
