@@ -253,7 +253,7 @@ h2{
 }
 
 /*menu styles*/
-#menu{
+#menuIcon{
     position: fixed;
     top: 0;
     left:0;
@@ -267,6 +267,61 @@ h2{
     justify-content: center;
 }
 
-#menu img{
+#menuIcon img{
     margin: auto;
+}
+
+#menu{
+    position: fixed;
+    box-sizing: border-box;
+    display: inline-flex;
+    flex-direction: column;
+    padding: 2rem;
+    z-index: 1002;
+    top: 0;
+    left: -20rem;
+    background-color: #084734;
+    color:#cdedb3;
+    height: 100%;
+    width: 16rem;
+    border-right: 2px solid #1e2a1f;
+    box-shadow: 3px 0 5px black;
+}
+#menu img{
+    width: 3rem;
+    height: 3rem;
+    margin: 1rem;
+}
+
+#menu div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-bottom: 1px solid #cdedb3;
+}
+
+#menu h1{
+    width: 6rem;
+    padding-top: 0.25rem;
+    margin: 1rem;
+    height: auto;
+}
+
+#menu ul{
+    clear: both;
+    font-size: 1.25rem;
+    line-height: 4rem;
+    list-style: none;
+    text-align: left;
+    padding-left: 1rem;
+}
+
+#menu ul li{
+    transition: all 0.2s ease;
+}
+
+#menu ul li:hover{
+    list-style:circle;
+    padding-left: 1rem;
+    text-decoration: underline;
 }
