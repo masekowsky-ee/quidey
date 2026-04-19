@@ -490,6 +490,7 @@ input[type="number"]:focus {
 #summarize div label input{
     margin: 0 3px;
     width: 100%;
+    clear: both;
 }
 
 #summarize h1{
@@ -512,13 +513,15 @@ input[type="number"]:focus {
         padding: 1rem;
     }
     #summarize input[type="text"]{
-        width: 80%;
+        width: 75%;
+        clear: both;
     }
     #summarize input[type="date"]{
-        width: 80%;
+        width: 75%;
+        clear: both;
     }
     #summarize input[type="range"]{
-        width: 80%;
+        width: 75%;
     }
 }
 /*nav styles*/
