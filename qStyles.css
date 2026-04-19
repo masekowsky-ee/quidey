@@ -239,7 +239,7 @@ input[type="date"]{
 }
 
 #confidence div {
-    width: 100%;
+    width: 95%;
     height: auto;
     overflow-y: scroll;
     text-align: left;

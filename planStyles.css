@@ -141,7 +141,7 @@ h2{
     color: #cdedb3;
     height: 20rem;
     width: 80%;
-    min-width: 450px;
+    min-width: 350px;
     max-width: 650px;
     margin: 2rem 0;
     padding: 2rem;
@@ -229,4 +229,25 @@ h2{
 
 #dayList li button:active{
     transform: translateY(3px);
+}
+
+
+
+#backToQ{
+    width: 20rem;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    color:#cdedb3;
+    background-color: #084734;
+    border-radius: 3px;
+    box-shadow: 0 3px 5px black;
+    transition: all 0.2s ease;
+}
+
+#backToQ:hover{
+    transform: translateY(-2px);
+}
+
+#backToQ:active{
+    transform: translateY(4px);
 }
