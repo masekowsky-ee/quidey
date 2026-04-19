@@ -254,14 +254,12 @@ generateWhole();
 
 
 //logic to add subjects to the session Li elements
-for (i = 0; i < dueDates[dueDates.length-1].studyDays; i++){
-
-
+for (i = 0; i < dueDates[dueDates.length-1].studyDays; i++){//for every day
     let dateLi = document.getElementById(`day${i}`);
-    for (j = 0; j < sessionArray.length; j++){
-        if(j%2 === 0){
+    for (j = 0; j < sessionArray.length; j++){//for every sessionArray
+        if(j%2 === 0){//only the session not the breaks
             let studySub = 0;
-            for (sub of subData){
+            for (sub of subData){//check which one is most urgent
                 let value;
                 sub.studyDays = Math.ceil(sub.studyDays);
                 console.log(sub)
@@ -276,11 +274,8 @@ for (i = 0; i < dueDates[dueDates.length-1].studyDays; i++){
                         studySub = {name: sub.name, value: value};
                     };
                 };
-                if(sub.studyDays > 0){
-                    sub.studyDays--;
-                }
             };
-            for (sub of subData){
+            for (sub of subData){//add a session to counter for selected sub
                 if(sub.name === studySub.name){
                     sub.sessions++;
                 };
@@ -289,6 +284,11 @@ for (i = 0; i < dueDates[dueDates.length-1].studyDays; i++){
             sessionLi.textContent = sessionLi.textContent + ': ' + studySub.name.toUpperCase();
         };
     };
+    for (sub of subData){
+        if(sub.studyDays > 0){
+            sub.studyDays--;
+        };
+    }
 };
 /*
 // logic for finishing days, evaluating what subject to study in what session, and reassigning the prio list and first task after a day is finished
