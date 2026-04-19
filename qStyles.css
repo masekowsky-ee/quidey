@@ -242,8 +242,8 @@ input[type="date"]{
     padding: 0.5rem;
     margin: 2rem;
     cursor: text; 
-    min-width: 6rem;
-    width: 100%;
+    min-width: 4rem;
+    width: 60%;
     max-width: 24rem;
 }
 

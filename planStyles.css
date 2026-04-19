@@ -251,3 +251,22 @@ h2{
 #backToQ:active{
     transform: translateY(4px);
 }
+
+/*menu styles*/
+#menu{
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 5rem;
+    height: 5rem;
+    z-index: 1001;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#menu img{
+    margin: auto;
+}
