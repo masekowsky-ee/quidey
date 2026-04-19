@@ -168,6 +168,15 @@ const renderUpdate = () => {
         /*if(document.getElementById("navDiv").classList.contains("display") === false){
             document.getElementById("navDiv").classList.add("display");
         }*/
+       if(state.currentStep === 'home'){
+            if (document.getElementById('backButton').classList.contains('hidden')){}else{
+                document.getElementById('backButton').classList.add('hidden');
+            }
+       } else {
+        if (document.getElementById('backButton').classList.contains('hidden')) {
+            document.getElementById('backButton').classList.remove('hidden');
+        }
+       }
         if (state.currentStep === 'dates'){ //update the date info on rendering
             document.getElementById("currentDateSubject").textContent = subjectNames[state.currentIndex];                          //removed .toUpperCase();
             document.getElementById("dateProgress").textContent = `${state.currentIndex+1}/${subjectNames.length}`;

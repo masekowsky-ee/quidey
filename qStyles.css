@@ -1,4 +1,4 @@
-
+/*functional*/
 .hidden{
     display: none;
 }
@@ -9,4 +9,62 @@ body{
 
 .display{
     display: block!important;
+}
+
+/*main styles*/
+html, body{
+    margin: 0;
+    padding: 0;
+    background-color: #cdedb3;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main{
+    background-color: #084734;
+    color:#cdedb3;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    min-width: 450px;
+    height: 90%;
+    min-height: 550px;
+    padding: 1rem;
+}
+
+
+/*nav styles*/
+
+#navDiv{
+    margin: 3rem;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 0!important;
+}
+
+#navDiv button {
+    background-color: #084734;
+    color: #CEF17B;
+    margin: 0!important;
+    padding: 1rem;
+    box-sizing: border-box;
+    width: 20%;
+    max-width: 160px;
+    min-width: 120px;
+    font-size: large;
+    text-align: center;
+    box-shadow: 0px 5px 2px black;
+}
+
+#navDiv button:active{
+    box-shadow: 0px 0px 2px black;
+    position: relative;
+    top: 5px;
 }
