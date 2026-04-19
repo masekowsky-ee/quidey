@@ -23,13 +23,11 @@
         </div>
     </section>
     <section id="subjects" class="hidden">
-        <div>
+        <div id="subjectsDiv">
             <h1>Lass uns loslegen!</h1>
             <h2>Was möchtest du lernen?</h2>
-        </div>
-        <div id="subjectsDiv">
             <input type="text" id="subjectInput" placeholder="Fach eingeben..." list="subjectOptions">
-            <label for="subjectInput">Fach eingeben</label>
+<!--            <label for="subjectInput">Fach eingeben</label>-->
             <datalist id="subjectOptions">
                 <option value="Mathematik">
                 <option value="Deutsch">
@@ -47,19 +45,17 @@
             <ul id="subjectList">
 
             </ul>
-            <h2>Alles klar!</h2>
+            <!--<h2>Alles klar!</h2>-->
         </div>
     </section>
     <section id="dates" class="hidden">
-        <div>
-            <h1>Füge das Datum hinzu!</h1>
-        </div>
         <div id="dateDiv">
+            <h1>Füge das Datum hinzu!</h1>
             <h1 id="dateProgress"></h1>
-            <h2>Wann möchtest du fertig sein mit:</h2>
+            <h3>Wann möchtest du fertig sein mit:</h3>
             <h2 id="currentDateSubject"></h2>
             <input type="date" id="dateInput">
-            <label for="dateInput">Datum eingeben</label>
+            <!--<label for="dateInput">Datum eingeben</label>-->
         </div>
     </section>
     <section id="confidence" class="hidden">

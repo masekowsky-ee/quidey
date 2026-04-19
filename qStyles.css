@@ -16,6 +16,23 @@ body{
     font-family: 'Orbitron';
 }
 
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 10px;
+}
+
+* {
+    scrollbar-color: #555 transparent;
+}
+
 html, body{
     margin: 0;
     padding: 0;
@@ -74,6 +91,225 @@ main{
 }
 
 
+/*Subject styles*/
+
+#subjects {
+    height: 90%;
+    min-height: 550px;
+    min-width: 450px;
+    height: 90%;
+}
+
+#subjects div {
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+    flex-wrap: wrap;
+}
+
+#subjects div h1{
+    margin: 4rem 0;
+}
+
+#subjects div ul{
+    width: 50%;
+    justify-self: center;
+}
+
+#addSubjectButton {
+    all: unset;
+    display: inline-block;
+    cursor: pointer;
+    padding: 0.6rem 0.8rem;
+    background-color: #cdedb3;
+    color: #084734;
+    font-weight: 600;
+    border-radius: 3px;
+    box-shadow: 0px 5px 5px black;
+    transition: all 0.2s ease;
+    margin: 0 0.25rem;                 
+}
+
+#addSubjectButton:hover{
+    background-color: #CEF17B;
+    transform: translateY(-2px);
+}
+
+#addSubjectButton:focus {
+  outline: 2px solid #CEF17B;
+  outline-offset: 2px;
+  transform: translateY(-2px);
+}
+
+#addSubjectButton:active{
+    transform: translateY(4px);
+    outline: none;
+    box-shadow: 0px 0px 5px black;
+
+}
+
+#subjectInput{
+    all:unset;
+    background-color: white;
+    color: #084734;
+    font-weight: 600;
+    height: 2.4rem;
+    border-radius: 3px;
+}
+
+#subjectInput::placeholder{
+    font-weight: 300;
+}
+
+#subjectInput:focus{
+   outline: 2px solid #CEF17B;
+   outline-offset: 2px; 
+}
+
+#subjectList li{
+    cursor:pointer;
+}
+
+#subjectList li:hover{
+    color:hsla(91, 53%, 80%, 0.2)
+}
+
+
+
+/*Date styles*/
+
+#dates {
+    height: 90%;
+    min-height: 550px;
+    min-width: 450px;
+    height: 90%;
+}
+
+#dates h2 {
+    font-weight: 400;
+}
+
+#dates div {
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+}
+
+#dates h1{
+    margin-top: 3rem;
+}
+
+#dateProgress {
+    margin-bottom: 2rem;
+}
+
+#dates h3{
+    font-weight: 500;
+}
+
+#dates h2{
+    font-weight: 600;
+}
+
+#dateInput{
+    all:unset;
+    background-color: white;
+    color: #084734;
+    font-weight: 600;
+    height: 2.4rem;
+    border-radius: 3px;
+    padding: 0.5rem;
+    margin: 2rem;
+    cursor: text; 
+}
+
+#dateInput:focus{
+   outline: 2px solid #CEF17B;
+   outline-offset: 2px; 
+}
+
+
+/*confidence styles*/
+
+#confidence {
+    height: 90%;
+    min-height: 550px;
+    min-width: 450px;
+    height: 90%;
+}
+
+#confidence div {
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+}
+
+#confidence h2{
+    margin-bottom: 3rem;
+}
+
+#confidence input[type='range']{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    background: transparent;
+    width: 15rem;
+    height: 12px;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  background: #cdedb3;
+  border-radius: 999px;
+}
+
+input[type="range"]::-moz-range-track {
+  height: 6px;
+  background: #cdedb3;
+  border-radius: 999px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+
+  background: #084734;
+  border: 2px solid #CEF17B;
+
+  cursor: pointer;
+  margin-top: -5px; /* wichtig fürs centering */
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+
+  background: white;
+  border: 2px solid #3b82f6;
+
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(1.1);
+}
+
+input[type="range"] {
+  accent-color: white; /* super simple moderne Lösung */
+}
+
+
+/*time styles*/
+
 /*nav styles*/
 
 #navDiv{
@@ -99,10 +335,19 @@ main{
     text-align: center;
     box-shadow: 0px 5px 2px black;
     border-radius: 5px;
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
 
 #navDiv button:active{
+    transform: translateY(4px)!important;
     box-shadow: 0px 0px 2px black;
-    position: relative;
-    top: 5px;
+}
+
+#navDiv button:hover {
+    transform: translateY(-2px);
+}
+
+#navDiv button:focus {
+    transform: translateY(-2px);
 }
