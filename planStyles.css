@@ -332,3 +332,8 @@ h2{
     padding-left: 1rem;
     text-decoration: underline;
 }
+
+#menu ul li a{
+    text-decoration: none;
+    color: #cdedb3;
+}
