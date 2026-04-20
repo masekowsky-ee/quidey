@@ -136,6 +136,13 @@ h2{
     text-decoration: underline;
 }
 
+@media (max-width: 500){
+    #firstTask h1 {
+        margin: 1rem;
+        font-size: xx-large;
+    }
+}
+
 #prioListDiv{
     background-color: #084734;
     color: #cdedb3;
