@@ -271,6 +271,11 @@ h2{
     margin: auto;
 }
 
+#menuIcon img:hover{
+    border: 2px solid #cdedb3;
+    border-radius: 5px;
+}
+
 #menu{
     position: fixed;
     box-sizing: border-box;
@@ -312,6 +317,10 @@ h2{
     padding-top: 0.25rem;
     margin: 1rem;
     height: auto;
+}
+
+#menu h1:hover{
+    text-decoration: underline;
 }
 
 #menu ul{
