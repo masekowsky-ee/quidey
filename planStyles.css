@@ -136,9 +136,14 @@ h2{
     text-decoration: underline;
 }
 
-@media (max-width: 500){
-    #firstTask h1 {
-        margin: 1rem;
+@media (max-width: 500px){
+    #firstTaskH1 {
+        margin: auto 0;
+        text-align: center;
+        font-size: xx-large;
+    }
+    #firstTask h1{
+        margin: auto 0;
         font-size: xx-large;
     }
 }
