@@ -313,47 +313,14 @@ document.getElementById('unfinishButton').addEventListener('click', (event)=>{
     };
     document.getElementById('firstTaskH1').textContent = sessionSubjects[sessionSubjectsPosition].toUpperCase();
 });
-
+//open menu
 document.getElementById("menuIconImg").addEventListener("click", function(){
     document.getElementById("menu").style.left = "0";
 });
-
-document.getElementById("menuHead").addEventListener("click", function(){
+//close menu
+document.getElementById("menuHeadH1").addEventListener("click", function(){
     document.getElementById("menu").style.left = "-20rem";
 });
-/*
-// logic for finishing days, evaluating what subject to study in what session, and reassigning the prio list and first task after a day is finished
-const regenerator = () => {
-    //get date of next day for comparison
-    let tmrDate = new Date(Date.now()+24*60*60*1000);
-    console.log(tmrDate);
-    for (let i = dueDates.length - 1; i >= 0; i--){
-        let dueDateOfDue = new Date(Date.now()+24*60*60*1000*dueDates[i].totalDays);
-        console.log('Duedate '+ dueDateOfDue);
-        if (tmrDate === dueDateOfDue){
-            dueDates.splice(i, 1);
-        };
-    }
-};
-
-regenerator();
-
-
-
-
-
-
-finish button
-document.getElementById('finishButton').addEventListener('click', (event)=>{
-    iConstructorAdd++;
-    regenerator();
+document.getElementById("menuHeadImg").addEventListener("click", function(){
+    document.getElementById("menu").style.left = "-20rem";
 });
-
-document.getElementById('unfinishButton').addEventListener('click', (event)=>{
-    if (iConstructorAdd !== 0){
-        iConstructorAdd--;
-        regenerator();
-    }
-});
-*/
-
