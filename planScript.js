@@ -314,6 +314,9 @@ document.getElementById('unfinishButton').addEventListener('click', (event)=>{
     document.getElementById('firstTaskH1').textContent = sessionSubjects[sessionSubjectsPosition].toUpperCase();
 });
 
+document.getElementById("menuIconImg").addEventListener("click", function(){
+    document.getElementById("menu").style.left = "0";
+});
 /*
 // logic for finishing days, evaluating what subject to study in what session, and reassigning the prio list and first task after a day is finished
 const regenerator = () => {
