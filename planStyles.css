@@ -292,6 +292,12 @@ h2{
     width: 3rem;
     height: 3rem;
     margin: 1rem;
+    cursor: pointer;
+}
+
+#menu img:hover{
+    border: 2px solid #cdedb3;
+    border-radius: 5px;
 }
 
 #menu div{
