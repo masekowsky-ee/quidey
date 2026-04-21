@@ -37,19 +37,11 @@ html, body{
     margin: 0;
     padding: 0;
     background-color: #cdedb3;
-    display: grid;
-    grid-template-rows: 1fr 7fr 2fr;
-    grid-template-columns: 1fr minmax(250px, 650px) 1fr;
-    grid-template-areas: "space space space"
-                         "space section space"
-                         "space button space";
-    min-height: 100vh;
-    /*
+    display: flex;
     text-align: center;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    */
 }
 
 main{
@@ -59,13 +51,11 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
-    grid-area: section;
-    /*
-    width: 80%;
+    width: 70%;
     min-width: 450px;
-    height: 90%;
-    min-height: 550px;
-    */
+    max-width: 750px;
+    height: 80%;
+    min-height: 450px;
     padding: 1rem;
     margin-top: 10%;
     box-shadow: 0px 4px 4px black;
@@ -79,22 +69,20 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /*height: 90%;
-    min-height: 550px;
-    min-width: 450px;
-    height: 90%;*/
-    grid-area: section;
+    height: 90%;
+    width: 90%;
+    min-height: 400px;
+    min-width: 350px;
 }
 
 #home #intro{
     width: 100%;
     height: 100%;
     margin-top: 10%;
-    /*display: flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;*/
-    grid-area: section;
+    align-items: center;
 }
 
 #home #begin{
@@ -116,13 +104,10 @@ main{
 /*Subject styles*/
 
 #subjects {
-    /*
     height: 90%;
-    min-height: 550px;
-    min-width: 450px;
-    height: 90%;
-    */
-    grid-area: section;
+    width: 90%;
+    min-height: 400px;
+    min-width: 350px;
 }
 
 #subjects div {
@@ -205,7 +190,7 @@ input[type="text"]:focus{
         min-width: 280px;
     }
     #addSubjectButton{
-        margin: 0.25rem;
+        margin: 0.5rem;
     }
     input[type='text']{
         width: 10.5rem;
@@ -219,13 +204,10 @@ input[type="text"]:focus{
 /*Date styles*/
 
 #dates {
-    /*
     height: 90%;
-    min-height: 550px;
-    min-width: 450px;
-    width: 100%;
-    */
-    grid-area: section;
+    width: 90%;
+    min-height: 400px;
+    min-width: 350px;
 }
 
 #dates h2 {
@@ -303,13 +285,10 @@ input[type="date"]{
 /*confidence styles*/
 
 #confidence {
-    /*
     height: 90%;
-    min-height: 550px;
-    min-width: 450px;
-    height: 90%;
-    */
-    grid-area: section;
+    width: 90%;
+    min-height: 400px;
+    min-width: 350px;
 }
 
 #confidence div {
@@ -399,13 +378,10 @@ input[type="date"]{
 /*time styles*/
 
 #time {
-    /*
     height: 90%;
-    min-height: 550px;
-    min-width: 450px;
-    height: 90%;
-    */
-    grid-area: section;
+    width: 90%;
+    min-height: 400px;
+    min-width: 350px;
 }
 
 #time h1 {
@@ -486,14 +462,10 @@ input[type="number"]:focus {
 /*summarize styles*/
 
 #summarize {
-    /*
     height: 90%;
-    min-height: 550px;
-    width: 100%;
-    height: 90%;
-    max-height: 750px;
-    */
-    grid-area: section;
+    width: 90%;
+    min-height: 400px;
+    min-width: 350px;
     padding: 0;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -560,11 +532,10 @@ input[type="number"]:focus {
 #navDiv{
     margin: 3rem;
     padding: 0;
-    /*width: 100%;*/
+    width: 100%;
     display: flex;
     flex-direction: row;
     gap: 0!important;
-    grid-area: button;
 }
 
 #navDiv button {
