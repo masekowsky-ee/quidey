@@ -102,7 +102,7 @@ p {
     box-sizing: border-box;
     display: inline-flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 0 2rem 2rem 0;
     z-index: 1002;
     top: 0;
     left: -20rem;
@@ -122,7 +122,7 @@ p {
 #menu img{
     width: 3rem;
     height: 3rem;
-    margin: 1rem;
+    margin: 1rem 0 1rem 1rem;
     cursor: pointer;
 }
 
@@ -135,11 +135,11 @@ p {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    align-items: flex-start;
     border-bottom: 1px solid #cdedb3;
 }
 
 #menu h1{
-    width: 6rem;
     padding-top: 0.25rem;
     margin: 1rem;
     height: auto;
@@ -148,6 +148,7 @@ p {
 
 #menuHeadH1 {
     text-align: left;
+    margin-left: 0;
 }
 
 #menu h1:hover{
@@ -160,7 +161,7 @@ p {
     line-height: 4rem;
     list-style: none;
     text-align: left;
-    padding-left: 0rem;
+    padding-left: 2rem;
 }
 
 #menu ul li{
