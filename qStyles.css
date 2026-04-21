@@ -516,17 +516,6 @@ input[type="number"]:focus {
         min-width: 350px;
         padding: 1rem;
     }
-    #summarize input[type="text"]{
-        width: 75%;
-        clear: both;
-    }
-    #summarize input[type="date"]{
-        width: 75%;
-        clear: both;
-    }
-    #summarize input[type="range"]{
-        width: 75%;
-    }
 }
 /*nav styles*/
 
