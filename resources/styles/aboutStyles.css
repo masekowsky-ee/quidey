@@ -1,0 +1,127 @@
+body{
+    background-color: #084734;
+    color: #cdedb3;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-family: 'Orbitron';
+    z-index: 1;
+    margin: 0;
+    text-align: center;
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 10px;
+}
+
+* {
+    scrollbar-color: #555 transparent;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 80%;
+    max-width: 52rem;
+    border: 2px solid #cdedb3;
+    outline: 2px solid #CEF17B;
+    box-shadow: 0px 4px 5px #1e2a1f;
+    border-radius: 2rem;
+    padding-bottom: 2rem;
+    padding: 1rem;
+    padding-bottom: 3rem;
+    margin: 2rem 0;
+}
+
+article{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center; 
+    text-align: left!important;   
+    width: 85%;
+    background-color: #cdedb3;
+    color: #084734;
+    border-radius: 2rem;
+    border: 2px solid #CEF17B;
+    box-shadow: 0px 4px 5px #1e2a1f;
+    padding: 1rem 2rem;
+}
+
+article + article {
+    margin-top: 3rem;
+}
+
+h1{
+    background-color: #084734;
+    color:#cdedb3;
+    width: 80%;
+    padding: 2rem;
+    margin: 0;
+}
+
+p {
+    color:#084734;
+}
+
+#aboutP{
+    border: 2px solid #CEF17B;
+    box-shadow: 0px 4px 5px #1e2a1f;
+    background-color: #cdedb3;
+    border-radius: 2rem;
+    padding: 2rem;
+    margin: 0 2rem;
+    width: 75%;
+    max-width: 48rem;
+    text-align: center;
+}
+
+#news{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#news div {
+    width: 100%;
+    height: 48rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 2rem;
+    padding: 0 1rem;
+}
+
+#news h2{
+    margin-bottom: 0;
+}
+
+#news h4{
+    margin-top: 0;
+}
+
+#contact ul{
+    text-align: left;
+}
+
+#contact ul li a{
+    color: #CEF17B;
+    transition: all 0.2s ease;
+    word-break: break-all;
+}

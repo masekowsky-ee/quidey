@@ -1,0 +1,78 @@
+body{
+    background-color: #cdedb3;
+    color: #084734;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-family: 'Orbitron';
+    z-index: 1;
+}
+
+h1{
+    padding: 2rem 1rem;
+    margin: 0 6rem;
+}
+
+form{
+    background-color: #084734;
+    width: 80%;
+    max-width: 880px;
+    min-height: 28rem;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0px 3px 5px black;
+    transition: all 0.2s ease;
+}
+
+textarea{
+    width: 90%;
+    max-width: 800px;
+    height: 20rem;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-top: 1rem;
+    font-family: 'Orbitron';
+    color: #084734;
+    font-size: 1.125rem;
+    transition: all 0.2s ease;
+}
+
+textarea:hover, textarea:active, textarea:focus{
+    outline:2px solid #084734;
+    transform: translateY(-2px);
+}
+
+
+button{
+    margin: 1rem;
+    padding: 1rem;
+    width: 8rem;
+    box-shadow: 0px 3px 5px black;
+    border-radius: 5px;
+    font-family: 'Orbitron';
+    background-color: #CEF17B;
+    color:#084734;
+    font-weight: 700;
+    font-size: large;
+    transition: all 0.2s ease;
+}
+
+button:hover{
+    transform: translateY(-2px);
+}
+
+button:focus{
+    outline: 2px solid #084734;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(4px);
+}
