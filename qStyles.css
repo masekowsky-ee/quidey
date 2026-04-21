@@ -469,6 +469,7 @@ input[type="number"]:focus {
 
 #summarize div{
     width: 90%;
+    height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -492,7 +493,7 @@ input[type="number"]:focus {
     clear: both;
 }
 
-#summarize h1{
+#summarize h1, #summarize h2{
     margin: 0;
 }
 
