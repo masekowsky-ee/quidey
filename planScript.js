@@ -259,7 +259,7 @@ for (i = 0; i < dueDates[dueDates.length-1].studyDays; i++){//for every day
                     value = sub.urgency*sub.sessions*sub.studyDays;
                     if (value !== 0){
                         studySub = {name: sub.name, value: value};
-                        sessionSubjects.push(sub.name);
+                        //sessionSubjects.push(sub.name);          commented - it should not be needed here
                     };
                 } else {
                     value = sub.urgency*sub.sessions*sub.studyDays;
