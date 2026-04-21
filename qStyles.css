@@ -39,10 +39,11 @@ html, body{
     background-color: #cdedb3;
     display: grid;
     grid-template-rows: 1fr 7fr 2fr;
-    grid-template-columns: 1fr minmax(5fr, 650px) 1fr;
+    grid-template-columns: 1fr minmax(250px, 650px) 1fr;
     grid-template-areas: "space space space"
                          "space section space"
                          "space button space";
+    min-height: 100vh;
     /*
     text-align: center;
     flex-direction: column;
