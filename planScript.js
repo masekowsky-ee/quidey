@@ -286,6 +286,8 @@ for (i = 0; i < dueDates[dueDates.length-1].studyDays; i++){//for every day
     }
 };
 
+console.log(sessionSubjects);
+
 //assign first Task
 document.getElementById('firstTaskH1').textContent = sessionSubjects[0].toUpperCase();
 
@@ -304,6 +306,7 @@ document.getElementById('unfinishButton').addEventListener('click', (event)=>{
     };
     document.getElementById('firstTaskH1').textContent = sessionSubjects[sessionSubjectsPosition].toUpperCase();
 });
+
 //open menu
 document.getElementById("menuIconImg").addEventListener("click", function(){
     document.getElementById("menu").style.left = "0";
