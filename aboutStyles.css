@@ -25,6 +25,7 @@ section{
     box-shadow: 0px 4px 5px #1e2a1f;
     border-radius: 2rem;
     padding-bottom: 2rem;
+    padding: 1rem;
     margin-bottom: 4rem;
 }
 
@@ -34,7 +35,7 @@ article{
     align-items: flex-start;
     justify-content: center; 
     text-align: left!important;   
-    width: 90%;
+    width: 85%;
     background-color: #cdedb3;
     color: #084734;
     border-radius: 2rem;
@@ -67,7 +68,13 @@ p {
     text-align: center;
 }
 
+#contact ul{
+    text-align: left;
+}
 
+#contact ul li a{
+    color: #CEF17B;
+}
 
 
 
