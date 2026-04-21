@@ -97,12 +97,14 @@ const subDataOrganizer = () => {     //push subs to organizedSubData from lowest
             };
         };
     };
+//                                Moved prio list assignment down after pomo session li assignment
     //add items to prio list
     for (sub of orderedSubData){
         let li = document.createElement('li');
         li.textContent = sub.name.toUpperCase();
         document.getElementById("prioList").appendChild(li);
     };
+//    */
     console.log(orderedSubData);
 }
 
@@ -276,7 +278,7 @@ for (i = 0; i < dueDates[dueDates.length-1].studyDays; i++){//for every day
                 };
             };
             sessionLi = document.getElementById(`day${i}li${j}`);
-            sessionLi.textContent = sessionLi.textContent + ': ' + studySub.name.toUpperCase();
+            sessionLi.textContent = sessionLi.textContent + ': ' + sessionSubjects[sessionSubjects.length - 1] //studySub.name.toUpperCase();
         };
     };
     for (sub of subData){
@@ -285,7 +287,7 @@ for (i = 0; i < dueDates[dueDates.length-1].studyDays; i++){//for every day
         };
     }
 };
-
+console.log(subData);
 console.log(sessionSubjects);
 
 //assign first Task
