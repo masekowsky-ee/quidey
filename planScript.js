@@ -97,12 +97,14 @@ const subDataOrganizer = () => {     //push subs to organizedSubData from lowest
             };
         };
     };
+//                                Moved prio list assignment down after pomo session li assignment
     //add items to prio list
     for (sub of orderedSubData){
         let li = document.createElement('li');
         li.textContent = sub.name.toUpperCase();
         document.getElementById("prioList").appendChild(li);
     };
+//    */
     console.log(orderedSubData);
 }
 
@@ -213,7 +215,7 @@ const dayConstructor = (lastDueDateStudyDays) => { //generate collapsed divs in 
         });
         div.appendChild(button);
         div.appendChild(ol);
-        //generate list elements mit pomodoro sessions
+        //generate list elements with pomodoro sessions
         for (let j = 0; j < sessionArray.length; j++){
             let innerLi = document.createElement('li');
             innerLi.id = `day${iConstructor}li${j}`;
@@ -230,17 +232,6 @@ const dayConstructor = (lastDueDateStudyDays) => { //generate collapsed divs in 
         }
     };
 };
-/*
-const regenerator = () => { //removes first task, removes it from all arrays and Objects; adds new, deletes all day content and regenerates it
-    const dayDestructor = () => {   
-        document.getElementById('dayList').innerHTML = '';
-    };
-    dayDestructor();
-    dayConstructor(dueDates[dueDates.length-1].studyDays);
-};
-*/
-
-
 
 const generateWhole = () => { //call to execute all the functions above in order
     subDataCreator();
@@ -270,23 +261,24 @@ for (i = 0; i < dueDates[dueDates.length-1].studyDays; i++){//for every day
                     value = sub.urgency*sub.sessions*sub.studyDays;
                     if (value !== 0){
                         studySub = {name: sub.name, value: value};
-                        sessionSubjects.push(sub.name);
+                        //sessionSubjects.push(sub.name);          commented - it should not be needed here
                     };
                 } else {
                     value = sub.urgency*sub.sessions*sub.studyDays;
                     if (value < studySub.value && value !== 0){
                         studySub = {name: sub.name, value: value};
-                        sessionSubjects.push(sub.name);
+
                     };
                 };
             };
+            sessionSubjects.push(studySub.name); //push to array that is needed for firstTask
             for (sub of subData){//add a session to counter for selected sub
                 if(sub.name === studySub.name){
                     sub.sessions++;
                 };
             };
             sessionLi = document.getElementById(`day${i}li${j}`);
-            sessionLi.textContent = sessionLi.textContent + ': ' + studySub.name.toUpperCase();
+            sessionLi.textContent = sessionLi.textContent + ': ' + sessionSubjects[sessionSubjects.length - 1] //studySub.name.toUpperCase();
         };
     };
     for (sub of subData){
@@ -295,6 +287,9 @@ for (i = 0; i < dueDates[dueDates.length-1].studyDays; i++){//for every day
         };
     }
 };
+console.log(subData);
+console.log(sessionSubjects);
+
 //assign first Task
 document.getElementById('firstTaskH1').textContent = sessionSubjects[0].toUpperCase();
 

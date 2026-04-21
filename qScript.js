@@ -73,8 +73,10 @@ steps = [
     }}, 
 
     {name: 'time', next(){
-        if(Number(document.getElementById("minsPerDay").value) === 15 || Number(document.getElementById("minsPerDay").value) === 30 || Number(document.getElementById("minsPerDay").value) === 45){
-            if(document.getElementById("hoursPerDay").value <= 3){
+        if(Number(document.getElementById("minsPerDay").value) === 0 || Number(document.getElementById("minsPerDay").value) === 15 || Number(document.getElementById("minsPerDay").value) === 30 || Number(document.getElementById("minsPerDay").value) === 45){
+            if(Number(document.getElementById("minsPerDay").value) === 0 && document.getElementById("hoursPerDay").value === 0){
+                window.alert('Gib eine Zeit ein');
+            }else if(document.getElementById("hoursPerDay").value <= 3){
                 storeData();
                 state.currentStep = 'summarize';
                 state.currentIndex = 0;
@@ -179,7 +181,7 @@ const renderUpdate = () => {
        }
         if (state.currentStep === 'dates'){ //update the date info on rendering
             document.getElementById("currentDateSubject").textContent = subjectNames[state.currentIndex].toUpperCase();                          //removed .toUpperCase();
-            document.getElementById('dateInput').value = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)
+            document.getElementById('dateInput').value = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
             document.getElementById("dateProgress").textContent = `${state.currentIndex+1}/${subjectNames.length}`;
         } else if (state.currentStep === 'confidence'){ //build the elements on the confidence page when rendered
             buildConfidencePage();
@@ -222,6 +224,7 @@ const indexUpdate = () => {
         upperCase = (subjectNames[state.currentIndex]).toUpperCase();
         document.getElementById("currentDateSubject").textContent = upperCase;
         document.getElementById("dateProgress").textContent = `${state.currentIndex+1}/${subjectList.length}`;
+        document.getElementById('dateInput').value = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
     };
 };
 

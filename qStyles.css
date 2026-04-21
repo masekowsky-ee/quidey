@@ -51,10 +51,11 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80%;
+    width: 70%;
     min-width: 450px;
-    height: 90%;
-    min-height: 550px;
+    max-width: 750px;
+    height: 75%;
+    min-height: 450px;
     padding: 1rem;
     margin-top: 10%;
     box-shadow: 0px 4px 4px black;
@@ -69,23 +70,22 @@ main{
     justify-content: center;
     align-items: center;
     height: 90%;
-    min-height: 550px;
-    min-width: 450px;
-    height: 90%;
+    width: 90%;
+    min-height: 400px;
+    min-width: 350px;
 }
 
-#home #intro{
-    width: 100%;
-    height: 100%;
-    margin-top: 10%;
+#intro{
+    width: 90%;
+    height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#home #begin{
-    margin-top: 20%;
+#begin{
+    margin-top: 10%;
     height: auto;
     width: 100%;
 }
@@ -104,25 +104,28 @@ main{
 
 #subjects {
     height: 90%;
-    min-height: 550px;
-    min-width: 450px;
-    height: 90%;
+    width: 90%;
+    min-height: 400px;
+    min-width: 350px;
 }
 
 #subjects div {
     width: 100%;
-    height: auto;
+    height: 90%;
     overflow-y: scroll;
     flex-wrap: wrap;
 }
 
 #subjects div h1{
-    margin: 4rem 0;
+    margin: 10% 0;
 }
 
 #subjects div ul{
     width: 50%;
+    height: 30%;
+    max-height: 6rem;
     justify-self: center;
+    overflow-y: scroll;
 }
 
 #addSubjectButton {
@@ -136,7 +139,7 @@ main{
     border-radius: 3px;
     box-shadow: 0px 5px 5px black;
     transition: all 0.2s ease;
-    margin: 0 0.25rem;  
+    margin: 0.5rem 0.25rem;  
     width: 10rem;               
 }
 
@@ -201,9 +204,9 @@ input[type="text"]:focus{
 
 #dates {
     height: 90%;
-    min-height: 550px;
-    min-width: 450px;
-    width: 100%;
+    width: 90%;
+    min-height: 400px;
+    min-width: 350px;
 }
 
 #dates h2 {
@@ -282,9 +285,9 @@ input[type="date"]{
 
 #confidence {
     height: 90%;
-    min-height: 550px;
-    min-width: 450px;
-    height: 90%;
+    width: 90%;
+    min-height: 400px;
+    min-width: 350px;
 }
 
 #confidence div {
@@ -375,13 +378,13 @@ input[type="date"]{
 
 #time {
     height: 90%;
-    min-height: 550px;
-    min-width: 450px;
-    height: 90%;
+    width: 90%;
+    min-height: 400px;
+    min-width: 350px;
 }
 
 #time h1 {
-    margin-top: 4rem;
+    margin-top: 2rem;
     margin-bottom: 3rem;
 }
 
@@ -459,10 +462,9 @@ input[type="number"]:focus {
 
 #summarize {
     height: 90%;
-    min-height: 550px;
-    width: 100%;
-    height: 90%;
-    max-height: 750px;
+    width: 90%;
+    min-height: 400px;
+    min-width: 350px;
     padding: 0;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -470,6 +472,8 @@ input[type="number"]:focus {
 
 #summarize div{
     width: 90%;
+    height: 90%;
+    max-height: 15rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -493,7 +497,7 @@ input[type="number"]:focus {
     clear: both;
 }
 
-#summarize h1{
+#summarize h1, #summarize h2{
     margin: 0;
 }
 
@@ -527,9 +531,12 @@ input[type="number"]:focus {
 /*nav styles*/
 
 #navDiv{
-    margin: 3rem;
+    margin: 2.5%;
     padding: 0;
+
     width: 100%;
+    height: 15%;
+
     display: flex;
     flex-direction: row;
     gap: 0!important;
