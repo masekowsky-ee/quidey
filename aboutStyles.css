@@ -18,23 +18,51 @@ section{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 80%;
+    max-width: 52rem;
+    border: 2px solid #cdedb3;
+    outline: 2px solid #CEF17B;
+    box-shadow: 0px 4px 5px #1e2a1f;
+    border-radius: 2rem;
+    padding-bottom: 2rem;
+    margin-bottom: 4rem;
+}
+
+article{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center; 
+    text-align: left!important;   
+    width: 90%;
+    background-color: #cdedb3;
+    color: #084734;
+    border-radius: 2rem;
+    border: 2px solid #CEF17B;
+    box-shadow: 0px 4px 5px #1e2a1f;
+    padding: 1rem 2rem;
 }
 
 h1{
     background-color: #084734;
     color:#cdedb3;
-    width: 100%;
+    width: 80%;
     padding: 2rem;
     margin: 0;
 }
 
 p {
     color:#084734;
+}
+
+#aboutP{
+    border: 2px solid #CEF17B;
+    box-shadow: 0px 4px 5px #1e2a1f;
     background-color: #cdedb3;
     border-radius: 2rem;
     padding: 2rem;
     margin: 0 2rem;
-    width: 80%;
+    width: 75%;
     max-width: 48rem;
     text-align: center;
 }
@@ -115,6 +143,11 @@ p {
     padding-top: 0.25rem;
     margin: 1rem;
     height: auto;
+    text-align: left!important;
+}
+
+#menuHeadH1 {
+    text-align: left;
 }
 
 #menu h1:hover{
