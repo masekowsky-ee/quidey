@@ -123,6 +123,7 @@ main{
 #subjects div ul{
     width: 50%;
     height: 30%;
+    max-height: 8rem;
     justify-self: center;
     overflow-y: scroll;
 }
