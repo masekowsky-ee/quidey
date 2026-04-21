@@ -111,18 +111,20 @@ main{
 
 #subjects div {
     width: 100%;
-    height: auto;
+    height: 90%;
     overflow-y: scroll;
     flex-wrap: wrap;
 }
 
 #subjects div h1{
-    margin: 4rem 0;
+    margin: 10% 0;
 }
 
 #subjects div ul{
     width: 50%;
+    height: 30%;
     justify-self: center;
+    overflow-y: scroll;
 }
 
 #addSubjectButton {
