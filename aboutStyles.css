@@ -13,6 +13,23 @@ body{
     text-align: center;
 }
 
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 10px;
+}
+
+* {
+    scrollbar-color: #555 transparent;
+}
+
 section{
     display: flex;
     flex-direction: column;
@@ -26,7 +43,8 @@ section{
     border-radius: 2rem;
     padding-bottom: 2rem;
     padding: 1rem;
-    margin-bottom: 4rem;
+    padding-bottom: 3rem;
+    margin: 2rem 0;
 }
 
 article{
@@ -42,6 +60,10 @@ article{
     border: 2px solid #CEF17B;
     box-shadow: 0px 4px 5px #1e2a1f;
     padding: 1rem 2rem;
+}
+
+article + article {
+    margin-top: 3rem;
 }
 
 h1{
@@ -66,6 +88,12 @@ p {
     width: 75%;
     max-width: 48rem;
     text-align: center;
+}
+
+#news{
+    padding: 5rem 0;
+    max-height: 48rem;
+    overflow-y: scroll;
 }
 
 #contact ul{
