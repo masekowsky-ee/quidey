@@ -73,8 +73,10 @@ steps = [
     }}, 
 
     {name: 'time', next(){
-        if(Number(document.getElementById("minsPerDay").value) === 15 || Number(document.getElementById("minsPerDay").value) === 30 || Number(document.getElementById("minsPerDay").value) === 45){
-            if(document.getElementById("hoursPerDay").value <= 3){
+        if(Number(document.getElementById("minsPerDay").value) === 0 || Number(document.getElementById("minsPerDay").value) === 15 || Number(document.getElementById("minsPerDay").value) === 30 || Number(document.getElementById("minsPerDay").value) === 45){
+            if(Number(document.getElementById("minsPerDay").value) === 0 && document.getElementById("hoursPerDay").value === 0){
+                window.alert('Gib eine Zeit ein');
+            }else if(document.getElementById("hoursPerDay").value <= 3){
                 storeData();
                 state.currentStep = 'summarize';
                 state.currentIndex = 0;

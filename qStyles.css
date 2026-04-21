@@ -123,7 +123,7 @@ main{
 #subjects div ul{
     width: 50%;
     height: 30%;
-    max-height: 8rem;
+    max-height: 6rem;
     justify-self: center;
     overflow-y: scroll;
 }
@@ -473,6 +473,7 @@ input[type="number"]:focus {
 #summarize div{
     width: 90%;
     height: 90%;
+    max-height: 15rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
