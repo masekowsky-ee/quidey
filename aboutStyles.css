@@ -1,4 +1,43 @@
+body{
+    background-color: #084734;
+    color: #cdedb3;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-family: 'Orbitron';
+    z-index: 1;
+    margin: 0;
+    text-align: center;
+}
 
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    background-color: #084734;
+    color:#cdedb3;
+    width: 100%;
+    padding: 2rem;
+    margin: 0;
+}
+
+p {
+    color:#084734;
+    background-color: #cdedb3;
+    border-radius: 2rem;
+    padding: 2rem;
+    margin: 0 2rem;
+    width: 80%;
+    max-width: 48rem;
+    text-align: center;
+}
 
 
 
