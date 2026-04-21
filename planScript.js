@@ -313,14 +313,18 @@ document.getElementById('unfinishButton').addEventListener('click', (event)=>{
     };
     document.getElementById('firstTaskH1').textContent = sessionSubjects[sessionSubjectsPosition].toUpperCase();
 });
+
+const openMenu = () => {
+    document.getElementById('menu').classList.add('open');
+}
+
+const closeMenu = () => {
+    document.getElementById('menu').classList.remove('open');
+}
+
 //open menu
-document.getElementById("menuIconImg").addEventListener("click", function(){
-    document.getElementById("menu").style.left = "0";
-});
+document.getElementById("menuIconImg").addEventListener("click", openMenu);
 //close menu
-document.getElementById("menuHeadH1").addEventListener("click", function(){
-    document.getElementById("menu").style.left = "-20rem";
-});
-document.getElementById("menuHeadImg").addEventListener("click", function(){
-    document.getElementById("menu").style.left = "-20rem";
-});
+['menuHeadH1', 'menuHeadImg'].forEach(id => {
+    document.getElementById(id).addEventListener('click', closeMenu);
+})

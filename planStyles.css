@@ -293,7 +293,7 @@ h2{
     box-sizing: border-box;
     display: inline-flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 0 2rem 2rem 0rem;
     z-index: 1002;
     top: 0;
     left: -20rem;
@@ -305,11 +305,17 @@ h2{
     box-shadow: 3px 0 5px black;
     transition: all 0.2s ease;
 }
+
+#menu.open{
+    left: 0;
+}
+
 #menu img{
     width: 3rem;
     height: 3rem;
     margin: 1rem;
     cursor: pointer;
+    margin-bottom: 0;
 }
 
 #menu img:hover{
@@ -328,7 +334,9 @@ h2{
     width: 6rem;
     padding-top: 0.25rem;
     margin: 1rem;
-    height: auto;
+    margin-bottom: 0;
+    height: 1.5rem;
+    padding: 0.25rem 1rem 2rem;
 }
 
 #menu h1:hover{
@@ -341,7 +349,7 @@ h2{
     line-height: 4rem;
     list-style: none;
     text-align: left;
-    padding-left: 0rem;
+    padding-left: 2rem;
 }
 
 #menu ul li{
@@ -361,4 +369,10 @@ h2{
 
 #menu ul li + li {
     border-top: 2px solid #1e2a1f;
+}
+
+
+#menuHead {
+    padding: 0;
+    margin: 0;
 }
