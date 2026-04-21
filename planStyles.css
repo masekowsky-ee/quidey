@@ -293,7 +293,7 @@ h2{
     box-sizing: border-box;
     display: inline-flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: 0 2rem 2rem 0;
     z-index: 1002;
     top: 0;
     left: -20rem;
@@ -341,7 +341,7 @@ h2{
     line-height: 4rem;
     list-style: none;
     text-align: left;
-    padding-left: 0rem;
+    padding-left: 2rem;
 }
 
 #menu ul li{
