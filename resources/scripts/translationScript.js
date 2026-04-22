@@ -60,8 +60,11 @@ const translations = {
         //plan page
         your_plan: "Dein Plan",
         current_task: "Deine aktuelle Aufgabe:",
-        
-
+        last_task: "Zurück",
+        next_task: "Erledigt!",
+        prio_heading: "Deine Prioritäten",
+        days_heading: "Deine Lerntage",
+        create_newPlan: "Neuen Plan Erstellen",
 
     },
 
@@ -119,11 +122,18 @@ const translations = {
         wait_moment: "Wait...",
         wait_prepare: "I'm preparing your plan.",
 
-        //nav
         back_button: "Back",
         continue_button: "Continue",
         leave_button: "Leave",
 
+        //plan page
+        your_plan: "Your Plan",
+        current_task: "Your current task:",
+        last_task: "Back",
+        next_task: "Finished!",
+        prio_heading: "Your Priorities",
+        days_heading: "Your Study Days",
+        create_newPlan: "Create new plan",
     }
 };
 
