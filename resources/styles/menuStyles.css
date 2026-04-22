@@ -3,14 +3,17 @@
     position: fixed;
     top: 0;
     left:0;
-    width: 5rem;
-    height: 5rem;
+    width: 4.9rem;
+    height: 4.9rem;
     z-index: 1001;
     padding: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #084734;
+    border-bottom-right-radius: 1rem;
+    box-sizing: border-box;
 }
 
 #menuIcon img{
@@ -22,29 +25,32 @@
     border-radius: 5px;
 }
 
-#menu{
-    position: fixed;
-    box-sizing: border-box;
+#menuHTML{
+    z-index: 1010;
+    padding: 0 2rem 2rem 0;
     display: inline-flex;
     flex-direction: column;
-    padding: 0 2rem 2rem 0;
-    z-index: 1002;
+    left: -20rem;
+    position: fixed;
     top: 0;
     left: -20rem;
+    box-shadow: 3px 0 5px black;
+    border-right: 2px solid #1e2a1f;
+    width: 16rem;
+    box-sizing: border-box;
+    padding: 0;
+    z-index: 1002;
     background-color: #084734;
     color:#cdedb3;
     height: 100%;
-    width: 16rem;
-    border-right: 2px solid #1e2a1f;
-    box-shadow: 3px 0 5px black;
     transition: all 0.2s ease;
 }
 
-#menu.open{
-    left: 0;
+#menuHTML.open{
+    left: 0!important;
 }
 
-#menu img{
+#menuHTML img{
     width: 3rem;
     height: 3rem;
     margin: 1rem;
@@ -52,19 +58,19 @@
     margin-bottom: 0;
 }
 
-#menu img:hover{
+#menuHTML img:hover{
     border: 2px solid #cdedb3;
     border-radius: 5px;
 }
 
-#menu div{
+#menuHTML div{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     border-bottom: 1px solid #cdedb3;
 }
 
-#menu h1{
+#menuHTML h1{
     width: 6rem;
     padding-top: 0.25rem;
     margin: 1rem;
@@ -73,11 +79,11 @@
     padding: 0.25rem 1rem 2rem;
 }
 
-#menu h1:hover{
+#menuHTML h1:hover{
     text-decoration: underline;
 }
 
-#menu ul{
+#menuHTML ul{
     clear: both;
     font-size: 1.25rem;
     line-height: 4rem;
@@ -86,22 +92,22 @@
     padding-left: 2rem;
 }
 
-#menu ul li{
+#menuHTML ul li{
     transition: all 0.2s ease;
 }
 
-#menu ul li:hover{
+#menuHTML ul li:hover{
     list-style:circle;
     padding-left: 1rem;
     text-decoration: underline;
 }
 
-#menu ul li a{
+#menuHTML ul li a{
     text-decoration: none;
     color: #cdedb3;
 }
 
-#menu ul li + li {
+#menuHTML ul li + li {
     border-top: 2px solid #1e2a1f;
 }
 
