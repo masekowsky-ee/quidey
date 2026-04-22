@@ -37,16 +37,12 @@ function initMenuEvents() {
         const el = document.getElementById(id);
         if (el) el.addEventListener("click", closeMenu);
     });
+    const settingsLi = document.getElementById("settingsLi");
+    if (settingsLi) settingsLi.addEventListener("click", openSettings);
+    
+    const closeSettingsIcon = document.getElementById("closeSettingsIcon");
+    if (closeSettingsIcon) closeSettingsIcon.addEventListener("click", closeSettings);
 }
 
 const menuIcon = document.getElementById("menuIconImg");
 if (menuIcon) menuIcon.addEventListener("click", openMenu);
-
-const settingsLi = document.getElementById("settingsLi");
-if (settingsLi) settingsLi.addEventListener("click", openSettings);
-
-
-const settingsH1 = document.getElementById("settingsH1");
-if (settingsH1) settingsH1.addEventListener("click", openSettings);
-
-//patch tmr 

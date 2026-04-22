@@ -10,16 +10,25 @@
         <li><a href="./questionnaire.html">Neuer Plan</a></li>
     </ul>
     <ul id="settings">
-        <li id="settingsLi"><img src="./resources/images/settings_45dp_CDEDB3_FILL0_wght400_GRAD0_opsz48.png"/>Einstellungen</li>
+        <li id="settingsLi"><img id="settingsLiImg" src="./resources/images/settings_45dp_CDEDB3_FILL0_wght400_GRAD0_opsz48.png"/>Einstellungen</li>
     </ul>
     <section id="settingsSection" class="closed">
-        <h1>Einstellungen</h1>
-        <div>
-            <h2>Sprache</h2>
-            <input type="radio" name="language" value="de" id="de">
-            <label for="de">Deutsch</label>
-            <input type="radio" name="language" value="de" id="en">
-            <label for="en">Englisch</label>
+        <div id="settingsHead">
+            <h1>Einstellungen</h1>
+            <img id="closeSettingsIcon" src="./resources/images/close_45dp_084734_FILL0_wght400_GRAD0_opsz48.png"/>
+        </div>
+        <div id="settingsDiv">
+            <h2>Sprache:</h2>
+            <div id="languageOptions">
+                <div class="langOpt">
+                    <input type="radio" name="language" value="de" id="de">
+                    <label for="de">Deutsch</label>
+                </div>
+                <div class="langOpt">
+                    <input type="radio" name="language" value="de" id="en">
+                    <label for="en">Englisch</label>
+                </div>
+            </div>
         </div>
     </section>
 </div>
