@@ -141,8 +141,25 @@
     list-style: none!important;
     padding-left: 1rem;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 #settings li img:hover{
     border: none;
+}
+
+#settingsSection{
+    position: fixed;
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+    background-color: #cdedb3;
+    color:#084734;
+    border: 2px solid #084734;
+    border-radius: 2rem;
+}
+
+.closed{
+    display: none;
 }

@@ -8,6 +8,14 @@ const closeMenu = () => {
     document.getElementById('menuHTML').classList.remove('open');
 };
 
+const openSettings = () => {
+     document.getElementById('settingsSection').classList.remove('closed');
+};
+
+const closeSettings = () => {
+     document.getElementById('settingsSection').classList.add('closed');
+};
+
 // Menü laden
 document.addEventListener("DOMContentLoaded", () => {
     fetch("./resources/html/menu.html")
@@ -33,3 +41,12 @@ function initMenuEvents() {
 
 const menuIcon = document.getElementById("menuIconImg");
 if (menuIcon) menuIcon.addEventListener("click", openMenu);
+
+const settingsLi = document.getElementById("settingsLi");
+if (settingsLi) settingsLi.addEventListener("click", openSettings);
+
+
+const settingsH1 = document.getElementById("settingsH1");
+if (settingsH1) settingsH1.addEventListener("click", openSettings);
+
+//patch tmr 
