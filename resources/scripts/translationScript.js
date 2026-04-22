@@ -43,6 +43,15 @@ const translations = {
         know_already: "Wie gut kennst du dich bereits aus?",
 
         how_often: "Wie oft kannst du lernen?",
+        every_day: "Jeden Tag",
+        other_day: "Jeden zweiten Tag",
+        third_day: "Jeden dritten Tag",
+        time_per_day: "Wie viel kannst du am Tag lernen?",
+
+        correct_h1: "Ist alles korrekt?",
+
+        wait_moment: "Moment noch...",
+        wait_prepare: "Ich bereite deinen Plan vor.",
 
         //nav
         back_button: "Zurück",
@@ -95,6 +104,15 @@ const translations = {
         know_already: "How much do you already know?",
 
         how_often: "How often can you study?",
+        every_day: "Every day",
+        other_day: "Every other day",
+        third_day: "Every third day",
+        time_per_day: "For how long can you study each day?",
+
+        correct_h1: "Is everything correct?",
+
+        wait_moment: "Wait...",
+        wait_prepare: "I'm preparing your plan.",
 
         //nav
         back_button: "Back",
