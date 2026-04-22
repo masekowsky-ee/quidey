@@ -12,7 +12,13 @@ html, body{
     font-family: 'Orbitron';
 }
 
-
+main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 main div{
     display: flex;
@@ -21,10 +27,9 @@ main div{
     text-align: center;
     font-family: 'Orbitron';
     background-color: #084734;
-    width: 80%;
-    min-width: 450px;
-    height: 90%;
-    min-height: 550px;
+    width: 75%;
+    height: 85%;
+    max-width: 40rem;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
