@@ -66,6 +66,18 @@ const translations = {
         days_heading: "Deine Lerntage",
         create_newPlan: "Neuen Plan Erstellen",
 
+        //feedback page
+        feedback_exp_h1: "Erzähl uns von deiner Erfahrung!",
+        appreciate_feedback: "Wir freuen uns über jede Bewertung, Idee oder sonstige Kommentare!",
+        feedback_send: "Senden",
+
+        //about page
+        what_h1: "Was ist Learney",
+        about_p: "Learney ist ein intelligentes Lernsystem, das Schülern hilft, Klarheit in ihren Alltag zu bringen. Anstatt selbst herausfinden zu müssen, was als Nächstes zu tun ist, gibt Learney eine klare Richtung vor und nimmt dem Nutzer die mentale Last der Planung ab.<br><br>Das Ziel von Learney ist es, Lernen einfacher, strukturierter und gleichzeitig individueller zu machen. Basierend auf Faktoren wie verfügbaren Zeit, Deadlines und persönlicher Sicherheit in einzelnen Themen erstellt das System einen angepassten Lernplan, der sich dynamisch verändert und an das tatsächliche Verhalten des Nutzers anpasst.<br><br>Die Mission von Learney ist es, Menschen vom Grübeln ins Handeln zu bringen. Nicht durch Druck oder starre Vorgaben, sondern durch ein System, das versteht, unterstützt und motiviert. Learney soll dafür sorgen, dass der nächste Schritt immer klar ist – damit Lernen nicht überwältigend wirkt, sondern machbar wird.",
+        news_h1: "Neuigkeiten und Änderungen",
+
+        contact_us_h1: "Kontaktiere uns",
+        changes_h3: "Changes",
     },
 
     en: {
@@ -134,6 +146,20 @@ const translations = {
         prio_heading: "Your Priorities",
         days_heading: "Your Study Days",
         create_newPlan: "Create new plan",
+
+        //feedback page
+        feedback_exp_h1: "Tell us about your experience!",
+        appreciate_feedback: "We appreciate every review, idea, or any other feedback you'd like to share!",
+        feedback_send: "Send",
+
+        //about page
+        what_h1: "What is Learney",
+        about_p: "Learney is an intelligent learning system designed to help students bring clarity into their daily lives.<br><br>Instead of having to figure out what to do next, Learney provides clear direction and removes the mental burden of planning.<br><br>The goal of Learney is to make learning simpler, more structured, and at the same time more personalized. Based on factors such as available time, deadlines, and individual confidence in different subjects, the system creates a customized study plan that adapts dynamically to the user's actual behavior.<br><br>Learney’s mission is to move people from overthinking to action. Not through pressure or rigid rules, but through a system that understands, supports, and motivates.<br><br>Learney ensures that the next step is always clear—so learning feels manageable instead of overwhelming.",
+        news_h1: "News and changes",
+
+        contact_us_h1: "Contact us",
+        changes_h3: "Changes",
+        //change logs
     }
 };
 
