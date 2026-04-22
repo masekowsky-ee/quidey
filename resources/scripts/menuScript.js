@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.body.insertAdjacentHTML("afterbegin", html);
                 initMenuEvents(); // 👉 erst jetzt!
             }
+            applyTranslations();
         });
 });
 
@@ -60,3 +61,5 @@ function initMenuEvents() {
 
 const menuIcon = document.getElementById("menuIconImg");
 if (menuIcon) menuIcon.addEventListener("click", openMenu);
+
+
