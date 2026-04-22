@@ -26,22 +26,22 @@
         <div id="subjectsDiv">
             <h1 data-i18n="sub_letsGo"></h1>
             <h2 data-i18n="sub_studyFor"></h2>
-            <input type="text" id="subjectInput" placeholder="Fach eingeben..." list="subjectOptions">
+            <input type="text" id="subjectInput" data-i18n-placeholder="enter_sub" list="subjectOptions">
 <!--            <label for="subjectInput">Fach eingeben</label>-->
             <datalist id="subjectOptions">
-                <option value="Physik" data-i18n="sub_physics"></option>
-                <option value="Mathematik" data-i18n="sub_maths"></option>
-                <option value="Englisch" data-i18n="sub_english"></option>
-                <option value="Latein" data-i18n="sub_latin"></option>
-                <option value="Französisch" data-i18n="sub_french"></option>
-                <option value="Deutsch" data-i18n="sub_german"></option>
-                <option value="Chemie" data-i18n="sub_chemistry"></option>
-                <option value="Biologie" data-i18n="sub_biology"></option>
-                <option value="Geschichte" data-i18n="sub_history"></option>
-                <option value="Geografie" data-i18n="sub_geography"></option>
-                <option value="Informatik" data-i18n="sub_computer"></option>
+                <option data-i18n-value="val_physics"></option>
+                <option data-i18n-value="val_maths"></option>
+                <option data-i18n-value="val_english"></option>
+                <option data-i18n-value="val_latin"></option>
+                <option data-i18n-value="val_french"></option>
+                <option data-i18n-value="val_german"></option>
+                <option data-i18n-value="val_chemistry"></option>
+                <option data-i18n-value="val_biology"></option>
+                <option data-i18n-value="val_history"></option>
+                <option data-i18n-value="val_geography"></option>
+                <option data-i18n-value="val_computer"></option>
                 </datalist>
-            <button id="addSubjectButton">Fach hinzufügen</button>
+            <button id="addSubjectButton" data-i18n="add_subject"></button>
             <ul id="subjectList">
 
             </ul>
@@ -50,22 +50,22 @@
     </section>
     <section id="dates" class="hidden">
         <div id="dateDiv">
-            <h1>Füge das Datum hinzu!</h1>
+            <h1 data-i18n="add_date"></h1>
             <h1 id="dateProgress"></h1>
-            <h3>Wann möchtest du fertig sein mit:</h3>
+            <h3 data-i18n="date_when_h3"></h3>
             <h2 id="currentDateSubject"></h2>
             <input type="date" id="dateInput">
             <!--<label for="dateInput">Datum eingeben</label>-->
         </div>
     </section>
     <section id="confidence" class="hidden">
-        <h2>Wie gut kennst du dich bereits aus?</h2>
+        <h2 data-i18n="know_already"></h2>
         <div id="sliderDiv">
 
         </div>
     </section>
     <section id="time" class="hidden">
-        <h1>Wie oft kannst du lernen?</h1>
+        <h1 data-i18n="how_often"></h1>
         <label for="1everyDay">
             <input type="radio" id="1everyDay" value="1" name="days">
             Jeden Tag
@@ -99,9 +99,9 @@
     </section>
 </main>
     <div id="navDiv" class="display hidden">
-        <button id="backButton" class="hidden">Zurück</button>
-        <button id="continueButton">Weiter</button>
-        <button id="leaveButton" class="hidden">Verlassen</button>
+        <button id="backButton" class="hidden" data-i18n="back_button"></button>
+        <button id="continueButton" data-i18n="continue_button"></button>
+        <button id="leaveButton" class="hidden" data-i18n="leave_button"></button>
     </div>
 
 

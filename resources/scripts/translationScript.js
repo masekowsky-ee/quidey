@@ -23,19 +23,34 @@ const translations = {
 
         sub_letsGo: "Lass uns loslegen!",
         sub_studyFor: "Was möchtest du lernen?",
-        sub_physics: "Physik",
-        sub_maths: "Mathematik",
-        sub_english: "Englisch",
-        sub_latin: "Latein",
-        sub_french: "Französisch",
-        sub_german: "Deutsch",
-        sub_chemistry: "Chemie",
-        sub_biology: "Biologie",
-        sub_history: "Geschichte",
-        sub_geography: "Geografie",
-        sub_computer: "Informatik",
+        enter_sub: "Fach eingeben...",
+        val_physics: "Physik",
+        val_maths: "Mathematik",
+        val_english: "Englisch",
+        val_latin: "Latein",
+        val_french: "Französisch",
+        val_german: "Deutsch",
+        val_chemistry: "Chemie",
+        val_biology: "Biologie",
+        val_history: "Geschichte",
+        val_geography: "Geografie",
+        val_computer: "Informatik",
+        add_subject: "Fach hinzufügen",
+
+        add_date: "Füge das Datum hinzu!",
+        date_when_h3: "Wann möchtest du fertig sein mit:",
+
+        know_already: "Wie gut kennst du dich bereits aus?",
+
+        how_often: "Wie oft kannst du lernen?",
+
+        //nav
+        back_button: "Zurück",
+        continue_button: "Weiter",
+        leave_button: "Verlassen",
 
     },
+
     en: {
         //menu page
         menu_title: "Menu",
@@ -60,17 +75,32 @@ const translations = {
     
         sub_letsGo: "Let's begin!",
         sub_studyFor: "What are you studying for?",
-        sub_physics: "Physics",
-        sub_maths: "Maths",
-        sub_english: "English",
-        sub_latin: "Latin",
-        sub_french: "French",
-        sub_german: "German",
-        sub_chemistry: "Chemistry",
-        sub_biology: "Biology",
-        sub_history: "History",
-        sub_geography: "Geography",
-        sub_computer: "Computer Science",
+        enter_sub: "Enter subject...",
+        val_physics: "Physics",
+        val_maths: "Maths",
+        val_english: "English",
+        val_latin: "Latin",
+        val_french: "French",
+        val_german: "German",
+        val_chemistry: "Chemistry",
+        val_biology: "Biology",
+        val_history: "History",
+        val_geography: "Geography",
+        val_computer: "Computer Science",
+        add_subject: "Add Subject",
+
+        add_date: "Add a due date!",
+        date_when_h3: "When do you want to finish:",
+
+        know_already: "How much do you already know?",
+
+        how_often: "How often can you study?",
+
+        //nav
+        back_button: "Back",
+        continue_button: "Continue",
+        leave_button: "Leave",
+
     }
 };
 
@@ -95,7 +125,7 @@ function setLanguage(lang) {
     lang = normalizeLang(lang); // HIER FIX
 
     localStorage.setItem("lang", lang);
-
+    //text content
     document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.dataset.i18n;
         const text = translations[lang]?.[key];
@@ -107,6 +137,48 @@ function setLanguage(lang) {
         console.log("LANG:", lang, "KEY:", key, "TEXT:", text);
 
         el.textContent = text || key;
+    });
+
+    //placeholder
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{
+        const key = el.dataset.i18nPlaceholder;
+        const text = translations[lang]?.[key];
+
+        if (!text) {
+            console.warn("Missing translation:", key);
+        }
+
+        console.log("LANG:", lang, "KEY:", key, "TEXT:", text);
+
+        el.placeholder = text || key;
+    });
+
+    //value
+    document.querySelectorAll("[data-i18n-value]").forEach(el=>{
+        const key = el.dataset.i18nValue;
+        const text = translations[lang]?.[key];
+
+        if (!text) {
+            console.warn("Missing translation:", key);
+        }
+
+        console.log("LANG:", lang, "KEY:", key, "TEXT:", text);
+
+        el.value = text || key;
+    });
+
+    //Title (tooltip etc)
+    document.querySelectorAll("[data-i18n-title]").forEach(el=>{
+        const key = el.dataset.i18nTitle;
+        const text = translations[lang]?.[key];
+
+        if (!text) {
+            console.warn("Missing translation:", key);
+        }
+
+        console.log("LANG:", lang, "KEY:", key, "TEXT:", text);
+
+        el.title = text || key;
     });
 }
 
