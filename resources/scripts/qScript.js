@@ -165,8 +165,8 @@ let lastActive = 'home';
 
 const renderUpdate = () => {
     const questionnaireSwitch = () => {
-        document.getElementById(lastActive).classList.remove('display');
-        document.getElementById(state.currentStep).classList.add('display');
+        document.getElementById(lastActive).classList.add('hidden');
+        document.getElementById(state.currentStep).classList.remove('hidden');
         /*if(document.getElementById("navDiv").classList.contains("display") === false){
             document.getElementById("navDiv").classList.add("display");
         }*/
