@@ -53,10 +53,15 @@ const translations = {
         wait_moment: "Moment noch...",
         wait_prepare: "Ich bereite deinen Plan vor.",
 
-        //nav
         back_button: "Zurück",
         continue_button: "Weiter",
         leave_button: "Verlassen",
+
+        //plan page
+        your_plan: "Dein Plan",
+        current_task: "Deine aktuelle Aufgabe:",
+        
+
 
     },
 
