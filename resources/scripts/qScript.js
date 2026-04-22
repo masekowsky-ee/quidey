@@ -374,11 +374,13 @@ const buildSummarizePage = () => {
         div.class = summarizeCounter;
         summarizeDiv.appendChild(div);
 
+        const lang = localStorage.getItem("lang") || "de";
+
         //text input for subject name
         let textSumLabel = document.createElement('label');
         textSumLabel.for = `textSumLabel${summarizeCounter}`;
         textSumLabel.class = summarizeCounter;
-        textSumLabel.textContent = "Fach:";
+        textSumLabel.textContent = translations[lang].sum_subject;
         div.appendChild(textSumLabel);
 
         let textSumInput = document.createElement('input');
@@ -396,7 +398,7 @@ const buildSummarizePage = () => {
         let dateSumLabel = document.createElement('label');
         dateSumLabel.for = `dateSumInput${summarizeCounter}`;
         dateSumLabel.class = summarizeCounter;
-        dateSumLabel.textContent = "Datum:";
+        dateSumLabel.textContent = translations[lang].sum_date;
         div.appendChild(dateSumLabel);
 
         let dateSumInput = document.createElement('input');
@@ -414,7 +416,7 @@ const buildSummarizePage = () => {
         let rangeSumLabel = document.createElement('label');
         rangeSumLabel.for = `rangeSumInput${summarizeCounter}`;
         rangeSumLabel.class = summarizeCounter;
-        rangeSumLabel.textContent = "Wissen:";
+        rangeSumLabel.textContent = translations[lang].sum_know;
         div.appendChild(rangeSumLabel);
 
         let rangeSumInput = document.createElement('input');

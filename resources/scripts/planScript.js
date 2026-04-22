@@ -204,13 +204,16 @@ const dayConstructor = (lastDueDateStudyDays) => { //generate collapsed divs in 
         ol.className = "dayListChild hidden";
         let button = document.createElement('button');
         button.id = `hideButton${iConstructor}`;
-        button.textContent = 'Schritte';
+        const lang = localStorage.getItem("lang") || "de";
+        button.textContent = translations[lang].day_button_steps;
         button.addEventListener('click', function(){
             ol.classList.toggle('hidden');
             if (ol.classList.contains('hidden')){
-                document.getElementById(`hideButton${iConstructor}`).textContent = 'Schritte';
+                const dayButtonSteps = translations[localStorage.getItem("lang") || "de"].day_button_steps;
+                document.getElementById(`hideButton${iConstructor}`).textContent = dayButtonSteps;
             } else {
-                document.getElementById(`hideButton${iConstructor}`).textContent = 'Ausblenden';
+                const dayButtonHide = translations[localStorage.getItem("lang") || "de"].day_button_hide;
+                document.getElementById(`hideButton${iConstructor}`).textContent = dayButtonHide;
             }
         });
         div.appendChild(button);
@@ -223,10 +226,13 @@ const dayConstructor = (lastDueDateStudyDays) => { //generate collapsed divs in 
             innerLi.addEventListener('click', function(){
                 document.getElementById(`day${iConstructor}li${j}`).classList.toggle('crossOff');
             });
+            const lang = localStorage.getItem("lang") || "de";
             if (j%2 === 0){
-                innerLi.textContent = `Lernen: ${sessionArray[j]} Minuten`;
+                const learnMins = translations[lang].learn_minutes;
+                innerLi.textContent = learnMins.replace("{min}", sessionArray[j]);            //innerLi.textContent = `Lernen: ${sessionArray[j]} Minuten`;
             } else if (j%2 !== 0){
-                innerLi.textContent = `Pause: ${sessionArray[j]} Minuten`;
+                const breakMins = translations[lang].break_minutes;
+                innerLi.textContent = breakMins.replace("{min}", sessionArray[j]); 
             };
             ol.appendChild(innerLi);
         }

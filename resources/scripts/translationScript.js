@@ -49,6 +49,9 @@ const translations = {
         time_per_day: "Wie viel kannst du am Tag lernen?",
 
         correct_h1: "Ist alles korrekt?",
+        sum_subject: "Fach:",
+        sum_date: "Datum:",
+        sum_know: "Wissen:",
 
         wait_moment: "Moment noch...",
         wait_prepare: "Ich bereite deinen Plan vor.",
@@ -65,6 +68,10 @@ const translations = {
         prio_heading: "Deine Prioritäten",
         days_heading: "Deine Lerntage",
         create_newPlan: "Neuen Plan Erstellen",
+        learn_minutes: "Lernen: {min} Minuten",
+        break_minutes: "Pause: {min} Minuten",
+        day_button_steps: "Schritte",
+        day_button_hide: "Ausblenden",
 
         //feedback page
         feedback_exp_h1: "Erzähl uns von deiner Erfahrung!",
@@ -130,6 +137,9 @@ const translations = {
         time_per_day: "For how long can you study each day?",
 
         correct_h1: "Is everything correct?",
+        sum_subject: "Subject:",
+        sum_date: "Date:",
+        sum_know: "Knowledge:",
 
         wait_moment: "Wait...",
         wait_prepare: "I'm preparing your plan.",
@@ -146,6 +156,10 @@ const translations = {
         prio_heading: "Your Priorities",
         days_heading: "Your Study Days",
         create_newPlan: "Create new plan",
+        learn_minutes: "Study: {min} minutes",
+        break_minutes: "Break: {min} minutes",
+        day_button_steps: "Steps",
+        day_button_hide: "Hide",
 
         //feedback page
         feedback_exp_h1: "Tell us about your experience!",
