@@ -42,6 +42,20 @@ function initMenuEvents() {
     
     const closeSettingsIcon = document.getElementById("closeSettingsIcon");
     if (closeSettingsIcon) closeSettingsIcon.addEventListener("click", closeSettings);
+
+    const de = document.querySelector('#de');
+    de.addEventListener('change', (event) => {
+        if (event.target.checked) {
+            setLanguage('de');
+        }
+    });
+
+    const en = document.querySelector('#en');
+    en.addEventListener('change', (event) => {
+        if (event.target.checked) {
+            setLanguage('en');
+        }
+    });
 }
 
 const menuIcon = document.getElementById("menuIconImg");
