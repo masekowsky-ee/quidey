@@ -13,33 +13,33 @@
     <main>
     <section id="home" class="hidden display">
         <div class="container" id="intro">
-            <h1>Willkommen bei Learney</h1>
-            <p>Learney gibt dir einen klaren Pfad: Schritt für Schritt, Ziel für Ziel. Du weißt immer, wo du stehst und was als Nächstes kommt. Kein Raten. Kein Verlaufen. Nur Fortschritt.</p>
-            <h2>Lernen ist kein Chaos - es ist ein Weg.</h2>
+            <h1 data-i18n="q_welcome_h1"></h1>
+            <p data-i18n="q_introText"></p>
+            <h2 data-i18n="q_motto_h2"></h2>
 
         </div>
         <div class="container" id="begin">
-            <h1>Bereit, loszulegen?</h1>
+            <h1 data-i18n="q_ready"></h1>
         </div>
     </section>
     <section id="subjects" class="hidden">
         <div id="subjectsDiv">
-            <h1>Lass uns loslegen!</h1>
-            <h2>Was möchtest du lernen?</h2>
+            <h1 data-i18n="sub_letsGo"></h1>
+            <h2 data-i18n="sub_studyFor"></h2>
             <input type="text" id="subjectInput" placeholder="Fach eingeben..." list="subjectOptions">
 <!--            <label for="subjectInput">Fach eingeben</label>-->
             <datalist id="subjectOptions">
-                <option value="Physik"></option>
-                <option value="Mathematik"></option>
-                <option value="Englisch"></option>
-                <option value="Latein"></option>
-                <option value="Französisch"></option>
-                <option value="Deutsch"></option>
-                <option value="Chemie"></option>
-                <option value="Biologie"></option>
-                <option value="Geschichte"></option>
-                <option value="Geografie"></option>
-                <option value="Informatik"></option>
+                <option value="Physik" data-i18n="sub_physics"></option>
+                <option value="Mathematik" data-i18n="sub_maths"></option>
+                <option value="Englisch" data-i18n="sub_english"></option>
+                <option value="Latein" data-i18n="sub_latin"></option>
+                <option value="Französisch" data-i18n="sub_french"></option>
+                <option value="Deutsch" data-i18n="sub_german"></option>
+                <option value="Chemie" data-i18n="sub_chemistry"></option>
+                <option value="Biologie" data-i18n="sub_biology"></option>
+                <option value="Geschichte" data-i18n="sub_history"></option>
+                <option value="Geografie" data-i18n="sub_geography"></option>
+                <option value="Informatik" data-i18n="sub_computer"></option>
                 </datalist>
             <button id="addSubjectButton">Fach hinzufügen</button>
             <ul id="subjectList">
