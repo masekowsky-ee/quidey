@@ -11,7 +11,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #084734;
+    background-color: var(--dark);
     border-bottom-right-radius: 1rem;
     box-sizing: border-box;
 }
@@ -21,7 +21,7 @@
 }
 
 #menuIcon img:hover{
-    border: 2px solid #cdedb3;
+    border: 2px solid var(--dark-text);
     border-radius: 5px;
 }
 
@@ -34,14 +34,14 @@
     position: fixed;
     top: 0;
     left: -20rem;
-    box-shadow: 3px 0 5px black;
-    border-right: 2px solid #1e2a1f;
+    box-shadow: 3px 0 5px var(--dark);
+    border-right: 2px solid var(--dark);
     width: 16rem;
     box-sizing: border-box;
     padding: 0;
     z-index: 1002;
-    background-color: #084734;
-    color:#cdedb3;
+    background-color: var(--bg);
+    color: var(--bg-text);
     height: 100%;
     transition: all 0.2s ease;
 }
@@ -59,7 +59,7 @@
 }
 
 #menuHTML img:hover{
-    border: 2px solid #cdedb3;
+    border: 2px solid var(--bg-text);
     border-radius: 5px;
 }
 
@@ -67,7 +67,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    border-bottom: 1px solid #cdedb3;
+    border-bottom: 1px solid var(--bg-text);
 }
 
 #menuHTML h1{
@@ -104,11 +104,11 @@
 
 #menuHTML ul li a{
     text-decoration: none;
-    color: #cdedb3;
+    color: var(--bg-text);
 }
 
 #menuHTML ul li + li {
-    border-top: 2px solid #1e2a1f;
+    border-top: 2px solid var(--bg-text);
 }
 
 
@@ -121,13 +121,14 @@
     justify-self: flex-end;
     position: relative;
     margin: auto 0 0 0;
+    box-sizing: border-box;
 }
 
 #settings li {
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-top: 2px solid #1e2a1f;
+    border-top: 2px solid var(--bg-text);
 }
 
 #settings li img{
@@ -158,21 +159,25 @@
     height: 80%;
     top: 10%;
     left: 10%;
-    background-color: #cdedb3;
-    color:#084734;
-    border: 2px solid #084734;
+    background-color: var(--bg);
+    color:var(--bg-text);
+    border: 2px solid var(--bg-text);
     border-radius: 2rem;
+    box-sizing: border-box;
 }
 
 #settingsHead{
     display: inline-flex;
     flex-direction: row;
     width: 100%;
-    background-color: #cdedb3;
+    background-color: var(--primary);
+    color: var(--primary-text);
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
-    border-bottom: 2px solid #084734 !important;
+    border: 2px solid var(--primary);
+    border-bottom: 2px solid var(--primary-text) !important;
     margin-bottom: 1rem;
+    box-sizing: border-box;
 }
 
 .closed{

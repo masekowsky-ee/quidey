@@ -66,8 +66,7 @@
 }
 
 [data-theme="dark"]{
-    [data-theme="dark"] {
-    --bg: #0D0D0D;              /* Jet Black */
+    --bg: #0d0d0e;              /* Jet Black */
     --bg-text: #EAFFD0;         /* Soft Ivory */
 
     --accent: #224F10;          /* Forest Green */
@@ -82,4 +81,20 @@
     --dark: #000000;            /* tiefer schwarz */
     --dark-text: #B0E454;       /* Lime Green */
 }
+
+[data-theme="default"]{
+    --bg: #084734;              /* Jet Black */
+    --bg-text: #cdedb3;         /* Soft Ivory */
+
+    --accent: #B0E454;          /* Forest Green */
+    --accent-text: #224F10;     /* Lime Green */
+
+    --primary: #73a41e;         /* Lime Green */
+    --primary-text: #084734;    /* Jet Black */
+
+    --lightPrim: #cdedb3;       /* Forest Green */
+    --lp-text: #084734;         /* Soft Ivory */
+
+    --dark: #1e2a1f;            /* tiefer schwarz */
+    --dark-text: #cdedb3;       /* Lime Green */
 }

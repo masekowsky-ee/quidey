@@ -1,6 +1,3 @@
-const lightRadio = document.getElementById('light');
-const darkRadio = document.getElementById('dark');
-const mosaikRadio = document.getElementById('mosaik');
 
 const setTheme = (theme) => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -8,6 +5,6 @@ const setTheme = (theme) => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    const theme = localStorage.getItem("theme") || "dark";
+    const theme = localStorage.getItem("theme") || "default";
     setTheme(theme);
 })
