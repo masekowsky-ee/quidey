@@ -1,0 +1,85 @@
+:root {
+    /* Base colors */
+    --white: #ffffff;
+    --black: #000000;
+
+    /* Greyscale */
+    --gray-100: #f5f5f5;
+    --gray-200: #e0e0e0;
+    --gray-300: #c2c2c2;
+    --gray-400: #9e9e9e;
+    --gray-500: #7a7a7a;
+    --gray-600: #5c5c5c;
+    --gray-700: #3d3d3d;
+    --gray-800: #2a2a2a;
+    --gray-900: #121212;
+
+    /* Semantic (UI) */
+    --bg: var(--gray-100); 
+    --bg-text: var(--gray-800);
+
+    --accent: var(--gray-300); 
+    --accent-text: var(--gray-900);
+
+    --primary: var(--gray-600); 
+    --primary-text: var(--gray-100);
+
+    --lightPrim: var(--gray-500); 
+    --lp-text: var(--gray-700);
+
+    --dark: var(--gray-800);
+    --dark-text: var(--gray-200);
+}
+
+[data-theme="mosaik"]{
+    --bg: #f5dfbb; /*Wheat*/
+    --bg-text: #562c2c; /*Espresso*/
+
+    --accent: #f2542d; /*Fiery Terracotta*/
+    --accent-text: #f5dfbb; /*Wheat*/
+
+    --primary: #11686a; /*Stormy Teal*/
+    --primary-text: #f5dfbb; /*Wheat*/
+
+    --lightPrim: #0e9594; /*Dark Cyan*/
+    --lp-text: #11686a; /*Stormy teal*/
+
+    --dark: #562c2c; /*Espresso*/
+    --dark-text: #f5dfbb; /*Wheat*/
+}
+
+[data-theme="light"]{
+    --bg: #EAFFD0;              /* Soft Ivory */
+    --bg-text: #224F10;         /* Forest Green */
+
+    --accent: #B0E454;          /* Lime Green */
+    --accent-text: #0D0D0D;     /* Jet Black */
+
+    --primary: #224F10;         /* Forest Green */
+    --primary-text: #EAFFD0;    /* Soft Ivory */
+
+    --lightPrim: #B0E454;       /* Lime Green */
+    --lp-text: #224F10;         /* Forest Green */
+
+    --dark: #224F10;            /* Forest Green */
+    --dark-text: #EAFFD0;       /* Soft Ivory */
+}
+
+[data-theme="dark"]{
+    [data-theme="dark"] {
+    --bg: #0D0D0D;              /* Jet Black */
+    --bg-text: #EAFFD0;         /* Soft Ivory */
+
+    --accent: #224F10;          /* Forest Green */
+    --accent-text: #B0E454;     /* Lime Green */
+
+    --primary: #B0E454;         /* Lime Green */
+    --primary-text: #0D0D0D;    /* Jet Black */
+
+    --lightPrim: #224F10;       /* Forest Green */
+    --lp-text: #EAFFD0;         /* Soft Ivory */
+
+    --dark: #000000;            /* tiefer schwarz */
+    --dark-text: #B0E454;       /* Lime Green */
+}
+}

@@ -15,6 +15,7 @@ const translations = {
         english: "Englisch",
         light_mode: "Hell",
         dark_mode: "Dunkel",
+        mosaik_mode: "Mosaik",
 
         //index page
         index_letsGo: "Lass uns deinen Lernplan Generieren",
@@ -110,6 +111,7 @@ const translations = {
         english: "English",
         light_mode: "Light",
         dark_mode: "Dark",
+        mosaik_mode: "Mosaic",
 
         //index page
         index_letsGo: "Let's build your study schedule",

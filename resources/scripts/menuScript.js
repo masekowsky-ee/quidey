@@ -57,6 +57,23 @@ function initMenuEvents() {
             setLanguage('en');
         }
     });
+
+    lightRadio.addEventListener("change", (event) => {
+        if (event.target.checked) {
+            setTheme("light");
+        }
+    });
+
+    darkRadio.addEventListener("change", (event) => {
+        if (event.target.checked) {
+            setTheme("dark");
+        }
+    });
+    mosaikRadio.addEventListener("change", (event) => {
+        if (event.target.checked) {
+            setTheme("mosaik");
+        }
+    });
 }
 
 const menuIcon = document.getElementById("menuIconImg");
