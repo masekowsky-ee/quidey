@@ -16,11 +16,12 @@
     box-sizing: border-box;
 }
 
-#menuIcon img{
+#menuIcon svg{
     margin: auto;
+    color: var(--bg-text);
 }
 
-#menuIcon img:hover{
+#menuIcon svg:hover{
     border: 2px solid var(--dark-text);
     border-radius: 5px;
 }
@@ -50,15 +51,16 @@
     left: 0!important;
 }
 
-#menuHTML img{
+#menuHTML svg{
     width: 3rem;
     height: 3rem;
     margin: 1rem;
     cursor: pointer;
     margin-bottom: 0;
+    color: var(--bg-text);
 }
 
-#menuHTML img:hover{
+#menuHTML svg:hover{
     border: 2px solid var(--bg-text);
     border-radius: 5px;
 }
@@ -136,11 +138,12 @@
     border-top: 2px solid var(--bg-text);
 }
 
-#settings li img{
+#settings li svg{
     margin: 0;
     margin-right: 0.5rem;
     width: 2rem;
     height: 2rem;
+    color: var(--bg-text);
 }
 
 #settings li:hover{
@@ -150,7 +153,7 @@
     cursor: pointer;
 }
 
-#settings li img:hover{
+#settings li svg:hover{
     border: none;
 }
 
@@ -190,10 +193,11 @@
     display: none!important;
 }
 
-#settingsHead img {
+#settingsHead svg {
     margin: 0;
     justify-self: flex-end;
     margin: 0.5rem 0.5rem 0 auto;
+    color: var(--primary-text);
 }
 
 #settingsHead h1{
