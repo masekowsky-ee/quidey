@@ -86,6 +86,9 @@ const translations = {
 
         contact_us_h1: "Kontaktiere uns",
         changes_h3: "Changes",
+
+        //new
+        new_progress_h1: "Fortschritt",
     },
 
     en: {
@@ -176,6 +179,9 @@ const translations = {
         contact_us_h1: "Contact us",
         changes_h3: "Changes",
         //change logs
+
+        //new
+        new_progress_h1: "Progress",
     }
 };
 
