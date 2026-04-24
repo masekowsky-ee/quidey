@@ -10,6 +10,7 @@ const translations = {
         preview: "Schau dir den aktuellen Fortschritt von Version 0.1.0 an",
         settings_h1: "Einstellungen",
         language_h2: "Sprache:",
+        color_h2: "Farbdarstellung:",
         german: "Deutsch",
         english: "Englisch",
 
@@ -102,6 +103,7 @@ const translations = {
         preview: "Get a glimpse at version 0.1.0",
         settings_h1: "Settings",
         language_h2: "Language:",
+        color_h2: "Color-Theme:",
         german: "German",
         english: "English",
 

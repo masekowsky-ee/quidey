@@ -2,7 +2,7 @@ html, body {
     width: 100%;
     height: 100%;
     margin: 0;
-    background-color: grey;
+    background-color: #09481C;
     font-family: 'Orbitron';
 }
 
@@ -14,13 +14,25 @@ body{
 header {
     width: 100%;
     height: 10%;
-    background-color: grey;
+    background-color: #09481C;
     margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+}
+
+#menuIcon{
+    background-color: #04270f!important;
+    border-radius: 1.5rem !important;
+    justify-self: flex-start!important;
+    margin: 0 0 0 10px;
+    position: relative!important;
 }
 
 main{
     display: grid;
-    background-color: white;
+    background-color: #585752;
     width: 98%;
     height: 88%;
     margin: 0;
@@ -32,7 +44,7 @@ main{
 }
 
 main div{
-    background-color: darkgray;
+    background-color: #29652e;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
@@ -58,7 +70,7 @@ main div{
 }
 
 #progressBar{
-    background-color: lightgray;
+    background-color: #648449;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -68,7 +80,7 @@ main div{
 }
 
 #progressor{
-    background-color: darkgreen;
+    background-color: #c6b25c;
     width: 1%;
     height: 100%;
 }
