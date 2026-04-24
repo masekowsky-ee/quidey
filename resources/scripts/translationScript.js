@@ -10,8 +10,11 @@ const translations = {
         preview: "Schau dir den aktuellen Fortschritt von Version 0.1.0 an",
         settings_h1: "Einstellungen",
         language_h2: "Sprache:",
+        color_h2: "Darstellung:",
         german: "Deutsch",
         english: "Englisch",
+        light_mode: "Hell",
+        dark_mode: "Dunkel",
 
         //index page
         index_letsGo: "Lass uns deinen Lernplan Generieren",
@@ -102,8 +105,11 @@ const translations = {
         preview: "Get a glimpse at version 0.1.0",
         settings_h1: "Settings",
         language_h2: "Language:",
+        color_h2: "Theme:",
         german: "German",
         english: "English",
+        light_mode: "Light",
+        dark_mode: "Dark",
 
         //index page
         index_letsGo: "Let's build your study schedule",
