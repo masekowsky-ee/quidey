@@ -16,6 +16,7 @@ const closeSettings = () => {
      document.getElementById('settingsSection').classList.add('closed');
 };
 
+
 // Menü laden
 document.addEventListener("DOMContentLoaded", () => {
     fetch("./resources/html/menu.html")
@@ -55,6 +56,38 @@ function initMenuEvents() {
     en.addEventListener('change', (event) => {
         if (event.target.checked) {
             setLanguage('en');
+        }
+    });
+
+    const lightRadio = document.getElementById('light_mode');
+    lightRadio.addEventListener("change", (event) => {
+        if (event.target.checked) {
+            setTheme("light");
+            console.log(localStorage.getItem("theme"));
+        }
+    });
+
+    const darkRadio = document.getElementById('dark_mode');
+    darkRadio.addEventListener("change", (event) => {
+        if (event.target.checked) {
+            setTheme("dark");
+            console.log(localStorage.getItem("theme"));
+        }
+    });
+
+    const mosaikRadio = document.getElementById('mosaik_mode');
+    mosaikRadio.addEventListener("change", (event) => {
+        if (event.target.checked) {
+            setTheme("mosaik");
+            console.log(localStorage.getItem("theme"));
+        }
+    });
+
+    const defaultRadio = document.getElementById('default_mode');
+    defaultRadio.addEventListener("change", (event) => {
+        if (event.target.checked) {
+            setTheme("default");
+            console.log(localStorage.getItem("theme"));
         }
     });
 }

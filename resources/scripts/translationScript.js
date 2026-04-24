@@ -10,9 +10,13 @@ const translations = {
         preview: "Schau dir den aktuellen Fortschritt von Version 0.1.0 an",
         settings_h1: "Einstellungen",
         language_h2: "Sprache:",
-        color_h2: "Farbdarstellung:",
+        color_h2: "Darstellung:",
         german: "Deutsch",
         english: "Englisch",
+        light_mode: "Hell",
+        dark_mode: "Dunkel",
+        mosaik_mode: "Mosaik",
+        default_mode: "Normal",
 
         //index page
         index_letsGo: "Lass uns deinen Lernplan Generieren",
@@ -83,7 +87,7 @@ const translations = {
         //about page
         what_h1: "Was ist Learney",
         about_p: "Learney ist ein intelligentes Lernsystem, das Schülern hilft, Klarheit in ihren Alltag zu bringen. Anstatt selbst herausfinden zu müssen, was als Nächstes zu tun ist, gibt Learney eine klare Richtung vor und nimmt dem Nutzer die mentale Last der Planung ab.<br><br>Das Ziel von Learney ist es, Lernen einfacher, strukturierter und gleichzeitig individueller zu machen. Basierend auf Faktoren wie verfügbaren Zeit, Deadlines und persönlicher Sicherheit in einzelnen Themen erstellt das System einen angepassten Lernplan, der sich dynamisch verändert und an das tatsächliche Verhalten des Nutzers anpasst.<br><br>Die Mission von Learney ist es, Menschen vom Grübeln ins Handeln zu bringen. Nicht durch Druck oder starre Vorgaben, sondern durch ein System, das versteht, unterstützt und motiviert. Learney soll dafür sorgen, dass der nächste Schritt immer klar ist – damit Lernen nicht überwältigend wirkt, sondern machbar wird.",
-        news_h1: "Neuigkeiten und Änderungen",
+        news_h1: "Change Log",
 
         contact_us_h1: "Kontaktiere uns",
         changes_h3: "Changes",
@@ -103,9 +107,13 @@ const translations = {
         preview: "Get a glimpse at version 0.1.0",
         settings_h1: "Settings",
         language_h2: "Language:",
-        color_h2: "Color-Theme:",
+        color_h2: "Theme:",
         german: "German",
         english: "English",
+        light_mode: "Light",
+        dark_mode: "Dark",
+        mosaik_mode: "Mosaic",
+        default_mode: "Default",
 
         //index page
         index_letsGo: "Let's build your study schedule",
@@ -176,7 +184,7 @@ const translations = {
         //about page
         what_h1: "What is Learney",
         about_p: "Learney is an intelligent learning system designed to help students bring clarity into their daily lives.<br><br>Instead of having to figure out what to do next, Learney provides clear direction and removes the mental burden of planning.<br><br>The goal of Learney is to make learning simpler, more structured, and at the same time more personalized. Based on factors such as available time, deadlines, and individual confidence in different subjects, the system creates a customized study plan that adapts dynamically to the user's actual behavior.<br><br>Learney’s mission is to move people from overthinking to action. Not through pressure or rigid rules, but through a system that understands, supports, and motivates.<br><br>Learney ensures that the next step is always clear—so learning feels manageable instead of overwhelming.",
-        news_h1: "News and changes",
+        news_h1: "Change Log",
 
         contact_us_h1: "Contact us",
         changes_h3: "Changes",

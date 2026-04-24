@@ -1,5 +1,5 @@
 html, body{
-    background-color: #cdedb3;
+    background-color: var(--bg);
     width: 100%;
     height: 100%;
     margin: 0;
@@ -26,7 +26,7 @@ main div{
     align-items: center;
     text-align: center;
     font-family: 'Orbitron';
-    background-color: #084734;
+    background-color: var(--primary);
     width: 75%;
     height: 85%;
     max-width: 40rem;
@@ -41,8 +41,8 @@ main button{
     font-weight: 900;
     letter-spacing: 0.1rem;
     font-size: 1.5rem;
-    background-color: #CEF17B;
-    color:#084734;
+    background-color: var(--accent);
+    color: var(--accent-text);
     width: 14rem;
     text-align: center;
     height: 4.5rem;
@@ -66,5 +66,5 @@ main section{
     display: block;
     align-items: center;
     justify-content: center;
-    color: #cdedb3;
+    color: var(--primary-text);
 }
