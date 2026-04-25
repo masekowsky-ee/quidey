@@ -95,6 +95,8 @@ const translations = {
 
         //new
         new_progress_h1: "Fortschritt",
+        new_add: "Hinzufügen",
+        new_add_sub: "Fach Hinzufügen",
     },
 
     en: {
@@ -194,6 +196,8 @@ const translations = {
 
         //new
         new_progress_h1: "Progress",
+        new_add: "add",
+        new_add_sub: "Add Subject",
     }
 };
 
