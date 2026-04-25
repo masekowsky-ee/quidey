@@ -56,9 +56,9 @@ main{
 h2{
     width: 100%;
     text-align: center;
-    background-color: #084734;
-    color: #cdedb3;
-    border-bottom: 2px solid #cdedb3;
+    background-color: var(--bg);
+    color: var(--bg-text);
+    border-bottom: 2px solid var(--bg-text);
     box-sizing: border-box;
     padding: 1.5rem;
     position: fixed;
@@ -76,13 +76,13 @@ h2{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #cdedb3;
+    background-color: var(--bg-text);
 }
 
 /*first task*/
 #firstTask{
-    background-color: #CEF17B;
-    color: #084734;
+    background-color: var(--accent);
+    color: var(--accent-text);
     text-align: center;
     padding-top: 1rem;
     padding-bottom: 0;
@@ -100,8 +100,8 @@ h2{
     box-sizing: border-box;
     margin: 0;
     padding: 1rem 0;
-    background-color: #084734;
-    color: #CEF17B;
+    background-color: var(--bg);
+    color: var(--bg-text);
     font-size: larger;
     font-weight: 600;
     border-top: none;
@@ -149,8 +149,8 @@ h2{
 }
 
 #prioListDiv{
-    background-color: #084734;
-    color: #cdedb3;
+    background-color: var(--dark);
+    color: var(--dark-text);
     height: 20rem;
     width: 80%;
     min-width: 350px;
@@ -168,19 +168,19 @@ h2{
 }
 
 #lerntage{
-    color: #084734;
+    color: var(--bg);
     text-decoration: underline;
     margin-bottom: 3rem;
 }
 
 #displayPlan{
-    color: #084734;
+    color: var(--bg);
     width: 100%;
     height: auto;
     overflow-y: hidden;
     overflow-x: scroll;
-    border-bottom: 1px solid #084734;
-    border-top: 1px solid #084734;
+    border-bottom: 1px solid var(--bg);
+    border-top: 1px solid var(--bg);
     margin-bottom: 3rem;
 }
 
@@ -226,8 +226,8 @@ h2{
 }
 
 #dayList li button {
-    background-color: #084734;
-    color:#cdedb3;
+    background-color: var(--bg);
+    color: var(--bg-text);
     width: 8rem;
     padding: 0.5rem;
     border-radius: 0.25rem;
@@ -249,8 +249,8 @@ h2{
     width: 20rem;
     margin: 2rem 0;
     padding: 1.5rem;
-    color:#cdedb3;
-    background-color: #084734;
+    color: var(--accent);
+    background-color: var(--accent-text);
     border-radius: 3px;
     box-shadow: 0 3px 5px black;
     transition: all 0.2s ease;

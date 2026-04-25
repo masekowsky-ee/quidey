@@ -188,7 +188,7 @@ const renderUpdate = () => {
         } else if (state.currentStep === 'summarize'){ //build the elements on the summarize page when rendered
             buildSummarizePage();
         } else if (state.currentStep === 'wait') {
-            document.getElementById("navDiv").classList.remove("display");
+            document.getElementById("navDiv").classList.add("hidden");
         };
         if (lastActive === 'confidence'){  //delete all items from the confidence page once you leave it
             let sliderDiv = document.getElementById("sliderDiv")
