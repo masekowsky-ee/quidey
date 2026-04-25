@@ -223,7 +223,7 @@
     width: 100%;
 }
 
-#languageOptions{
+.languageOptions{
     width: 100%;
     height: 20%;
     display: inline-flex;
@@ -232,4 +232,43 @@
     justify-content: center;
     clear: left;
     float: left;
+}
+
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 18px;
+  height: 18px;
+
+  border: 2px solid #cdedb3;
+  border-radius: 50%;
+
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+input[type="radio"]:checked{
+    background-color: #CEF17B;
+}
+
+input[type="radio"]:checked::after{
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: #084734;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input[type="radio"]:hover {
+    transform: scale(1.1);
+}
+
+input[type="radio"]:focus{
+    outline: 2px solid #cdedb3;
 }

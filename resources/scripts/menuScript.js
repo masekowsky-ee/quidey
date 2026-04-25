@@ -23,17 +23,16 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(res => res.text())
         .then(html => {
             console.log("MENU HTML:", html);
-            if (!document.getElementById('menuHTML')) {
-                document.body.insertAdjacentHTML("afterbegin", html);
-                initMenuEvents(); // 👉 erst jetzt!
-            }
+            document.body.insertAdjacentHTML("afterbegin", html);
+            initMenuEvents();
             applyTranslations();
         });
 });
 
 function initMenuEvents() {
-    //const menuIcon = document.getElementById("menuIconImg");
-    //if (menuIcon) menuIcon.addEventListener("click", openMenu);
+    const menuIcon = document.getElementById("menuIconImg");
+    if (menuIcon) menuIcon.addEventListener("click", openMenu);
+
 
     ["menuHeadH1", "menuHeadImg"].forEach(id => {
         const el = document.getElementById(id);
@@ -45,54 +44,63 @@ function initMenuEvents() {
     const closeSettingsIcon = document.getElementById("closeSettingsIcon");
     if (closeSettingsIcon) closeSettingsIcon.addEventListener("click", closeSettings);
 
-    const de = document.querySelector('#de');
-    de.addEventListener('change', (event) => {
-        if (event.target.checked) {
-            setLanguage('de');
-        }
-    });
-
     const en = document.querySelector('#en');
-    en.addEventListener('change', (event) => {
-        if (event.target.checked) {
-            setLanguage('en');
-        }
-    });
+    if (en) {
+        en.addEventListener('change', (event) => {
+            if (event.target.checked) {
+                setLanguage('en');
+            }
+        });
+    }
+
+    const de = document.querySelector('#de');
+    if (de) {
+        de.addEventListener('change', (event) => {
+            if (event.target.checked) {
+                setLanguage('de');
+            }
+        });
+    }
 
     const lightRadio = document.getElementById('light_mode');
-    lightRadio.addEventListener("change", (event) => {
-        if (event.target.checked) {
-            setTheme("light");
-            console.log(localStorage.getItem("theme"));
-        }
-    });
+    if (lightRadio) {
+        lightRadio.addEventListener("change", (event) => {
+            if (event.target.checked) {
+                setTheme("light");
+                console.log(localStorage.getItem("theme"));
+            }
+        });
+    }
 
     const darkRadio = document.getElementById('dark_mode');
-    darkRadio.addEventListener("change", (event) => {
-        if (event.target.checked) {
-            setTheme("dark");
-            console.log(localStorage.getItem("theme"));
-        }
-    });
+    if (darkRadio) {
+        darkRadio.addEventListener("change", (event) => {
+            if (event.target.checked) {
+                setTheme("dark");
+                console.log(localStorage.getItem("theme"));
+            }
+        });
+    }
 
     const mosaikRadio = document.getElementById('mosaik_mode');
-    mosaikRadio.addEventListener("change", (event) => {
-        if (event.target.checked) {
-            setTheme("mosaik");
-            console.log(localStorage.getItem("theme"));
-        }
-    });
+    if (mosaikRadio) {
+        mosaikRadio.addEventListener("change", (event) => {
+            if (event.target.checked) {
+                setTheme("mosaik");
+                console.log(localStorage.getItem("theme"));
+            }
+        });
+    }
 
     const defaultRadio = document.getElementById('default_mode');
-    defaultRadio.addEventListener("change", (event) => {
-        if (event.target.checked) {
-            setTheme("default");
-            console.log(localStorage.getItem("theme"));
-        }
-    });
+    if (defaultRadio) {
+        defaultRadio.addEventListener("change", (event) => {
+            if (event.target.checked) {
+                setTheme("default");
+                console.log(localStorage.getItem("theme"));
+            }
+        });
+    }
+    
 }
-
-const menuIcon = document.getElementById("menuIconImg");
-if (menuIcon) menuIcon.addEventListener("click", openMenu);
-
 
