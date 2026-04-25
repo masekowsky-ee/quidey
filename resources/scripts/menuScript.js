@@ -101,6 +101,16 @@ function initMenuEvents() {
             }
         });
     }
+
+    const noneRadio = document.getElementById('none_mode');
+    if (noneRadio) {
+        noneRadio.addEventListener("change", (event) => {
+            if (event.target.checked) {
+                setTheme(none);
+                console.log(localStorage.getItem("theme"));
+            }
+        });
+    }
     
 }
 
