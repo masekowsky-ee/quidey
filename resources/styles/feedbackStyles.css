@@ -1,6 +1,6 @@
 body{
-    background-color: #cdedb3;
-    color: #084734;
+    background-color: var(--bg);
+    color: var(--bg-text);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -57,8 +57,8 @@ button{
     box-shadow: 0px 3px 5px black;
     border-radius: 5px;
     font-family: 'Orbitron';
-    background-color: #CEF17B;
-    color:#084734;
+    background-color: var(--accent);
+    color:var(--accent-text);
     font-weight: 700;
     font-size: large;
     transition: all 0.2s ease;

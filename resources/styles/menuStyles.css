@@ -242,7 +242,7 @@ input[type="radio"] {
   width: 18px;
   height: 18px;
 
-  border: 2px solid #cdedb3;
+  border: 2px solid var(--lightPrim);
   border-radius: 50%;
 
   display: inline-block;
@@ -251,14 +251,14 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked{
-    background-color: #CEF17B;
+    background-color: var(--lightPrim);;
 }
 
 input[type="radio"]:checked::after{
     content: "";
     width: 8px;
     height: 8px;
-    background: #084734;
+    background: var(--primary);;
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -271,5 +271,5 @@ input[type="radio"]:hover {
 }
 
 input[type="radio"]:focus{
-    outline: 2px solid #cdedb3;
+    outline: 2px solid var(--primary);
 }

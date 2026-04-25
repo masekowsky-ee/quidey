@@ -106,7 +106,7 @@ function initMenuEvents() {
     if (noneRadio) {
         noneRadio.addEventListener("change", (event) => {
             if (event.target.checked) {
-                setTheme(none);
+                setTheme('none');
                 console.log(localStorage.getItem("theme"));
             }
         });
