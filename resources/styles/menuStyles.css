@@ -11,7 +11,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: var(--dark);
+    background-color: var(--bg)!important;
     border-bottom-right-radius: 1rem;
     box-sizing: border-box;
 }
@@ -22,7 +22,7 @@
 }
 
 #menuIcon svg:hover{
-    border: 2px solid var(--dark-text);
+    border: 2px solid var(--bg-text);
     border-radius: 5px;
 }
 
