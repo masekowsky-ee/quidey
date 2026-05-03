@@ -40,3 +40,98 @@ const startTimer = () => {
 }
 
 document.getElementById('timerStartStop').addEventListener('click', startTimer);
+
+//add a subject
+
+let subArray = [];
+
+const addSubject = () => {
+    //get inputs
+    const subInput = document.getElementById('subjectInput');
+    const dateInput = document.getElementById('dateInput');
+    const confInput = document.getElementById('confidenceInput');
+
+    let doubles = [];     //check if subject is already in list
+    doubles = subArray.filter(sub => {
+        return sub.name === subInput.value.toLowerCase().trim();
+    });
+
+    if(doubles.length === 0 || subArray.length === 0){    //only add if not in list yet
+        subArray.push({name: subInput.value.toLowerCase().trim(), date: dateInput.value, confidence: confInput.value});
+        console.log(subArray.at(-1));
+
+        const subUl = document.getElementById('subList');   //add child
+        const li = document.createElement('li');
+        li.id = subInput.value.toLowerCase().trim();
+        li.textContent = subInput.value + ' ' + dateInput.value;
+        li.addEventListener('click', (event) => {   //add remove subject function
+            for (i=0; i < subArray.length; i++){
+                if(subArray[i].name === event.target.id){
+                    subArray.splice(i, 1);
+                }
+            }
+            event.target.remove();
+            console.log(subArray);
+        });
+        subUl.appendChild(li);
+        //clear inputs
+        subInput.value = '';
+        dateInput.value = '';
+        confInput.value = '3';
+    }
+    console.log(subArray);
+}
+
+document.getElementById('addNewSub').addEventListener('click', addSubject);
+
+
+//start a session
+const startSessionBtn = document.getElementById('startSession');
+
+const startSession = () => {
+    const div4 = document.getElementById('div4');
+    div4.style.zIndex = '0';
+
+    const div7 = document.getElementById('div7');
+    div7.style.zIndex = '1';
+    div7.style.gridColumn = '1 / 5'
+
+    const div5 = document.getElementById('div5');
+    div5.style.display = 'none';
+    const div6 = document.getElementById('div6');
+    div6.style.display = 'none';
+    const div3 = document.getElementById('div3');
+    div3.style.display = 'none';
+    const div1 = document.getElementById('div1');
+    div1.style.gridColumn = '1 / 3';
+    const div2 = document.getElementById('div2');
+    div2.style.gridColumn = '3/5';
+
+}
+
+startSessionBtn.addEventListener('click', startSession);
+
+//end a session
+const endSessionBtn = document.getElementById('endSession');
+
+const endSession = () => {
+    const div4 = document.getElementById('div4');
+    div4.style.zIndex = '1';
+
+    const div7 = document.getElementById('div7');
+    div7.style.zIndex = '0';
+    div7.style.gridColumn = '1 / 4'
+
+    const div5 = document.getElementById('div5');
+    div5.style.display = 'flex';
+    const div6 = document.getElementById('div6');
+    div6.style.display = 'flex';
+    const div3 = document.getElementById('div3');
+    div3.style.display = 'flex';
+    const div1 = document.getElementById('div1');
+    div1.style.gridColumn = '1 / 2';
+    const div2 = document.getElementById('div2');
+    div2.style.gridColumn = '3 / 4';
+}
+
+endSessionBtn.addEventListener('click', endSession);

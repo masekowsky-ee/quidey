@@ -14,11 +14,17 @@
             <section id="menuIcon">
                 <svg id="menuIconImg" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"><path fill="currentColor" d="M150-240q-12.75 0-21.37-8.68-8.63-8.67-8.63-21.5 0-12.82 8.63-21.32 8.62-8.5 21.37-8.5h660q12.75 0 21.38 8.68 8.62 8.67 8.62 21.5 0 12.82-8.62 21.32-8.63 8.5-21.38 8.5H150Zm0-210q-12.75 0-21.37-8.68-8.63-8.67-8.63-21.5 0-12.82 8.63-21.32 8.62-8.5 21.37-8.5h660q12.75 0 21.38 8.68 8.62 8.67 8.62 21.5 0 12.82-8.62 21.32-8.63 8.5-21.38 8.5H150Zm0-210q-12.75 0-21.37-8.68-8.63-8.67-8.63-21.5 0-12.82 8.63-21.32 8.62-8.5 21.37-8.5h660q12.75 0 21.38 8.68 8.62 8.67 8.62 21.5 0 12.82-8.62 21.32-8.63 8.5-21.38 8.5H150Z"/></svg>
             </section>
+            <section>
+                <svg id="profileIconImg" xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="currentColor"><path d="M222-255q63-44 125-67.5T480-346q71 0 133.5 23.5T739-255q44-54 62.5-109T820-480q0-145-97.5-242.5T480-820q-145 0-242.5 97.5T140-480q0 61 19 116t63 109Zm160.5-234.5Q343-529 343-587t39.5-97.5Q422-724 480-724t97.5 39.5Q617-645 617-587t-39.5 97.5Q538-450 480-450t-97.5-39.5ZM480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q83 0 155.5 31.5t127 86q54.5 54.5 86 127T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Zm107.5-76Q640-172 691-212q-51-36-104-55t-107-19q-54 0-107 19t-104 55q51 40 103.5 56T480-140q55 0 107.5-16Zm-52-375.5Q557-553 557-587t-21.5-55.5Q514-664 480-664t-55.5 21.5Q403-621 403-587t21.5 55.5Q446-510 480-510t55.5-21.5ZM480-587Zm0 374Z"/></svg>
+            </section>
         </header>
         <main>
             <div id="div1">
-                <h1 id="dateH1"></h1>
-                <h1 id="timeH1"></h1>
+                <div id="progressBar">
+                    <div id="progressor"></div>
+                </div>
+                <h1 id="timerTime"><span id="timerMins">25</span>:<span id="timerSecs">00</span></h1>
+                <button id="timerStartStop">Timer</button>
             </div>
             <div id="div2">
                 <h1 data-i18n="new_progress_h1"></h1>
@@ -27,10 +33,24 @@
                 </div>
             </div>
             <div id="div3">
-                <h1 id="timerTime"><span id="timerMins">25</span>:<span id="timerSecs">00</span></h1>
-                <button id="timerStartStop">Timer</button>
+                <h1 id="dateH1"></h1>
+                <h1 id="timeH1"></h1>
             </div>
-            <div id="div4"></div>
+            <div id="div4">
+                <h1 data-i18n="new_session"></h1>
+                <div id="newEnergy">
+                    <h2 data-i18n="energy_h2"></h2>
+                    <input type="range" id="energyInput" min="1" max="100" step="1"></input>
+                </div>
+                <div id="newTime">
+                    <h2 data-i18n="time_h2"></h2>
+                    <h3 data-i18n="hour_label"></h3>
+                    <input type="number" id="hourInput" min="0" max="03" step="1" value="0"></input>
+                    <h3 data-i18n="minutes_label"></h3>
+                    <input type="number" id="minInput" min="0" max="55" step="5" value="30"></input>
+                </div>
+                <button id="startSession" data-i18n="start_session"></button>
+            </div>
             <div id="div5">
                 <h1 id="addSub" data-i18n="new_add_sub"></h1>
                 <input type="text" id="subjectInput" data-i18n-placeholder="enter_sub" list="subjectOptions">
@@ -49,15 +69,18 @@
                 </datalist>
 
                 <input type="date" id="dateInput">
-                <input type="range">
-                <button id="add" data-i18n="new_add"></button>
+                <input type="range" id="confidenceInput" min="1" max="5" value="3">
+                <button id="addNewSub" data-i18n="new_add"></button>
             </div>
             <div id="div6">
+                <h1 data-i18n="your_subs"></h1>
                 <ul id="subList">
 
                 </ul>
             </div>
-            <div id="div7"></div>
+            <div id="div7">
+                <button id="endSession" data-i18n="end_session"></button>
+            </div>
         </main>
 
         

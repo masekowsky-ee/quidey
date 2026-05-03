@@ -97,6 +97,15 @@ const translations = {
         new_progress_h1: "Fortschritt",
         new_add: "Hinzufügen",
         new_add_sub: "Fach Hinzufügen",
+        your_subs: "Deine Fächer",
+        new_session: "Neue Session",
+        energy_h2: "Wie viel Enrgie hast du?",
+        time_h2: "Wie viel Zeit hast du?",
+        energy_label: "Energie:",
+        hour_label: "Stunden:",
+        minutes_label: "Minuten:",
+        start_session: "Session Starten",
+        end_session: "Session Beenden",
     },
 
     en: {
@@ -198,6 +207,15 @@ const translations = {
         new_progress_h1: "Progress",
         new_add: "add",
         new_add_sub: "Add Subject",
+        your_subs: "Your Subjects",
+        new_session: "New Session",
+        energy_h2: "What's your energy level?",
+        time_h2: "How much time do you have?",
+        energy_label: "Energy:",
+        hour_label: "Hours:",
+        minutes_label: "Minutes:",
+        start_session: "Start Session",
+        end_session: "End Session",
     }
 };
 
