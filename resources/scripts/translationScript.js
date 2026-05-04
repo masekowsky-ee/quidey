@@ -106,6 +106,11 @@ const translations = {
         minutes_label: "Minuten:",
         start_session: "Session Starten",
         end_session: "Session Beenden",
+
+        //alerts
+        no_double_alert: "Du kannst das selbe Fach nicht zwei Mal eingeben. Bitte nutze etwas anderes.",
+        no_empty_alert: "Bitte gib ein Fach ein.",
+        no_date_alert: "Bitte gib ein Datum ein.",
     },
 
     en: {
@@ -205,7 +210,7 @@ const translations = {
 
         //new
         new_progress_h1: "Progress",
-        new_add: "add",
+        new_add: "Add",
         new_add_sub: "Add Subject",
         your_subs: "Your Subjects",
         new_session: "New Session",
@@ -216,6 +221,11 @@ const translations = {
         minutes_label: "Minutes:",
         start_session: "Start Session",
         end_session: "End Session",
+
+        //alerts
+        no_double_alert: "You can't enter the same subject twice. Please use something else.",
+        no_empty_alert: "Please enter a subject.",
+        no_date_alert: "Please enter a date.",
     }
 };
 

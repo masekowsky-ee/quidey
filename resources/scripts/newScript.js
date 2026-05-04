@@ -45,6 +45,8 @@ document.getElementById('timerStartStop').addEventListener('click', startTimer);
 
 let subArray = [];
 
+const lang = localStorage.getItem("lang") || "de";
+
 const addSubject = () => {
     //get inputs
     const subInput = document.getElementById('subjectInput');
@@ -57,27 +59,37 @@ const addSubject = () => {
     });
 
     if(doubles.length === 0 || subArray.length === 0){    //only add if not in list yet
-        subArray.push({name: subInput.value.toLowerCase().trim(), date: dateInput.value, confidence: confInput.value});
-        console.log(subArray.at(-1));
+        if (subInput.value && dateInput.value){ //check whether input is not empty
+            subArray.push({name: subInput.value.toLowerCase().trim(), date: dateInput.value, confidence: confInput.value});
+            console.log(subArray.at(-1));
 
-        const subUl = document.getElementById('subList');   //add child
-        const li = document.createElement('li');
-        li.id = subInput.value.toLowerCase().trim();
-        li.textContent = subInput.value + ' ' + dateInput.value;
-        li.addEventListener('click', (event) => {   //add remove subject function
-            for (i=0; i < subArray.length; i++){
-                if(subArray[i].name === event.target.id){
-                    subArray.splice(i, 1);
+            const subUl = document.getElementById('subList');   //add child
+            const li = document.createElement('li');
+            li.id = subInput.value.toLowerCase().trim();
+            li.textContent = subInput.value + ' ' + dateInput.value;
+            li.addEventListener('click', (event) => {   //add remove subject function
+                for (i=0; i < subArray.length; i++){
+                    if(subArray[i].name === event.target.id){
+                        subArray.splice(i, 1);
+                    }
                 }
-            }
-            event.target.remove();
-            console.log(subArray);
-        });
-        subUl.appendChild(li);
-        //clear inputs
-        subInput.value = '';
-        dateInput.value = '';
-        confInput.value = '3';
+                event.target.remove();
+                console.log(subArray);
+            });
+            subUl.appendChild(li);
+            //clear inputs
+            subInput.value = '';
+            dateInput.value = '';
+            confInput.value = '3';
+        } else if (dateInput.value){ // if no sub
+            window.alert(translations[lang]["no_empty_alert"]);
+        } else if (subInput.value){ //if no date
+            window.alert(translations[lang]["no_date_alert"]);
+        } else { //if none
+            window.alert(translations[lang]["no_empty_alert"] + ' ' + translations[lang]["no_date_alert"]);
+        }
+    } else {
+        window.alert(translations[lang]["no_double_alert"]);
     }
     console.log(subArray);
 }
