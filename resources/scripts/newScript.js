@@ -196,7 +196,19 @@ const sortSubs = () => {
 
 
 let sessionObject = {
-    state: study,     //break or study
+    state: "study",     //break or study
+    next(){             //switch to next after countdown is 0
+        if(this.state === "study"){ //switch from study to break
+            this.state = "break";
+            this.counting = true;
+        } else if(this.state === "break"){ //switch from break
+            this.state = "study";
+            this.amountLeft--;
+            this.amountDone++;
+            this.counting = true;
+        }
+    },
     counting: false,  //true if time is running, false if not
-    amount: 0         //amount of learn-break cycles
+    amountLeft: 0,         //amount of learn-break cycles
+    amountDone: 0,    //amount of finished cycles
 };
