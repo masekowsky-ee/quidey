@@ -1,3 +1,4 @@
+console.log('newScript.js is running');
 //time and date
 const updateTimeDate = () => {
     const dateH1 = document.getElementById('dateH1');
@@ -9,7 +10,7 @@ const updateTimeDate = () => {
 }
 
 setInterval(updateTimeDate ,1000);
-
+/*
 //timer
 let myInterval;
 const startTimer = () => {
@@ -40,7 +41,7 @@ const startTimer = () => {
 }
 
 document.getElementById('timerStartStop').addEventListener('click', startTimer);
-
+*/
 //add a subject
 
 let subArray = [];
@@ -218,12 +219,15 @@ let sessionObject = {
             this.counting = true;
         } else {
             this.counting = true;
+            this.started = true;
         }
     },
     counting: false,  //true if time is running, false if not
     started: false,
     amountLeft: 0,         //amount of learn-break cycles
     amountDone: 0,    //amount of finished cycles
+    sessionLength: 25,
+    breakLength: 5,
     reset(){
         this.state = "study";
         this.subject = "";
@@ -233,3 +237,34 @@ let sessionObject = {
         this.amountDone = 0;
     }
 };
+
+let studyInterval;
+
+const nextSessionOnClick = () => {
+    if (sessionObject.counting === false){
+        sessionObject.next();
+        let secsToStudy;
+        //check for current state and assign minutes
+        if(sessionObject.state === 'study'){
+            secsToStudy = sessionObject.sessionLength;
+        } else if(sessionObject.state === 'break'){
+            secsToStudy = sessionObject.breakLength;
+        }
+        studyInterval = setInterval(()=>{
+            secsToStudy--;
+            //update timer
+            const timerMins = document.getElementById('timerMins');
+            const timerSecs = document.getElementById('timerSecs');
+            timerSecs.textContent = String(secsToStudy % 60).padStart(2, '0');
+            timerMins.textContent = Math.floor(secsToStudy/60);
+            //check clearing condition
+            if(secsToStudy === 0){
+                clearInterval(studyInterval);
+                sessionObject.counting = false;
+            }
+        }, 1000)
+    }
+}
+
+const nextSessionBtn = document.getElementById('nextSession')
+nextSessionBtn.addEventListener('click', nextSessionOnClick);
