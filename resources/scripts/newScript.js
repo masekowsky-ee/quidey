@@ -124,33 +124,39 @@ document.getElementById('addNewSub').addEventListener('click', addSubject);
 const startSessionBtn = document.getElementById('startSession');
 
 const startSession = () => {
-    if (subArray[0]){
     const sessionHour = document.getElementById("sessionHourInput");
     const sessionMin = document.getElementById("sessionMinInput");
 
-    let sessionTime = Number(sessionMin.value) + Number(sessionHour.value) * 60;
-    console.log("Session Time: " + sessionTime);
+    if (subArray[0] && Number(sessionMin.value) + Number(sessionHour.value) !== 0){
+        sessionObject.reset(); //make sure the sessionobject is in starting mode
+        let roundedSessionMinutes = Number(sessionMin.value);
+        if(Number(sessionMin.value) > 0){          //make sure the user doesn't enter sth other than 0 or 30
+            roundedSessionMinutes = 30;
+        }
+        let sessionTime = roundedSessionMinutes + Number(sessionHour.value) * 60;
+        sessionObject.amountLeft = sessionTime / 30;
+        console.log("Session Time: " + sessionTime);
 
-    console.log("SubArray");
-    console.log(subArray);
-    sortSubs();
-    const div4 = document.getElementById('div4');
-    div4.style.zIndex = '0';
+        console.log("SubArray");
+        console.log(subArray);
+        sortSubs();
+        const div4 = document.getElementById('div4');
+        div4.style.zIndex = '0';
 
-    const div7 = document.getElementById('div7');
-    div7.style.zIndex = '1';
-    div7.style.gridColumn = '1 / 5'
+        const div7 = document.getElementById('div7');
+        div7.style.zIndex = '1';
+        div7.style.gridColumn = '1 / 5'
 
-    const div5 = document.getElementById('div5');
-    div5.style.display = 'none';
-    const div6 = document.getElementById('div6');
-    div6.style.display = 'none';
-    const div3 = document.getElementById('div3');
-    div3.style.display = 'none';
-    const div1 = document.getElementById('div1');
-    div1.style.gridColumn = '1 / 3';
-    const div2 = document.getElementById('div2');
-    div2.style.gridColumn = '3/5';
+        const div5 = document.getElementById('div5');
+        div5.style.display = 'none';
+        const div6 = document.getElementById('div6');
+        div6.style.display = 'none';
+        const div3 = document.getElementById('div3');
+        div3.style.display = 'none';
+        const div1 = document.getElementById('div1');
+        div1.style.gridColumn = '1 / 3';
+        const div2 = document.getElementById('div2');
+        div2.style.gridColumn = '3/5';
     } else {
         window.alert(translations[lang]["no_empty_alert"])
     }
@@ -192,23 +198,38 @@ const sortSubs = () => {
     console.log("New Sorted SubArray:");
     console.log(subArray);
     document.getElementById("currentTask").textContent = subArray[0].name.toUpperCase();
+    sessionObject.subject = subArray[0].name;
 }
 
 
 let sessionObject = {
-    state: "study",     //break or study
-    next(){             //switch to next after countdown is 0
-        if(this.state === "study"){ //switch from study to break
+    state: "study",                             //break or study
+    subject: "",
+    next(){                                     //switch to next after countdown is 0
+        if(this.state === "study" && this.started === true){             //switch from study to break
+            subArray[0].practicedAmount++;      //add session to subject
+            sortSubs();                         //regenerate subject list and next subject
             this.state = "break";
             this.counting = true;
-        } else if(this.state === "break"){ //switch from break
+        } else if(this.state === "break" && this.started === true){      //switch from break
             this.state = "study";
             this.amountLeft--;
             this.amountDone++;
             this.counting = true;
+        } else {
+            this.counting = true;
         }
     },
     counting: false,  //true if time is running, false if not
+    started: false,
     amountLeft: 0,         //amount of learn-break cycles
     amountDone: 0,    //amount of finished cycles
+    reset(){
+        this.state = "study";
+        this.subject = "";
+        this.counting = false;
+        this.started = false;
+        this.amountLeft = 0;
+        this.amountDone = 0;
+    }
 };

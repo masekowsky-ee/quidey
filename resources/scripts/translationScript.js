@@ -106,6 +106,7 @@ const translations = {
         minutes_label: "Minuten:",
         start_session: "Session Starten",
         end_session: "Session Beenden",
+        next_session: "Weiter geht's!",
 
         //alerts
         no_double_alert: "Du kannst das selbe Fach nicht zwei Mal eingeben. Bitte nutze etwas anderes.",
@@ -222,6 +223,7 @@ const translations = {
         minutes_label: "Minutes:",
         start_session: "Start Session",
         end_session: "End Session",
+        next_session: "Start next!",
 
         //alerts
         no_double_alert: "You can't enter the same subject twice. Please use something else.",
