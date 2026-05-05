@@ -246,9 +246,9 @@ const nextSessionOnClick = () => {
         let secsToStudy;
         //check for current state and assign minutes
         if(sessionObject.state === 'study'){
-            secsToStudy = sessionObject.sessionLength;
+            secsToStudy = sessionObject.sessionLength * 60;
         } else if(sessionObject.state === 'break'){
-            secsToStudy = sessionObject.breakLength;
+            secsToStudy = sessionObject.breakLength * 60;
         }
         studyInterval = setInterval(()=>{
             secsToStudy--;
