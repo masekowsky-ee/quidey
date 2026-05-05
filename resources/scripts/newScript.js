@@ -69,11 +69,19 @@ const addSubject = () => {
 
             subArray.push({
                 name: subInput.value.toLowerCase().trim(), 
-                date: dateInput.value, 
-                confidence: confInput.value,
+                dueDate: dateInput.value, 
+                confidence: Number(confInput.value),
                 daysLeft: daysAvailable,
-                practicedAmount: 0,
+                calcDays(){
+                    this.daysLeft = Math.ceil((this.dueDate - new Date())/(1000*60*60*24))
+                },
+                practicedAmount: 1,
+                urgency: 0,
+                calcUrgency(){
+                    this.urgency = this.daysLeft * this.confidence * this.practicedAmount
+                }
             });
+            subArray.at(-1).calcUrgency();
             console.log(subArray.at(-1));
 
             const subUl = document.getElementById('subList');   //add child
@@ -116,6 +124,9 @@ document.getElementById('addNewSub').addEventListener('click', addSubject);
 const startSessionBtn = document.getElementById('startSession');
 
 const startSession = () => {
+    console.log("SubArray");
+    console.log(subArray);
+    sortSubs();
     const div4 = document.getElementById('div4');
     div4.style.zIndex = '0';
 
@@ -133,8 +144,6 @@ const startSession = () => {
     div1.style.gridColumn = '1 / 3';
     const div2 = document.getElementById('div2');
     div2.style.gridColumn = '3/5';
-
-    console.log(subArray);
 
 }
 
@@ -166,3 +175,11 @@ const endSession = () => {
 endSessionBtn.addEventListener('click', endSession);
 
 //generate session
+const sortSubs = () => {
+    const compareUrgency = (a,b) => {
+        return a.urgency - b.urgency ;
+    }
+    subArray.sort(compareUrgency);
+    console.log("New Sorted SubArray:")
+    console.log(subArray);
+}
