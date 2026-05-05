@@ -59,8 +59,21 @@ const addSubject = () => {
     });
 
     if(doubles.length === 0 || subArray.length === 0){    //only add if not in list yet
-        if (subInput.value && dateInput.value){ //check whether input is not empty
-            subArray.push({name: subInput.value.toLowerCase().trim(), date: dateInput.value, confidence: confInput.value});
+        //calculate days until due date
+            let today = new Date();
+            let due = new Date(dateInput.value);
+            let msPerDay = 1000 * 60 * 60 * 24;
+            let daysAvailable = Math.ceil((due - today)/msPerDay);
+
+        if (subInput.value && dateInput.value && daysAvailable >= 0){ //check whether input is not empty and valid
+
+            subArray.push({
+                name: subInput.value.toLowerCase().trim(), 
+                date: dateInput.value, 
+                confidence: confInput.value,
+                daysLeft: daysAvailable,
+                practicedAmount: 0,
+            });
             console.log(subArray.at(-1));
 
             const subUl = document.getElementById('subList');   //add child
@@ -81,6 +94,8 @@ const addSubject = () => {
             subInput.value = '';
             dateInput.value = '';
             confInput.value = '3';
+        } else if (daysAvailable < 0){
+            window.alert(translations[lang]["no_oldDate_alert"]);
         } else if (dateInput.value){ // if no sub
             window.alert(translations[lang]["no_empty_alert"]);
         } else if (subInput.value){ //if no date
@@ -119,6 +134,8 @@ const startSession = () => {
     const div2 = document.getElementById('div2');
     div2.style.gridColumn = '3/5';
 
+    console.log(subArray);
+
 }
 
 startSessionBtn.addEventListener('click', startSession);
@@ -147,3 +164,5 @@ const endSession = () => {
 }
 
 endSessionBtn.addEventListener('click', endSession);
+
+//generate session

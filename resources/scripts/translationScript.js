@@ -111,6 +111,7 @@ const translations = {
         no_double_alert: "Du kannst das selbe Fach nicht zwei Mal eingeben. Bitte nutze etwas anderes.",
         no_empty_alert: "Bitte gib ein Fach ein.",
         no_date_alert: "Bitte gib ein Datum ein.",
+        no_oldDate_alert: "Bitte gib ein Datum aus der Zukunft ein.",
     },
 
     en: {
@@ -226,6 +227,7 @@ const translations = {
         no_double_alert: "You can't enter the same subject twice. Please use something else.",
         no_empty_alert: "Please enter a subject.",
         no_date_alert: "Please enter a date.",
+        no_oldDate_alert: "Please enter a date that has not passed yet.",
     }
 };
 
