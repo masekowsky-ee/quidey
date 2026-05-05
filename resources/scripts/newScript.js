@@ -180,6 +180,7 @@ const sortSubs = () => {
         return a.urgency - b.urgency ;
     }
     subArray.sort(compareUrgency);
-    console.log("New Sorted SubArray:")
+    console.log("New Sorted SubArray:");
     console.log(subArray);
+    document.getElementById("currentTask").textContent = subArray[0].name.toUpperCase();
 }
