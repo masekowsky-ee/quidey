@@ -57,7 +57,7 @@ const addSubject = () => {
     doubles = subArray.filter(sub => {
         return sub.name === subInput.value.toLowerCase().trim();
     });
-
+    console.log('Add subject triggered')
     if(doubles.length === 0 || subArray.length === 0){    //only add if not in list yet
         //calculate days until due date
             let today = new Date();
