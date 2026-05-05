@@ -124,6 +124,13 @@ document.getElementById('addNewSub').addEventListener('click', addSubject);
 const startSessionBtn = document.getElementById('startSession');
 
 const startSession = () => {
+    if (subArray[0]){
+    const sessionHour = document.getElementById("sessionHourInput");
+    const sessionMin = document.getElementById("sessionMinInput");
+
+    let sessionTime = Number(sessionMin.value) + Number(sessionHour.value) * 60;
+    console.log("Session Time: " + sessionTime);
+
     console.log("SubArray");
     console.log(subArray);
     sortSubs();
@@ -144,7 +151,9 @@ const startSession = () => {
     div1.style.gridColumn = '1 / 3';
     const div2 = document.getElementById('div2');
     div2.style.gridColumn = '3/5';
-
+    } else {
+        window.alert(translations[lang]["no_empty_alert"])
+    }
 }
 
 startSessionBtn.addEventListener('click', startSession);
@@ -184,3 +193,10 @@ const sortSubs = () => {
     console.log(subArray);
     document.getElementById("currentTask").textContent = subArray[0].name.toUpperCase();
 }
+
+
+let sessionObject = {
+    state: study,     //break or study
+    counting: false,  //true if time is running, false if not
+    amount: 0         //amount of learn-break cycles
+};
