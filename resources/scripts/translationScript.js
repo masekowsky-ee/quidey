@@ -18,6 +18,7 @@ const translations = {
         mosaik_mode: "Mosaik",
         default_mode: "Normal",
         none_mode: "Farblos",
+        learney: "Learney",
 
         //index page
         index_letsGo: "Lass uns deinen Lernplan Generieren",
@@ -137,6 +138,7 @@ const translations = {
         mosaik_mode: "Mosaic",
         default_mode: "Default",
         none_mode: "None",
+        learney: "Learney",
 
         //index page
         index_letsGo: "Let's build your study schedule",
