@@ -79,7 +79,7 @@ const addSubject = () => {
                 practicedAmount: 1,
                 urgency: 0,
                 calcUrgency(){
-                    this.urgency = this.daysLeft * this.confidence * this.practicedAmount
+                    this.urgency = this.daysLeft * this.confidence * this.practicedAmount;
                 }
             });
             subArray.at(-1).calcUrgency();
@@ -158,10 +158,14 @@ const startSession = () => {
         div1.style.gridColumn = '1 / 3';
         const div2 = document.getElementById('div2');
         div2.style.gridColumn = '3/5';
+        document.getElementById('stateH1').textContent = translations[lang]['study'];
     } else {
         window.alert(translations[lang]["no_empty_alert"])
     }
 }
+
+const timerMins = document.getElementById('timerMins');
+const timerSecs = document.getElementById('timerSecs');
 
 startSessionBtn.addEventListener('click', startSession);
 
@@ -186,12 +190,21 @@ const endSession = () => {
     div1.style.gridColumn = '1 / 2';
     const div2 = document.getElementById('div2');
     div2.style.gridColumn = '3 / 4';
+    //reset page to prep for next
+    nextSessionBtn.classList.remove('hidden');
+    endSessionBtn.classList.add('hidden');
+    timerMins.textContent = '25'
+    timerSecs.textContent = "00"
+    document.getElementById('stateH1').textContent = translations[lang]['study'];
 }
 
 endSessionBtn.addEventListener('click', endSession);
 
 //generate session
 const sortSubs = () => {
+    subArray.forEach(sub => {
+        sub.calcUrgency();
+    });
     const compareUrgency = (a,b) => {
         return a.urgency - b.urgency ;
     }
@@ -250,21 +263,58 @@ const nextSessionOnClick = () => {
         } else if(sessionObject.state === 'break'){
             secsToStudy = sessionObject.breakLength * 60;
         }
+        nextSessionBtn.classList.add('hidden');
+        endSessionBtn.classList.add('hidden');
+        skipSessionBtn.classList.remove('hidden');
+
+        if(sessionObject.state === 'study'){
+            document.getElementById('stateH1').textContent = translations[lang]['study'];
+        } else if (sessionObject.state === 'break'){
+            document.getElementById('stateH1').textContent = translations[lang]['break'];
+        }
+
         studyInterval = setInterval(()=>{
             secsToStudy--;
             //update timer
-            const timerMins = document.getElementById('timerMins');
-            const timerSecs = document.getElementById('timerSecs');
             timerSecs.textContent = String(secsToStudy % 60).padStart(2, '0');
             timerMins.textContent = Math.floor(secsToStudy/60);
             //check clearing condition
             if(secsToStudy === 0){
                 clearInterval(studyInterval);
                 sessionObject.counting = false;
+                nextSessionBtn.classList.remove('hidden');
+                if(sessionObject.amountLeft === 1) {
+                    nextSessionBtn.classList.add('hidden');
+                };
+                endSessionBtn.classList.remove('hidden');
+                skipSessionBtn.classList.add('hidden');
             }
-        }, 1000)
+        }, 1000);
     }
 }
 
-const nextSessionBtn = document.getElementById('nextSession')
+const nextSessionBtn = document.getElementById('nextSession');
 nextSessionBtn.addEventListener('click', nextSessionOnClick);
+
+const skipSessionBtn = document.getElementById('skipSession');
+skipSessionBtn.addEventListener('click', (event)=>{
+    clearInterval(studyInterval);
+    sessionObject.counting = false;
+    nextSessionBtn.classList.remove('hidden');
+    if(sessionObject.amountLeft === 1) {
+        nextSessionBtn.classList.add('hidden');
+    };
+    endSessionBtn.classList.remove('hidden');
+    skipSessionBtn.classList.add('hidden');
+
+    if(sessionObject.state === "study"){
+        timerMins.textContent = '05'
+        timerSecs.textContent = "00"
+        document.getElementById('stateH1').textContent = translations[lang]['break'];
+    } else if (sessionObject.state === "break"){
+        timerMins.textContent = '25'
+        timerSecs.textContent = "00"
+        document.getElementById('stateH1').textContent = translations[lang]['study'];
+    }
+    console.log(sessionObject);
+});

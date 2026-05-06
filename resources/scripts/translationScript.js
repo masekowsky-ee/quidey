@@ -107,6 +107,9 @@ const translations = {
         start_session: "Session Starten",
         end_session: "Session Beenden",
         next_session: "Weiter geht's!",
+        skip_session: "Timer beenden",
+        break: 'Pause',
+        study: 'Lernen',
 
         //alerts
         no_double_alert: "Du kannst das selbe Fach nicht zwei Mal eingeben. Bitte nutze etwas anderes.",
@@ -224,6 +227,9 @@ const translations = {
         start_session: "Start Session",
         end_session: "End Session",
         next_session: "Start next!",
+        skip_session: "End Timer",
+        break: 'Break',
+        study: 'Study',
 
         //alerts
         no_double_alert: "You can't enter the same subject twice. Please use something else.",

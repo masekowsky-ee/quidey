@@ -12,6 +12,10 @@ body{
     align-items: center;
 }
 
+.hidden {
+    display: none!important;
+}
+
 header {
     width: 98%;
     height: 10%;
