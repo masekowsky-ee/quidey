@@ -46,10 +46,19 @@
                 </div>
                 <div id="newTime">
                     <h2 data-i18n="time_h2"></h2>
-                    <h3 data-i18n="hour_label"></h3>
+                    <h3 data-i18n="length_label"></h3>
+                    <h4 data-i18n="hour_label"></h4>
                     <input type="number" id="sessionHourInput" min="0" max="03" step="1" value="0"></input>
-                    <h3 data-i18n="minutes_label"></h3>
+                    <h4 data-i18n="min_label"></h4>
                     <input type="number" id="sessionMinInput" min="0" max="30" step="30" value="30"></input>
+                    <h3 data-i18n="session_length_label"></h3>
+                    <input type="number" id="sessionLengthInput" min="15" max="45" step="5" value="30"></input>
+                    <h4 data-i18n="min_label"></h4>
+                    <h3 data-i18n="include_breaks"></h3>
+                    <input type="radio" id="breaksYes" name="breaks" value="yes"></input>
+                    <label for="breaksYes" data-i18n="yes"></label>
+                    <input type="radio" id="breaksNo" name="breaks" value="no" data-i18n="no"></input>
+                    <label for="breaksNo" data-i18n="no"></label>
                 </div>
                 <button id="startSession" data-i18n="start_session"></button>
             </div>

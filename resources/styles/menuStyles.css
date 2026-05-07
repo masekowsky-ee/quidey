@@ -235,7 +235,7 @@
     float: left;
 }
 
-input[type="radio"] {
+#settingsSection input[type="radio"] {
   appearance: none;
   -webkit-appearance: none;
 
@@ -250,11 +250,11 @@ input[type="radio"] {
   cursor: pointer;
 }
 
-input[type="radio"]:checked{
+#settingsSection input[type="radio"]:checked{
     background-color: var(--lightPrim);;
 }
 
-input[type="radio"]:checked::after{
+#settingsSection input[type="radio"]:checked::after{
     content: "";
     width: 8px;
     height: 8px;
@@ -266,10 +266,10 @@ input[type="radio"]:checked::after{
     transform: translate(-50%, -50%);
 }
 
-input[type="radio"]:hover {
+#settingsSection input[type="radio"]:hover {
     transform: scale(1.1);
 }
 
-input[type="radio"]:focus{
+#settingsSection input[type="radio"]:focus{
     outline: 2px solid var(--primary);
 }

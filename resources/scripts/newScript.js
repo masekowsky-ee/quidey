@@ -196,6 +196,7 @@ const endSession = () => {
     timerMins.textContent = '25'
     timerSecs.textContent = "00"
     document.getElementById('stateH1').textContent = translations[lang]['study'];
+    progressor.style.width = '0%';
 }
 
 endSessionBtn.addEventListener('click', endSession);
@@ -219,7 +220,8 @@ const sortSubs = () => {
 let sessionObject = {
     state: "study",                             //break or study
     subject: "",
-    next(){                                     //switch to next after countdown is 0
+    next(){      
+        progressor.style.width = '0%';                               //switch to next after countdown is 0
         if(this.state === "study" && this.started === true){             //switch from study to break
             subArray[0].practicedAmount++;      //add session to subject
             sortSubs();                         //regenerate subject list and next subject
@@ -273,8 +275,13 @@ const nextSessionOnClick = () => {
             document.getElementById('stateH1').textContent = translations[lang]['break'];
         }
 
+        let progressor = document.getElementById('progressor');
+        let progressBits = secsToStudy;
+
         studyInterval = setInterval(()=>{
             secsToStudy--;
+            //update progress bar
+            progressor.style.width = `${100 - secsToStudy*99/progressBits}%`;
             //update timer
             timerSecs.textContent = String(secsToStudy % 60).padStart(2, '0');
             timerMins.textContent = Math.floor(secsToStudy/60);
@@ -308,12 +315,14 @@ skipSessionBtn.addEventListener('click', (event)=>{
     skipSessionBtn.classList.add('hidden');
 
     if(sessionObject.state === "study"){
-        timerMins.textContent = '05'
-        timerSecs.textContent = "00"
+        timerMins.textContent = '05';
+        timerSecs.textContent = "00";
+        progressor.style.width = '0%';
         document.getElementById('stateH1').textContent = translations[lang]['break'];
     } else if (sessionObject.state === "break"){
-        timerMins.textContent = '25'
-        timerSecs.textContent = "00"
+        timerMins.textContent = '25';
+        timerSecs.textContent = "00";
+        progressor.style.width = '0%';
         document.getElementById('stateH1').textContent = translations[lang]['study'];
     }
     console.log(sessionObject);

@@ -103,8 +103,9 @@ main div{
 
 #progressor{
     background-color: var(--accent-text);
-    width: 1%;
+    width: 0%;
     height: 100%;
+    border-radius: 50%;
 }
 
 
@@ -121,8 +122,12 @@ main div{
     grid-column: 1 / 4;
     grid-row: 2 / 7;
     z-index: 1;
-        transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    margin: 0;
+}
 
+#div4 * {
+    margin: 0;
 }
 
 #div5{
@@ -130,6 +135,7 @@ main div{
     grid-row: 1 / 4;
     display: flex;
         transition: all 0.2s ease;
+        
 
 }
 
@@ -137,6 +143,7 @@ main div{
     grid-column: 4 / 5;
     grid-row: 4 / 7;
         transition: all 0.2s ease;
+    
 
 }
 
@@ -145,5 +152,6 @@ main div{
     grid-row: 2 / 7;
     z-index: 0;
         transition: all 0.2s ease;
+        
 
 }
