@@ -116,7 +116,7 @@ expandSubList.addEventListener('click', subListExpander);
 const subListCollapser = () => {
     subListDiv.style.gridColumn = '4 / 5';
     subListDiv.style.gridRow = '4 / 7';
-    subListDiv.style.zIndex = '5';
+    subListDiv.style.zIndex = '1';
     collapseSubList.classList.add('hidden');
     expandSubList.classList.remove('hidden');
 }
