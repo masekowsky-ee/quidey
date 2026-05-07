@@ -4,8 +4,8 @@ const translations = {
         menu_title: "Menü",
         menu_feedback_li: "Feedback",
         menu_about_li: "Über Learney",
-        menu_toPlan_li: "Dein Plan",
-        menu_newPlan_li: "Neuer Plan",
+        menu_toPlan_li: "Dein Plan (Alt)",
+        menu_newPlan_li: "Neuer Plan (Alt)",
         menu_settings_li: "Einstellungen",
         preview: "Schau dir den aktuellen Fortschritt von Version 0.1.0 an",
         settings_h1: "Einstellungen",
@@ -18,6 +18,7 @@ const translations = {
         mosaik_mode: "Mosaik",
         default_mode: "Normal",
         none_mode: "Farblos",
+        learney: "Learney",
 
         //index page
         index_letsGo: "Lass uns deinen Lernplan Generieren",
@@ -102,17 +103,26 @@ const translations = {
         energy_h2: "Wie viel Enrgie hast du?",
         time_h2: "Wie viel Zeit hast du?",
         energy_label: "Energie:",
-        hour_label: "Stunden:",
-        minutes_label: "Minuten:",
+        length_label: "Zeit:",
+        session_length_label: "Session Länge:",
+        min_label: 'Minuten',
+        hour_label: 'Stunden',
         start_session: "Session Starten",
         end_session: "Session Beenden",
         next_session: "Weiter geht's!",
+        skip_session: "Timer beenden",
+        break: 'Pause',
+        study: 'Lernen',
+        include_breaks: 'Pausen machen:',
+        yes: 'Ja',
+        no: 'Nein',
 
         //alerts
         no_double_alert: "Du kannst das selbe Fach nicht zwei Mal eingeben. Bitte nutze etwas anderes.",
         no_empty_alert: "Bitte gib ein Fach ein.",
         no_date_alert: "Bitte gib ein Datum ein.",
         no_oldDate_alert: "Bitte gib ein Datum aus der Zukunft ein.",
+        too_short_alert: 'Die Session darf nicht länger als die gesamt Zeit sein.',
     },
 
     en: {
@@ -120,8 +130,8 @@ const translations = {
         menu_title: "Menu",
         menu_feedback_li: "Feedback",
         menu_about_li: "About Learney",
-        menu_toPlan_li: "Your Plan",
-        menu_newPlan_li: "New Plan",
+        menu_toPlan_li: "Your Plan (old)",
+        menu_newPlan_li: "New Plan (old)",
         menu_settings_li: "Settings",
         preview: "Get a glimpse at version 0.1.0",
         settings_h1: "Settings",
@@ -134,6 +144,7 @@ const translations = {
         mosaik_mode: "Mosaic",
         default_mode: "Default",
         none_mode: "None",
+        learney: "Learney",
 
         //index page
         index_letsGo: "Let's build your study schedule",
@@ -219,17 +230,26 @@ const translations = {
         energy_h2: "What's your energy level?",
         time_h2: "How much time do you have?",
         energy_label: "Energy:",
-        hour_label: "Hours:",
-        minutes_label: "Minutes:",
+        length_label: "Time:",
+        session_length_label: "Session Length:",
+        min_label: 'Minutes',
+        hour_label: 'Hours',
         start_session: "Start Session",
         end_session: "End Session",
         next_session: "Start next!",
+        skip_session: "End Timer",
+        break: 'Break',
+        study: 'Study',
+        include_breaks: 'Include breaks:',
+        yes: 'Yes',
+        no: 'No',
 
         //alerts
         no_double_alert: "You can't enter the same subject twice. Please use something else.",
         no_empty_alert: "Please enter a subject.",
         no_date_alert: "Please enter a date.",
         no_oldDate_alert: "Please enter a date that has not passed yet.",
+        too_short_alert: 'The session length can\'t be longer than the overall time.',
     }
 };
 
