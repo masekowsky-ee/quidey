@@ -122,6 +122,7 @@ const translations = {
         no_empty_alert: "Bitte gib ein Fach ein.",
         no_date_alert: "Bitte gib ein Datum ein.",
         no_oldDate_alert: "Bitte gib ein Datum aus der Zukunft ein.",
+        too_short_alert: 'Die Session darf nicht länger als die gesamt Zeit sein.',
     },
 
     en: {
@@ -248,6 +249,7 @@ const translations = {
         no_empty_alert: "Please enter a subject.",
         no_date_alert: "Please enter a date.",
         no_oldDate_alert: "Please enter a date that has not passed yet.",
+        too_short_alert: 'The session length can\'t be longer than the overall time.',
     }
 };
 

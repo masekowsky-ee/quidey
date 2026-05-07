@@ -34,25 +34,56 @@ header {
     justify-self: flex-start!important;
     margin: 0 0 0 10px;
     position: relative!important;
+    height: 100%;
 }
 
 #menuIconImg {
     color: var(--dark-text);
-    margin: 1rem!important;
+}
+
+#profileIcon{
+    background-color: var(--dark)!important;
+    border-radius: 1.5rem !important;
+    justify-self: flex-start!important;
+    margin: 0 0 0 10px;
+    position: relative!important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #profileIconImg{
     color: var(--dark-text);
     justify-self: flex-end;
-    margin: 1rem;
+    height: 80%;
+    margin: auto;
 }
 
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 10px;
+}
+
+* {
+    scrollbar-color: #555 transparent;
+}
 
 main{
     display: grid;
     background-color: var(--bg);
     width: 96%;
     height: 88%;
+
     margin: 0;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -76,6 +107,7 @@ main div{
     grid-column-end: 2;
     grid-row-end: 2;
     transition: all 0.2s ease;
+    min-height: 8rem;
 }
 
 #timeH1, #dateH1 {
@@ -88,7 +120,7 @@ main div{
     grid-column: 2 / 4;
     grid-row: 1 / 2;
     transition: all 0.2s ease;
-
+    min-height: 8rem;
 }
 
 #progressBar{
@@ -114,8 +146,7 @@ main div{
     grid-column: 1 / 4;
     grid-row: 1 / 2;
     z-index: 1;
-        transition: all 0.2s ease;
-
+    transition: all 0.2s ease;
 }
 
 #div4{
@@ -142,16 +173,14 @@ main div{
 #div6{
     grid-column: 4 / 5;
     grid-row: 4 / 7;
-        transition: all 0.2s ease;
-    
-
+    transition: all 0.2s ease;
+    overflow-y: scroll;
 }
 
 #div7{
     grid-column: 1 / 4;
     grid-row: 2 / 7;
     z-index: 0;
-        transition: all 0.2s ease;
-        
+    transition: all 0.2s ease;  
 
 }

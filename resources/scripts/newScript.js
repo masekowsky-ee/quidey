@@ -4,44 +4,15 @@ const updateTimeDate = () => {
     const dateH1 = document.getElementById('dateH1');
     const timeH1 = document.getElementById('timeH1');
 
-    const now = new Date(Date.now()).toLocaleString();
-    dateH1.textContent = `${now.slice(0, 2)}-${now.slice(3, 5)}-${now.slice(8,10)}`
-    timeH1.textContent = now.slice(11, 20);
+    const now = new Date();
+    const time = now.toLocaleTimeString();
+    const date = now.toLocaleDateString();
+    dateH1.textContent = date;
+    timeH1.textContent = time;
 }
 
 setInterval(updateTimeDate ,1000);
-/*
-//timer
-let myInterval;
-const startTimer = () => {
-    clearInterval(myInterval);
-    const timerMins = document.getElementById('timerMins');
-    const timerSecs = document.getElementById('timerSecs');
-    timerMins.textContent = '25';
-    timerSecs.textContent = '00';
 
-    let totalSecs = Number(timerMins.textContent)*60 + Number(timerSecs.textContent);
-    let totalSecsCounter = totalSecs;
-    myInterval = setInterval(()=>{
-        totalSecsCounter--;
-
-        let newSecs = totalSecsCounter%60;
-        newSecs.toString();
-        if(!newSecs[1]){
-            newSecs = '0' + newSecs
-        }
-        newSecs = Number(newSecs);
-        
-        timerSecs.textContent = newSecs.toString();
-
-        let restSec = totalSecsCounter - newSecs;
-        let newMins = restSec / 60;
-        timerMins.textContent = newMins.toString();
-    } ,1000)
-}
-
-document.getElementById('timerStartStop').addEventListener('click', startTimer);
-*/
 //add a subject
 
 let subArray = [];
@@ -88,16 +59,22 @@ const addSubject = () => {
             const subUl = document.getElementById('subList');   //add child
             const li = document.createElement('li');
             li.id = subInput.value.toLowerCase().trim();
+            const span = document.createElement('span');
+            span.textContent = "🗑️";
+            span.id = `${subInput.value.toLowerCase().trim()}Remove`;
             li.textContent = subInput.value + ' ' + dateInput.value;
-            li.addEventListener('click', (event) => {   //add remove subject function
+            li.appendChild(span);
+            span.addEventListener('click', (event) => {   //add remove subject function
                 for (i=0; i < subArray.length; i++){
-                    if(subArray[i].name === event.target.id){
+                    if(subArray[i].name === li.id){
                         subArray.splice(i, 1);
                     }
                 }
                 event.target.remove();
+                li.remove();
                 console.log(subArray);
             });
+            
             subUl.appendChild(li);
             //clear inputs
             subInput.value = '';
@@ -120,45 +97,156 @@ const addSubject = () => {
 
 document.getElementById('addNewSub').addEventListener('click', addSubject);
 
+//expand sub list
+const subListDiv = document.getElementById('div6');
+const expandSubList = document.getElementById('expandSubList');
+const collapseSubList = document.getElementById('collapseSubList');
+
+const subListExpander = () => {
+    subListDiv.style.gridColumn = '1 / 5';
+    subListDiv.style.gridRow = '1 / 7';
+    subListDiv.style.zIndex = '5';
+    collapseSubList.classList.remove('hidden');
+    expandSubList.classList.add('hidden');
+}
+
+expandSubList.addEventListener('click', subListExpander);
+
+//collapse sub list
+const subListCollapser = () => {
+    subListDiv.style.gridColumn = '4 / 5';
+    subListDiv.style.gridRow = '4 / 7';
+    subListDiv.style.zIndex = '5';
+    collapseSubList.classList.add('hidden');
+    expandSubList.classList.remove('hidden');
+}
+
+collapseSubList.addEventListener('click', subListCollapser);
+
+//sessionObject
+let sessionObject = {
+    state: "study",                             //break or study
+    subject: "",
+    next(){      
+        progressor.style.width = '0%'; 
+        if(this.breaks === true){                              //switch to next after countdown is 0
+            if(this.state === "study" && this.started === true){             //switch from study to break
+                subArray[0].practicedAmount++;      //add session to subject
+                sortSubs();                         //regenerate subject list and next subject
+                this.state = "break";
+                timerMins.textContent = `${this.breakLength}`;
+                this.counting = true;
+            } else if(this.state === "break" && this.started === true){      //switch from break
+                this.state = "study";
+                this.amountLeft--;
+                this.amountDone++;
+                this.counting = true;
+                timerMins.textContent = `${this.sessionLength}`;
+            } else {
+                this.counting = true;
+                this.started = true;
+                sortSubs();
+                this.amountLeft--;
+                this.amountDone++;
+            }
+        } else if (this.breaks === false) {
+            if (this.started === true){
+                subArray[0].practicedAmount++; 
+                timerMins.textContent = this.sessionLength;
+                sortSubs(); 
+                this.counting = true;
+                this.state = 'study';
+                this.amountLeft--;
+                this.amountDone++;
+            } else {
+                this.counting = true;
+                this.started = true;
+                sortSubs();
+                this.state = 'study';
+                this.amountLeft--;
+                this.amountDone++;
+            }
+        }
+        console.log(sessionObject);
+    },
+    counting: false,  //true if time is running, false if not
+    started: false,
+    amountLeft: 0,         //amount of learn-break cycles
+    amountDone: 0,    //amount of finished cycles
+    sessionLength: 25,
+    breakLength: 5,
+    breaks: true,
+    reset(){
+        this.state = "study";
+        this.subject = "";
+        this.counting = false;
+        this.started = false;
+        this.amountLeft = 0;
+        this.amountDone = 0;
+    }
+};
 
 //start a session
 const startSessionBtn = document.getElementById('startSession');
+const breaksYes = document.getElementById('breaksYes');
+
 
 const startSession = () => {
     const sessionHour = document.getElementById("sessionHourInput");
     const sessionMin = document.getElementById("sessionMinInput");
+    const sessionLengthInput = document.getElementById("sessionLengthInput");
 
     if (subArray[0] && Number(sessionMin.value) + Number(sessionHour.value) !== 0){
-        sessionObject.reset(); //make sure the sessionobject is in starting mode
-        let roundedSessionMinutes = Number(sessionMin.value);
-        if(Number(sessionMin.value) > 0){          //make sure the user doesn't enter sth other than 0 or 30
-            roundedSessionMinutes = 30;
+        if((Number(sessionMin.value) + Number(sessionHour.value)*60) >= Number(sessionLengthInput.value)){
+                sessionObject.reset(); //make sure the sessionobject is in starting mode
+
+            let sessionTime = Number(sessionMin.value) + Number(sessionHour.value) * 60;
+            sessionObject.sessionLength = sessionLengthInput.value;
+            
+            if(breaksYes.checked){
+                if(sessionTime > Number(sessionLengthInput.value)){
+                    console.log('breaks is checked')
+                    sessionObject.amountLeft = Math.floor(sessionTime / (sessionLengthInput.value + 5));
+                    console.log("Session Time: " + sessionTime);
+                    sessionObject.breaks = true;
+                } else if(sessionTime === Number(sessionLengthInput.value)){
+                    console.log('breaks is checked but time ===')
+                    sessionObject.amountLeft = 1;
+                    console.log("Session Time: " + sessionTime);
+                    sessionObject.breaks = false;
+                }
+            } else {
+                console.log('breaks not checked');
+                sessionObject.amountLeft = Math.floor(sessionTime / sessionLengthInput.value);
+                console.log("Session Time: " + sessionTime); 
+                sessionObject.breaks = false;
+            }
+
+            console.log("SubArray");
+            console.log(subArray);
+            sortSubs();
+            const div4 = document.getElementById('div4');
+            div4.style.zIndex = '0';
+
+            const div7 = document.getElementById('div7');
+            div7.style.zIndex = '1';
+            div7.style.gridColumn = '1 / 5'
+
+            const div5 = document.getElementById('div5');
+            div5.style.display = 'none';
+            const div6 = document.getElementById('div6');
+            div6.style.display = 'none';
+            const div3 = document.getElementById('div3');
+            div3.style.display = 'none';
+            const div1 = document.getElementById('div1');
+            div1.style.gridColumn = '1 / 3';
+            const div2 = document.getElementById('div2');
+            div2.style.gridColumn = '3/5';
+            document.getElementById('stateH1').textContent = translations[lang]['study'];
+            timerMins.textContent = sessionObject.sessionLength;
+        } else {
+            window.alert(translations[lang]["too_short_alert"]) 
         }
-        let sessionTime = roundedSessionMinutes + Number(sessionHour.value) * 60;
-        sessionObject.amountLeft = sessionTime / 30;
-        console.log("Session Time: " + sessionTime);
-
-        console.log("SubArray");
-        console.log(subArray);
-        sortSubs();
-        const div4 = document.getElementById('div4');
-        div4.style.zIndex = '0';
-
-        const div7 = document.getElementById('div7');
-        div7.style.zIndex = '1';
-        div7.style.gridColumn = '1 / 5'
-
-        const div5 = document.getElementById('div5');
-        div5.style.display = 'none';
-        const div6 = document.getElementById('div6');
-        div6.style.display = 'none';
-        const div3 = document.getElementById('div3');
-        div3.style.display = 'none';
-        const div1 = document.getElementById('div1');
-        div1.style.gridColumn = '1 / 3';
-        const div2 = document.getElementById('div2');
-        div2.style.gridColumn = '3/5';
-        document.getElementById('stateH1').textContent = translations[lang]['study'];
     } else {
         window.alert(translations[lang]["no_empty_alert"])
     }
@@ -192,11 +280,12 @@ const endSession = () => {
     div2.style.gridColumn = '3 / 4';
     //reset page to prep for next
     nextSessionBtn.classList.remove('hidden');
-    endSessionBtn.classList.add('hidden');
-    timerMins.textContent = '25'
+    endSessionBtn.classList.remove('hidden');
+    timerMins.textContent = '00'
     timerSecs.textContent = "00"
     document.getElementById('stateH1').textContent = translations[lang]['study'];
     progressor.style.width = '0%';
+    sessionObject.started = false;
 }
 
 endSessionBtn.addEventListener('click', endSession);
@@ -215,43 +304,6 @@ const sortSubs = () => {
     document.getElementById("currentTask").textContent = subArray[0].name.toUpperCase();
     sessionObject.subject = subArray[0].name;
 }
-
-
-let sessionObject = {
-    state: "study",                             //break or study
-    subject: "",
-    next(){      
-        progressor.style.width = '0%';                               //switch to next after countdown is 0
-        if(this.state === "study" && this.started === true){             //switch from study to break
-            subArray[0].practicedAmount++;      //add session to subject
-            sortSubs();                         //regenerate subject list and next subject
-            this.state = "break";
-            this.counting = true;
-        } else if(this.state === "break" && this.started === true){      //switch from break
-            this.state = "study";
-            this.amountLeft--;
-            this.amountDone++;
-            this.counting = true;
-        } else {
-            this.counting = true;
-            this.started = true;
-        }
-    },
-    counting: false,  //true if time is running, false if not
-    started: false,
-    amountLeft: 0,         //amount of learn-break cycles
-    amountDone: 0,    //amount of finished cycles
-    sessionLength: 25,
-    breakLength: 5,
-    reset(){
-        this.state = "study";
-        this.subject = "";
-        this.counting = false;
-        this.started = false;
-        this.amountLeft = 0;
-        this.amountDone = 0;
-    }
-};
 
 let studyInterval;
 
@@ -290,7 +342,7 @@ const nextSessionOnClick = () => {
                 clearInterval(studyInterval);
                 sessionObject.counting = false;
                 nextSessionBtn.classList.remove('hidden');
-                if(sessionObject.amountLeft === 1) {
+                if(sessionObject.amountLeft === 0) {
                     nextSessionBtn.classList.add('hidden');
                 };
                 endSessionBtn.classList.remove('hidden');
@@ -308,19 +360,19 @@ skipSessionBtn.addEventListener('click', (event)=>{
     clearInterval(studyInterval);
     sessionObject.counting = false;
     nextSessionBtn.classList.remove('hidden');
-    if(sessionObject.amountLeft === 1) {
+    if(sessionObject.amountLeft === 0) {
         nextSessionBtn.classList.add('hidden');
     };
     endSessionBtn.classList.remove('hidden');
     skipSessionBtn.classList.add('hidden');
 
     if(sessionObject.state === "study"){
-        timerMins.textContent = '05';
+        timerMins.textContent = '00';
         timerSecs.textContent = "00";
         progressor.style.width = '0%';
         document.getElementById('stateH1').textContent = translations[lang]['break'];
     } else if (sessionObject.state === "break"){
-        timerMins.textContent = '25';
+        timerMins.textContent = '00';
         timerSecs.textContent = "00";
         progressor.style.width = '0%';
         document.getElementById('stateH1').textContent = translations[lang]['study'];
