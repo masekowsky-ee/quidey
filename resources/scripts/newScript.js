@@ -51,7 +51,8 @@ const addSubject = () => {
                 urgency: 0,
                 calcUrgency(){
                     this.urgency = this.daysLeft * this.confidence * this.practicedAmount;
-                }
+                },
+                tasks: []
             });
             subArray.at(-1).calcUrgency();
             console.log(subArray.at(-1));
