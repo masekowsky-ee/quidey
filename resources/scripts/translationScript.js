@@ -116,6 +116,7 @@ const translations = {
         include_breaks: 'Pausen machen:',
         yes: 'Ja',
         no: 'Nein',
+        task_input_placeholder: 'Aufgabe...',
 
         //alerts
         no_double_alert: "Du kannst das selbe Fach nicht zwei Mal eingeben. Bitte nutze etwas anderes.",
@@ -243,6 +244,7 @@ const translations = {
         include_breaks: 'Include breaks:',
         yes: 'Yes',
         no: 'No',
+        task_input_placeholder: 'Task...',
 
         //alerts
         no_double_alert: "You can't enter the same subject twice. Please use something else.",
