@@ -3,7 +3,7 @@ const translations = {
         //menu page
         menu_title: "Menü",
         menu_feedback_li: "Feedback",
-        menu_about_li: "Über Learney",
+        menu_about_li: "Über Quidey",
         menu_toPlan_li: "Dein Plan (Alt)",
         menu_newPlan_li: "Neuer Plan (Alt)",
         menu_settings_li: "Einstellungen",
@@ -18,14 +18,14 @@ const translations = {
         mosaik_mode: "Mosaik",
         default_mode: "Normal",
         none_mode: "Farblos",
-        learney: "Learney",
+        quidey: "Quidey",
 
         //index page
         index_letsGo: "Lass uns deinen Lernplan Generieren",
 
         //q page
-        q_welcome_h1: "Willkommen bei Learney",
-        q_introText: "Learney gibt dir einen klaren Pfad: Schritt für Schritt, Ziel für Ziel. Du weißt immer, wo du stehst und was als Nächstes kommt. Kein Raten. Kein Verlaufen. Nur Fortschritt.",
+        q_welcome_h1: "Willkommen bei Quidey",
+        q_introText: "Quidey gibt dir einen klaren Pfad: Schritt für Schritt, Ziel für Ziel. Du weißt immer, wo du stehst und was als Nächstes kommt. Kein Raten. Kein Verlaufen. Nur Fortschritt.",
         q_motto_h2: "Lernen ist kein Chaos - es ist ein Weg.",
         q_ready: "Bereit, loszulegen?",
 
@@ -87,8 +87,8 @@ const translations = {
         feedback_send: "Senden",
 
         //about page
-        what_h1: "Was ist Learney",
-        about_p: "Learney ist ein intelligentes Lernsystem, das Schülern hilft, Klarheit in ihren Alltag zu bringen. Anstatt selbst herausfinden zu müssen, was als Nächstes zu tun ist, gibt Learney eine klare Richtung vor und nimmt dem Nutzer die mentale Last der Planung ab.<br><br>Das Ziel von Learney ist es, Lernen einfacher, strukturierter und gleichzeitig individueller zu machen. Basierend auf Faktoren wie verfügbaren Zeit, Deadlines und persönlicher Sicherheit in einzelnen Themen erstellt das System einen angepassten Lernplan, der sich dynamisch verändert und an das tatsächliche Verhalten des Nutzers anpasst.<br><br>Die Mission von Learney ist es, Menschen vom Grübeln ins Handeln zu bringen. Nicht durch Druck oder starre Vorgaben, sondern durch ein System, das versteht, unterstützt und motiviert. Learney soll dafür sorgen, dass der nächste Schritt immer klar ist – damit Lernen nicht überwältigend wirkt, sondern machbar wird.",
+        what_h1: "Was ist Quidey",
+        about_p: "Quidey ist ein intelligentes Lernsystem, das Schülern hilft, Klarheit in ihren Alltag zu bringen. Anstatt selbst herausfinden zu müssen, was als Nächstes zu tun ist, gibt Quidey eine klare Richtung vor und nimmt dem Nutzer die mentale Last der Planung ab.<br><br>Das Ziel von Quidey ist es, Lernen einfacher, strukturierter und gleichzeitig individueller zu machen. Basierend auf Faktoren wie verfügbaren Zeit, Deadlines und persönlicher Sicherheit in einzelnen Themen erstellt das System einen angepassten Lernplan, der sich dynamisch verändert und an das tatsächliche Verhalten des Nutzers anpasst.<br><br>Die Mission von Quidey ist es, Menschen vom Grübeln ins Handeln zu bringen. Nicht durch Druck oder starre Vorgaben, sondern durch ein System, das versteht, unterstützt und motiviert. Quidey soll dafür sorgen, dass der nächste Schritt immer klar ist – damit Lernen nicht überwältigend wirkt, sondern machbar wird.",
         news_h1: "Change Log",
 
         contact_us_h1: "Kontaktiere uns",
@@ -130,7 +130,7 @@ const translations = {
         //menu page
         menu_title: "Menu",
         menu_feedback_li: "Feedback",
-        menu_about_li: "About Learney",
+        menu_about_li: "About Quidey",
         menu_toPlan_li: "Your Plan (old)",
         menu_newPlan_li: "New Plan (old)",
         menu_settings_li: "Settings",
@@ -145,14 +145,14 @@ const translations = {
         mosaik_mode: "Mosaic",
         default_mode: "Default",
         none_mode: "None",
-        learney: "Learney",
+        quidey: "Quidey",
 
         //index page
         index_letsGo: "Let's build your study schedule",
 
         //q page
-        q_welcome_h1: "Welcome to Learney",
-        q_introText: "Learney gives you a clear path: step by step, goal by goal. You always know where you stand and what comes next. No guessing. No getting lost. Just progress.",
+        q_welcome_h1: "Welcome to Quidey",
+        q_introText: "Quidey gives you a clear path: step by step, goal by goal. You always know where you stand and what comes next. No guessing. No getting lost. Just progress.",
         q_motto_h2: "Learning isn't chaos — it's a path.",
         q_ready: "Ready to start?",
     
@@ -214,8 +214,8 @@ const translations = {
         feedback_send: "Send",
 
         //about page
-        what_h1: "What is Learney",
-        about_p: "Learney is an intelligent learning system designed to help students bring clarity into their daily lives.<br><br>Instead of having to figure out what to do next, Learney provides clear direction and removes the mental burden of planning.<br><br>The goal of Learney is to make learning simpler, more structured, and at the same time more personalized. Based on factors such as available time, deadlines, and individual confidence in different subjects, the system creates a customized study plan that adapts dynamically to the user's actual behavior.<br><br>Learney’s mission is to move people from overthinking to action. Not through pressure or rigid rules, but through a system that understands, supports, and motivates.<br><br>Learney ensures that the next step is always clear—so learning feels manageable instead of overwhelming.",
+        what_h1: "What is Quidey",
+        about_p: "Quidey is an intelligent learning system designed to help students bring clarity into their daily lives.<br><br>Instead of having to figure out what to do next, Quidey provides clear direction and removes the mental burden of planning.<br><br>The goal of Quidey is to make learning simpler, more structured, and at the same time more personalized. Based on factors such as available time, deadlines, and individual confidence in different subjects, the system creates a customized study plan that adapts dynamically to the user's actual behavior.<br><br>Quidey’s mission is to move people from overthinking to action. Not through pressure or rigid rules, but through a system that understands, supports, and motivates.<br><br>Quidey ensures that the next step is always clear—so learning feels manageable instead of overwhelming.",
         news_h1: "Change Log",
 
         contact_us_h1: "Contact us",
