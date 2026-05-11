@@ -21,12 +21,13 @@ const lang = localStorage.getItem("lang") || "de";
 
 const subUl = document.getElementById('subList');   //add child
 
-const addTaskEventFunction = (containerIdString) => {
-    const containerList = document.getElementById(containerIdString);
+const addTaskEventFunction = (containerIdString, sub) => {
+    const containerList = document.getElementById(`${containerIdString}`);
     const taskInput = document.createElement('input');
     taskInput.type = 'text';
     taskInput.placeholder = translations[lang]['task_input_placeholder'];
     taskInput.focus();
+    const currentSub = sub;
     //add task
     taskInput.addEventListener('keydown', (event) => {
         if(event.key === 'Enter' && taskInput.value.trim() !== '' && taskInput.value.length >= 3 && taskInput.value.length <= 50){
@@ -35,8 +36,8 @@ const addTaskEventFunction = (containerIdString) => {
             newTaskText.textContent = taskInput.value;
             //add task to sub object
             const newTaskObject = {name: newTaskText.textContent.toLowerCase().trim(), done: false};
-            newSub.tasks.push(newTaskObject);
-            console.log(newSub.tasks);
+            currentSub.tasks.push(newTaskObject);
+            console.log(currentSub.tasks);
 
             const checkBox = document.createElement('input');
             checkBox.type = 'checkbox';
@@ -45,12 +46,12 @@ const addTaskEventFunction = (containerIdString) => {
                     newTaskText.style.textDecoration = 'line-through';
                     //task.done 
                     newTaskObject.done = true;
-                    console.log(newSub.tasks);
+                    console.log(currentSub.tasks);
                 } else {
                     newTaskText.style.textDecoration = 'none';
                     //undo task.done
                     newTaskObject.done = false;
-                    console.log(newSub.tasks);
+                    console.log(currentSub.tasks);
                 }
             });
             newTask.appendChild(checkBox);
@@ -59,8 +60,8 @@ const addTaskEventFunction = (containerIdString) => {
             newTaskText.addEventListener('click', (event) => {
                 newTask.remove();
                 //remove from task array
-                newSub.tasks = newSub.tasks.filter(task => task !== newTaskObject);
-                console.log(newSub.tasks);
+                currentSub.tasks = currentSub.tasks.filter(task => task !== newTaskObject);
+                console.log(currentSub.tasks);
             });
             subTaskUl.appendChild(newTask);
             event.target.remove();
@@ -139,7 +140,7 @@ const addSubject = () => {
             addTask.style.display = 'none';
             li.appendChild(addTask);
             //add input for task
-            addTask.addEventListener('click', addTaskEventFunction(subTaskUl.id));
+            addTask.addEventListener('click', addTaskEventFunction(subTaskUl.id, newSub));
             
             subUl.appendChild(li);
             //clear inputs
