@@ -21,6 +21,55 @@ const lang = localStorage.getItem("lang") || "de";
 
 const subUl = document.getElementById('subList');   //add child
 
+const addTaskEventFunction = (containerIdString) => {
+    const containerList = document.getElementById(containerIdString);
+    const taskInput = document.createElement('input');
+    taskInput.type = 'text';
+    taskInput.placeholder = translations[lang]['task_input_placeholder'];
+    taskInput.focus();
+    //add task
+    taskInput.addEventListener('keydown', (event) => {
+        if(event.key === 'Enter' && taskInput.value.trim() !== '' && taskInput.value.length >= 3 && taskInput.value.length <= 50){
+            const newTask = document.createElement('li');
+            const newTaskText = document.createElement('p');
+            newTaskText.textContent = taskInput.value;
+            //add task to sub object
+            const newTaskObject = {name: newTaskText.textContent.toLowerCase().trim(), done: false};
+            newSub.tasks.push(newTaskObject);
+            console.log(newSub.tasks);
+
+            const checkBox = document.createElement('input');
+            checkBox.type = 'checkbox';
+            checkBox.addEventListener('change', (event) => {
+                if(event.target.checked){
+                    newTaskText.style.textDecoration = 'line-through';
+                    //task.done 
+                    newTaskObject.done = true;
+                    console.log(newSub.tasks);
+                } else {
+                    newTaskText.style.textDecoration = 'none';
+                    //undo task.done
+                    newTaskObject.done = false;
+                    console.log(newSub.tasks);
+                }
+            });
+            newTask.appendChild(checkBox);
+            newTask.appendChild(newTaskText);
+        
+            newTaskText.addEventListener('click', (event) => {
+                newTask.remove();
+                //remove from task array
+                newSub.tasks = newSub.tasks.filter(task => task !== newTaskObject);
+                console.log(newSub.tasks);
+            });
+            subTaskUl.appendChild(newTask);
+            event.target.remove();
+        }
+    }); 
+    containerList.appendChild(taskInput);
+    taskInput.focus();
+}
+
 const addSubject = () => {
     //get inputs
     const subInput = document.getElementById('subjectInput');
@@ -90,53 +139,7 @@ const addSubject = () => {
             addTask.style.display = 'none';
             li.appendChild(addTask);
             //add input for task
-            addTask.addEventListener('click', function(){
-                const taskInput = document.createElement('input');
-                taskInput.type = 'text';
-                taskInput.placeholder = translations[lang]['task_input_placeholder'];
-                taskInput.focus();
-                //add task
-                taskInput.addEventListener('keydown', (event) => {
-                    if(event.key === 'Enter' && taskInput.value.trim() !== '' && taskInput.value.length >= 3 && taskInput.value.length <= 50){
-                        const newTask = document.createElement('li');
-                        const newTaskText = document.createElement('p');
-                        newTaskText.textContent = taskInput.value;
-                        //add task to sub object
-                        const newTaskObject = {name: newTaskText.textContent.toLowerCase().trim(), done: false};
-                        newSub.tasks.push(newTaskObject);
-                        console.log(newSub.tasks);
-
-                        const checkBox = document.createElement('input');
-                        checkBox.type = 'checkbox';
-                        checkBox.addEventListener('change', (event) => {
-                            if(event.target.checked){
-                                newTaskText.style.textDecoration = 'line-through';
-                                //task.done 
-                                newTaskObject.done = true;
-                                console.log(newSub.tasks);
-                            } else {
-                                newTaskText.style.textDecoration = 'none';
-                                //undo task.done
-                                newTaskObject.done = false;
-                                console.log(newSub.tasks);
-                            }
-                        })
-                        newTask.appendChild(checkBox);
-                        newTask.appendChild(newTaskText);
-    
-                        newTaskText.addEventListener('click', (event) => {
-                            newTask.remove();
-                            //remove from task array
-                            newSub.tasks = newSub.tasks.filter(task => task !== newTaskObject);
-                            console.log(newSub.tasks);
-                        });
-                        subTaskUl.appendChild(newTask);
-                        event.target.remove();
-                    }
-                })
-                subTaskUl.appendChild(taskInput);
-                taskInput.focus();
-            });
+            addTask.addEventListener('click', addTaskEventFunction(subTaskUl.id));
             
             subUl.appendChild(li);
             //clear inputs
@@ -488,3 +491,6 @@ skipSessionBtn.addEventListener('click', (event)=>{
     }
     console.log(sessionObject);
 });
+
+const inSessionTaskAdder = document.getElementById('inSessionTaskAdder');
+inSessionTaskAdder.addEventListener('click', addTaskEventFunction('subTaskList'));
