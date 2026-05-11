@@ -5,7 +5,7 @@ const updateTimeDate = () => {
     const timeH1 = document.getElementById('timeH1');
 
     const now = new Date();
-    const time = now.toLocaleTimeString();
+    const time = now.toLocaleTimeString().slice(0,5) + ' ' + now.toLocaleTimeString().slice(-2);
     const date = now.toLocaleDateString();
     dateH1.textContent = date;
     timeH1.textContent = time;
@@ -18,6 +18,8 @@ setInterval(updateTimeDate ,1000);
 let subArray = [];
 
 const lang = localStorage.getItem("lang") || "de";
+
+const subUl = document.getElementById('subList');   //add child
 
 const addSubject = () => {
     //get inputs
@@ -39,7 +41,7 @@ const addSubject = () => {
 
         if (subInput.value && dateInput.value && daysAvailable >= 0){ //check whether input is not empty and valid
 
-            subArray.push({
+            const newSub = {
                 name: subInput.value.toLowerCase().trim(), 
                 dueDate: dateInput.value, 
                 confidence: Number(confInput.value),
@@ -53,11 +55,12 @@ const addSubject = () => {
                     this.urgency = this.daysLeft * this.confidence * this.practicedAmount;
                 },
                 tasks: []
-            });
+            }
+
+            subArray.push(newSub);
             subArray.at(-1).calcUrgency();
             console.log(subArray.at(-1));
-
-            const subUl = document.getElementById('subList');   //add child
+            //add li subject
             const li = document.createElement('li');
             li.id = subInput.value.toLowerCase().trim();
             const span = document.createElement('span');
@@ -74,6 +77,65 @@ const addSubject = () => {
                 event.target.remove();
                 li.remove();
                 console.log(subArray);
+            });
+            //create Ul for sub tasks
+            let subTaskUl = document.createElement('ul');
+            subTaskUl.id = li.id + 'TaskList';
+            subTaskUl.style.display = 'none';
+            li.appendChild(subTaskUl);
+            //create add sub task button
+            let addTask = document.createElement('div');
+            addTask.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="current color"><path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z"/></svg>'
+            addTask.id = li.id + 'AddTask';
+            addTask.style.display = 'none';
+            li.appendChild(addTask);
+            //add input for task
+            addTask.addEventListener('click', function(){
+                const taskInput = document.createElement('input');
+                taskInput.type = 'text';
+                taskInput.placeholder = translations[lang]['task_input_placeholder'];
+                taskInput.focus();
+                //add task
+                taskInput.addEventListener('keydown', (event) => {
+                    if(event.key === 'Enter' && taskInput.value.trim() !== '' && taskInput.value.length >= 3 && taskInput.value.length <= 50){
+                        const newTask = document.createElement('li');
+                        const newTaskText = document.createElement('p');
+                        newTaskText.textContent = taskInput.value;
+                        //add task to sub object
+                        const newTaskObject = {name: newTaskText.textContent.toLowerCase().trim(), done: false};
+                        newSub.tasks.push(newTaskObject);
+                        console.log(newSub.tasks);
+
+                        const checkBox = document.createElement('input');
+                        checkBox.type = 'checkbox';
+                        checkBox.addEventListener('change', (event) => {
+                            if(event.target.checked){
+                                newTaskText.style.textDecoration = 'line-through';
+                                //task.done 
+                                newTaskObject.done = true;
+                                console.log(newSub.tasks);
+                            } else {
+                                newTaskText.style.textDecoration = 'none';
+                                //undo task.done
+                                newTaskObject.done = false;
+                                console.log(newSub.tasks);
+                            }
+                        })
+                        newTask.appendChild(checkBox);
+                        newTask.appendChild(newTaskText);
+    
+                        newTaskText.addEventListener('click', (event) => {
+                            newTask.remove();
+                            //remove from task array
+                            newSub.tasks = newSub.tasks.filter(task => task !== newTaskObject);
+                            console.log(newSub.tasks);
+                        });
+                        subTaskUl.appendChild(newTask);
+                        event.target.remove();
+                    }
+                })
+                subTaskUl.appendChild(taskInput);
+                taskInput.focus();
             });
             
             subUl.appendChild(li);
@@ -109,6 +171,12 @@ const subListExpander = () => {
     subListDiv.style.zIndex = '5';
     collapseSubList.classList.remove('hidden');
     expandSubList.classList.add('hidden');
+    //show all tasks etc
+    let subUlChildren = subUl.children;
+    for(sub of subUlChildren){
+        let childrenArray = Array.from(sub.children);
+        childrenArray.forEach(child => child.style.display = 'block');
+    }
 }
 
 expandSubList.addEventListener('click', subListExpander);
@@ -120,6 +188,12 @@ const subListCollapser = () => {
     subListDiv.style.zIndex = '1';
     collapseSubList.classList.add('hidden');
     expandSubList.classList.remove('hidden');
+    //hide all tasks etc
+    let subUlChildren = subUl.children;
+    for(sub of subUlChildren){
+        let childrenArray = Array.from(sub.children);
+        childrenArray.forEach(child => child.style.display = 'none');
+    }
 }
 
 collapseSubList.addEventListener('click', subListCollapser);
@@ -199,7 +273,7 @@ const startSession = () => {
 
     if (subArray[0] && Number(sessionMin.value) + Number(sessionHour.value) !== 0){
         if((Number(sessionMin.value) + Number(sessionHour.value)*60) >= Number(sessionLengthInput.value)){
-                sessionObject.reset(); //make sure the sessionobject is in starting mode
+            sessionObject.reset(); //make sure the sessionobject is in starting mode
 
             let sessionTime = Number(sessionMin.value) + Number(sessionHour.value) * 60;
             sessionObject.sessionLength = sessionLengthInput.value;
@@ -231,7 +305,9 @@ const startSession = () => {
 
             const div7 = document.getElementById('div7');
             div7.style.zIndex = '1';
-            div7.style.gridColumn = '1 / 5'
+
+            const div8 = document.getElementById('div8');
+            div8.classList.remove('hidden');
 
             const div5 = document.getElementById('div5');
             div5.style.display = 'none';
@@ -267,7 +343,9 @@ const endSession = () => {
 
     const div7 = document.getElementById('div7');
     div7.style.zIndex = '0';
-    div7.style.gridColumn = '1 / 4'
+
+    const div8 = document.getElementById('div8');
+    div8.classList.add('hidden');
 
     const div5 = document.getElementById('div5');
     div5.style.display = 'flex';
@@ -304,6 +382,36 @@ const sortSubs = () => {
     console.log(subArray);
     document.getElementById("currentTask").textContent = subArray[0].name.toUpperCase();
     sessionObject.subject = subArray[0].name;
+    //generate sub tasks
+    const subTaskList = document.getElementById('subTaskList');
+    subTaskList.innerHTML = '';
+    for(let i = 0; i < subArray[0].tasks.length;i++){
+        const li = document.createElement('li');
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.addEventListener('change', (event)=>{
+            if(event.target.checked){
+                subArray[0].tasks[i].done = true;
+                console.log(subArray[0].tasks[i].done);
+                p.style.textDecoration = 'line-through';
+            }else{
+                subArray[0].tasks[i].done = false;
+                console.log(subArray[0].tasks[i].done);
+                p.style.textDecoration = 'none';
+            }
+        });
+        const p = document.createElement('p');
+        p.innerHTML = subArray[0].tasks[i].name;
+
+        li.appendChild(input);
+        li.appendChild(p);
+        subTaskList.appendChild(li);
+    }
+    if (subArray[0].tasks.length===0){
+        const infoLi = document.createElement('li');
+        infoLi.textContent = translations[lang]['no_tasks_found'];
+        subTaskList.appendChild(infoLi);
+    }
 }
 
 let studyInterval;
