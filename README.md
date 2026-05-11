@@ -28,4 +28,8 @@ As of now (May 7 2026) Quidey does not require any special type of software inst
 
  ## License
 
-Copyright (c) 2026 Eesge Masekowsky. All rights reserved. No part of this software may be used, copied, modified, or distributed without explicit written permission from the author.
+Copyright (c) 2026 Eesge Masekowsky. All rights reserved.
+
+No part of this software — including source code, design, logic, or assets —
+may be used, copied, modified, merged, published, distributed, sublicensed,
+or sold without explicit written permission from the author.
