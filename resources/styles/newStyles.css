@@ -125,6 +125,7 @@ main{
     border-radius: 1rem;
 }
 
+
 main div{
     background-color: var(--div);
     color: var(--divText);
@@ -520,4 +521,77 @@ input[type="range"]::-webkit-slider-thumb {
 
 input[type="range"]::-moz-range-thumb {
     border: 2px solid var(--divText)!important; /* Farbe des Knopfs */
+}
+
+
+@media screen and (max-width: 450px){
+    main{
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 100%;
+        overflow-y: scroll;
+    }
+    #div1{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        height: 10rem;
+    }
+    #div2{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        height: 10rem;
+    }
+    #div3{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        height: 6rem;
+    }
+    #div4{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 5;
+        height: 30rem;
+    }
+    #div5{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 5;
+        grid-row-end: 7;
+        height: 20rem;
+    }
+    #div6{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 7;
+        grid-row-end: 9;
+        height: 20rem;
+        justify-content: center;
+        align-items: center!important;
+    }
+    #subUlDiv{
+        align-self: center;
+        justify-self: center;
+    }
+    #div6extended{
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 9;
+        justify-content: flex-start;
+        height: auto;
+    }
+    #div7{
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+    #div8{
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
 }

@@ -236,8 +236,12 @@ const subListExpander = () => {
         let childrenArray = Array.from(sub.children);
         childrenArray.forEach(child => child.style.display = 'block');
     }*/
-   const subUlDivExtended = document.getElementById('subUlDivExtended');
-   taskGenFunction(subUlDivExtended, 0, subArray.length);
+    const subUlDivExtended = document.getElementById('subUlDivExtended');
+    taskGenFunction(subUlDivExtended, 0, subArray.length);
+    document.querySelector('#extendedSubsH2').scrollIntoView({ 
+        behavior: 'smooth' 
+    });
+
 }
 
 expandSubList.addEventListener('click', subListExpander);
