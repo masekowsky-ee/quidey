@@ -27,7 +27,7 @@ let subArray = [];
 
 const lang = localStorage.getItem("lang") || "de";
 
-const subUl = document.getElementById('subUl');   //add child
+let subUl = document.getElementById('subUl');   //add child
 
 const addTaskEventFunction = (container, sub) => {
     console.log('add task event function triggered');
@@ -200,6 +200,7 @@ const addSubject = () => {
                 li.remove();
                 console.log(subArray);
             });
+            subUl = document.getElementById('subUl');   //update subUl for new li
             subUl.appendChild(li);
             //clear inputs
             subInput.value = '';
@@ -223,12 +224,23 @@ const addSubject = () => {
 document.getElementById('addNewSub').addEventListener('click', addSubject);
 
 //expand sub list
+const div1 = document.getElementById('div1');
+const div2 = document.getElementById('div2');
+const div3 = document.getElementById('div3');
+const div4 = document.getElementById('div4');
+const div5 = document.getElementById('div5');
 const subListDiv = document.getElementById('div6');
 const expandSubList = document.getElementById('expandSubList');
 const collapseSubList = document.getElementById('collapseSubList');
 const div6extended = document.getElementById('div6extended');
+const div7 = document.getElementById('div7');
+const div8 = document.getElementById('div8');
+const divs = [div1, div2, div3, div4, div5, subListDiv, div6extended, div7, div8];
 
 const subListExpander = () => {
+    divs.forEach(div => {
+        div.classList.add('hidden');
+    });
     div6extended.classList.remove('hidden');
     //show all tasks etc
     /*let subUlChildren = subUl.children;
@@ -248,7 +260,14 @@ expandSubList.addEventListener('click', subListExpander);
 
 //collapse sub list
 const subListCollapser = () => {
+    divs.forEach(div => {
+        div.classList.remove('hidden');
+    });
+    div1.classList.add('hidden');
+    div2.classList.add('hidden');
     div6extended.classList.add('hidden');
+    div7.classList.add('hidden');
+    div8.classList.add('hidden');
     //hide all tasks etc
     const subUlDiv = document.getElementById('subUlDiv');
     subUlDiv.innerHTML = '';
@@ -380,6 +399,7 @@ const startSession = () => {
             console.log("SubArray");
             console.log(subArray);
             sortSubs();
+            /*
             const div4 = document.getElementById('div4');
             div4.style.zIndex = '0';
 
@@ -399,6 +419,16 @@ const startSession = () => {
             div1.style.gridColumn = '1 / 3';
             const div2 = document.getElementById('div2');
             div2.style.gridColumn = '3/5';
+            */
+
+            divs.forEach(div => {
+                div.classList.add('hidden');
+            });
+            div1.classList.remove('hidden');
+            div2.classList.remove('hidden');
+            div7.classList.remove('hidden');
+            div8.classList.remove('hidden');
+            
             document.getElementById('stateH1').textContent = translations[lang]['study'];
             timerMins.textContent = sessionObject.sessionLength;
         } else {
@@ -418,6 +448,7 @@ startSessionBtn.addEventListener('click', startSession);
 const endSessionBtn = document.getElementById('endSession');
 
 const endSession = () => {
+    /*
     const div4 = document.getElementById('div4');
     div4.style.zIndex = '1';
 
@@ -437,6 +468,15 @@ const endSession = () => {
     div1.style.gridColumn = '1 / 2';
     const div2 = document.getElementById('div2');
     div2.style.gridColumn = '3 / 4';
+    */
+    divs.forEach(div => {
+        div.classList.remove('hidden');
+    });
+    div1.classList.add('hidden');
+    div2.classList.add('hidden');
+    div7.classList.add('hidden');
+    div8.classList.add('hidden');
+    div6extended.classList.add('hidden');
     //reset page to prep for next
     nextSessionBtn.classList.remove('hidden');
     endSessionBtn.classList.remove('hidden');
