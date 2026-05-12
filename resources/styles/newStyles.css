@@ -125,6 +125,10 @@ main{
     border-radius: 1rem;
 }
 
+* input::placeholder{
+    color: gray!important;
+    opacity: 1;
+}
 
 main div{
     background-color: var(--div);

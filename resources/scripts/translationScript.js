@@ -120,6 +120,7 @@ const translations = {
         task_input_placeholder: 'Aufgabe...',
         session_sub_tasks: "Aufgaben",
         no_tasks_found: "Du hast für dieses Fach noch keine Aufgaben.",
+        ddmmyy: "tt/mm/jjjj",
 
         //alerts
         no_double_alert: "Du kannst das selbe Fach nicht zwei Mal eingeben. Bitte nutze etwas anderes.",
@@ -251,6 +252,7 @@ const translations = {
         task_input_placeholder: 'Task...',
         session_sub_tasks: "Tasks",
         no_tasks_found: "You don't have any tasks for this subjects yet.",
+        ddmmyy: "dd/mm/yyyy",
 
         //alerts
         no_double_alert: "You can't enter the same subject twice. Please use something else.",
