@@ -504,7 +504,34 @@ const sortSubs = () => {
     sessionObject.subject = subArray[0].name;
     //generate sub tasks
     const subTaskList = document.getElementById('subTaskList');
-    taskGenFunction(subTaskList, 0, 1);
+    subTaskList.innerHTML = '';
+    for(let i = 0; i < subArray[0].tasks.length;i++){
+        const li = document.createElement('li');
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.addEventListener('change', (event)=>{
+            if(event.target.checked){
+                subArray[0].tasks[i].done = true;
+                console.log(subArray[0].tasks[i].done);
+                p.style.textDecoration = 'line-through';
+            }else{
+                subArray[0].tasks[i].done = false;
+                console.log(subArray[0].tasks[i].done);
+                p.style.textDecoration = 'none';
+            }
+        });
+        const p = document.createElement('p');
+        p.innerHTML = subArray[0].tasks[i].name;
+
+        li.appendChild(input);
+        li.appendChild(p);
+        subTaskList.appendChild(li);
+    }
+    if (subArray[0].tasks.length===0){
+        const infoLi = document.createElement('li');
+        infoLi.textContent = translations[lang]['no_tasks_found'];
+        subTaskList.appendChild(infoLi);
+    }
 }
 
 let studyInterval;
