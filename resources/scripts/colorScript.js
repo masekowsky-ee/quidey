@@ -5,6 +5,6 @@ const setTheme = (theme) => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    const theme = localStorage.getItem("theme") || "new";
+    const theme = /*localStorage.getItem("theme") ||*/ "new";
     setTheme(theme);
 })

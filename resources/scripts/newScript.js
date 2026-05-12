@@ -5,7 +5,15 @@ const updateTimeDate = () => {
     const timeH1 = document.getElementById('timeH1');
 
     const now = new Date();
-    const time = now.toLocaleTimeString().slice(0,5) + ' ' + now.toLocaleTimeString().slice(-2);
+    let time = now.toLocaleTimeString();
+    if(time[1] === ':'){
+        time = '0' + time;
+    }
+    if(time.length > 8){
+        time = time.slice(0, 5) + time.slice(8, 11);
+    } else{
+        time = time.slice(0, 5);
+    }
     const date = now.toLocaleDateString();
     dateH1.textContent = date;
     timeH1.textContent = time;

@@ -216,6 +216,10 @@ main div{
     z-index: 1;
 }
 
+#div5 h2{
+    text-align: center;
+}
+
 #div6{
     grid-column: 4 / 5;
     grid-row: 4 / 7;
@@ -250,8 +254,9 @@ main div{
     width: 70%;
     justify-self: flex-start;
     align-self: flex-start;
-    padding: 0.25rem;
-    font-size: 1.05rem;
+    padding: 0.5rem;
+    font-size: 1.75rem;
+    text-align: center;
 }
 
 #div6 svg{
@@ -504,8 +509,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 input[type="range"] {
-  accent-color: var(--blue); /* Deine Wunschfarbe */
+  accent-color: var(--green); /* Deine Wunschfarbe */
   transition: all 0.2s ease;
+  margin-bottom: 1rem;
 }
 
 input[type="range"]::-webkit-slider-thumb {
