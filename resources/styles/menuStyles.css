@@ -1,31 +1,4 @@
 /*menu styles*/
-#menuIcon{
-    all: unset;
-    position: fixed;
-    top: 0;
-    left:0;
-    height: 100%;
-    z-index: 1001;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--bg);
-    border-bottom-right-radius: 1rem;
-    box-sizing: border-box;
-}
-
-#menuIcon svg{
-    margin: auto;
-    height: 80%;
-    color: var(--bg-text);
-}
-
-#menuIcon svg:hover{
-    border: 2px solid var(--bg-text);
-    border-radius: 5px;
-}
 
 #menuHTML{
     z-index: 1010;
@@ -42,7 +15,7 @@
     box-sizing: border-box;
     padding: 0;
     z-index: 1002;
-    background-color: var(--bg);
+    background-color: var(--div);
     color: var(--bg-text);
     height: 100%;
     transition: all 0.2s ease;
@@ -58,11 +31,13 @@
     margin: 1rem;
     cursor: pointer;
     margin-bottom: 0;
-    color: var(--bg-text);
+    color: var(--divText);
+    border-radius: 5px;
+    border: 2px solid transparent;
 }
 
 #menuHTML svg:hover{
-    border: 2px solid var(--bg-text);
+    border: 2px solid var(--divText);
     border-radius: 5px;
 }
 
@@ -70,16 +45,6 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    border-bottom: 1px solid var(--bg-text);
-}
-
-#menuHTML h1{
-    width: 6rem;
-    padding-top: 0.25rem;
-    margin: 1rem;
-    margin-bottom: 0;
-    height: 1.5rem;
-    padding: 0.25rem 1rem 2rem;
 }
 
 #menuHTML h1:hover{
@@ -92,38 +57,64 @@
     line-height: 4rem;
     list-style: none;
     text-align: left;
-    padding-left: 2rem;
+    padding-left: 0;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 #menuHTML ul li{
     transition: all 0.2s ease;
+    padding-left: 1rem;
 }
 
 #menuHTML ul li:hover{
     list-style:circle;
-    padding-left: 1rem;
+    padding-left: 2rem;
     text-decoration: underline;
 }
 
 #menuHTML ul li a{
     text-decoration: none;
-    color: var(--bg-text);
+    color: var(--divText);
 }
 
 #menuHTML ul li + li {
-    border-top: 2px solid var(--bg-text);
+    border-top: 2px solid var(--divText);
 }
 
 
 #menuHead {
     padding: 0;
     margin: 0;
+    background-color: var(--bg)!important;
+    border-bottom: 2px solid var(--divText);
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#menuHeadImg{
+    margin: 0!important;
+    margin-left: 1rem!important;
 }
 
 #menuHeadH1 {
+    all: unset;
+    font-size: 2rem;
+    font-family: 'Orbitron';
+    font-weight: 700;
     background-color: var(--bg);
-    color: var(--bg-text);
+    color: var(--bgText);
+    margin: 0!important;
+    justify-self: flex-end;;
+    padding-left: 1rem;
 }
+
 
 #settings{
     justify-self: flex-end;
@@ -136,7 +127,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-top: 2px solid var(--bg-text);
+    border-top: 2px solid var(--divText);
+    color: var(--divText);
 }
 
 #settings li svg{
@@ -144,7 +136,15 @@
     margin-right: 0.5rem;
     width: 2rem;
     height: 2rem;
-    color: var(--bg-text);
+    color: var(--divText);
+}
+
+#settingsLi{
+    margin-top: auto;
+}
+
+#settingsLi:hover{
+    padding-left: 1rem!important;
 }
 
 #settings li:hover{
@@ -164,13 +164,15 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    width: 80%;
+    width: auto;
+    min-width: 350px;
+    max-width: 750px;
     height: 80%;
     top: 10%;
     left: 10%;
-    background-color: var(--bg);
-    color:var(--bg-text);
-    border: 2px solid var(--bg-text);
+    background-color: var(--div);
+    color:var(--bgText);
+    border: 2px solid var(--bgText);
     border-radius: 2rem;
     box-sizing: border-box;
     padding: 0;
@@ -180,12 +182,12 @@
     display: inline-flex;
     flex-direction: row;
     width: 100%;
-    background-color: var(--primary);
-    color: var(--primary-text);
+    justify-content: center;
+    background-color: var(--bg);
+    color: var(--bgText);
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
-    border: 2px solid var(--primary);
-    border-bottom: 2px solid var(--primary-text) !important;
+    height: 15%;
     margin-bottom: 1rem;
     box-sizing: border-box;
 }
@@ -198,13 +200,13 @@
     margin: 0;
     justify-self: flex-end;
     margin: 0.5rem 0.5rem 0 auto;
-    color: var(--primary-text);
+    color: var(--bgText);
 }
 
 #settingsHead h1{
     width: auto;
     margin: 1rem 0 0 1rem;
-    background-color: var(--primary);
+    background-color: transparent;
 }
 
 #settingsDiv {
@@ -222,6 +224,7 @@
     height: 2rem;
     float: left;
     width: 100%;
+    padding-left: 3rem;
 }
 
 .languageOptions{
@@ -229,7 +232,8 @@
     height: 20%;
     display: inline-flex;
     flex-direction: column!important;
-    align-items: center;
+    align-items: flex-start;
+    padding-left: 4rem;
     justify-content: center;
     clear: left;
     float: left;
@@ -242,7 +246,7 @@
   width: 18px;
   height: 18px;
 
-  border: 2px solid var(--lightPrim);
+  border: 2px solid var(--divText);
   border-radius: 50%;
 
   display: inline-block;
@@ -251,14 +255,14 @@
 }
 
 #settingsSection input[type="radio"]:checked{
-    background-color: var(--lightPrim);;
+    background-color: var(--red);;
 }
 
 #settingsSection input[type="radio"]:checked::after{
     content: "";
     width: 8px;
     height: 8px;
-    background: var(--primary);;
+    background: var(--div);;
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -271,5 +275,5 @@
 }
 
 #settingsSection input[type="radio"]:focus{
-    outline: 2px solid var(--primary);
+    outline: 2px solid var(--divText);
 }

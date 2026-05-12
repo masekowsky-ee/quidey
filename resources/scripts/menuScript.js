@@ -111,6 +111,16 @@ function initMenuEvents() {
             }
         });
     }
+
+    const newRadio = document.getElementById('new_mode');
+    if (newRadio) {
+        newRadio.addEventListener("change", (event) => {
+            if (event.target.checked) {
+                setTheme('new');
+                console.log(localStorage.getItem("theme"));
+            }
+        });
+    }
     
 }
 

@@ -5,7 +5,15 @@ const updateTimeDate = () => {
     const timeH1 = document.getElementById('timeH1');
 
     const now = new Date();
-    const time = now.toLocaleTimeString().slice(0,5) + ' ' + now.toLocaleTimeString().slice(-2);
+    let time = now.toLocaleTimeString();
+    if(time[1] === ':'){
+        time = '0' + time;
+    }
+    if(time.length > 8){
+        time = time.slice(0, 5) + time.slice(8, 11);
+    } else{
+        time = time.slice(0, 5);
+    }
     const date = now.toLocaleDateString();
     dateH1.textContent = date;
     timeH1.textContent = time;
@@ -19,7 +27,121 @@ let subArray = [];
 
 const lang = localStorage.getItem("lang") || "de";
 
-const subUl = document.getElementById('subList');   //add child
+const subUl = document.getElementById('subUl');   //add child
+
+const addTaskEventFunction = (container, sub) => {
+    console.log('add task event function triggered');
+    const taskInput = document.createElement('input');
+    taskInput.type = 'text';
+    taskInput.placeholder = translations[lang]['task_input_placeholder'];
+    taskInput.focus();
+    const currentSub = sub;
+    //add task
+    taskInput.addEventListener('keydown', (event) => {
+        if(event.key === 'Enter' && taskInput.value.trim() !== '' && taskInput.value.length >= 3 && taskInput.value.length <= 50){
+            const newTask = document.createElement('li');
+            const newTaskText = document.createElement('p');
+            newTaskText.textContent = taskInput.value.toUpperCase();
+            //add task to sub object
+            const newTaskObject = {name: newTaskText.textContent.toLowerCase().trim(), done: false};
+            currentSub.tasks.push(newTaskObject);
+            console.log(currentSub.tasks);
+
+            const checkBox = document.createElement('input');
+            checkBox.type = 'checkbox';
+            checkBox.addEventListener('change', (event) => {
+                if(event.target.checked){
+                    newTaskText.style.textDecoration = 'line-through';
+                    //task.done 
+                    newTaskObject.done = true;
+                    console.log(currentSub.tasks);
+                } else {
+                    newTaskText.style.textDecoration = 'none';
+                    //undo task.done
+                    newTaskObject.done = false;
+                    console.log(currentSub.tasks);
+                }
+            });
+            newTask.appendChild(checkBox);
+            newTask.appendChild(newTaskText);
+        
+            newTaskText.addEventListener('click', (event) => {
+                newTask.remove();
+                //remove from task array
+                currentSub.tasks = currentSub.tasks.filter(task => task !== newTaskObject);
+                console.log(currentSub.tasks);
+            });
+            container.appendChild(newTask);
+            event.target.remove();
+            if(container.children.length > sub.tasks.length){
+                container.firstElementChild.remove();
+            }
+        }
+    }); 
+    container.appendChild(taskInput);
+    taskInput.focus();
+}
+
+const taskGenFunction = (container, subIndexStart, subAmount) => {
+    console.log('TaskGenFunction is running')
+    container.innerHTML = '';
+    for(let j = subIndexStart; j < subAmount; j++){
+        const divContainer = document.createElement('div');
+        const h3 = document.createElement('h3');
+        h3.textContent = subArray[j].name.toUpperCase() + ' ' + subArray[j].dueDate;
+        const addTask = '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="currentColor"><path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z"/></svg>';
+        const addTaskDiv = document.createElement('div');
+        const ul = document.createElement('ul');
+        addTaskDiv.insertAdjacentHTML('beforeend', addTask);
+        addTaskDiv.addEventListener('click', () => {addTaskEventFunction(ul, subArray[j])});
+        divContainer.appendChild(h3);
+        divContainer.appendChild(addTaskDiv);
+        
+        for(let i = 0; i < subArray[j].tasks.length; i++){
+            const li = document.createElement('li');
+            const input = document.createElement('input');
+            input.type = 'checkbox';
+            const p = document.createElement('p');
+            if(subArray[j].tasks[i].done){
+                input.checked = true;
+                p.style.textDecoration = 'line-through';
+            }
+            input.addEventListener('change', (event)=>{
+                if(event.target.checked){
+                    subArray[j].tasks[i].done = true;
+                    console.log(subArray[j].tasks[i].done);
+                    p.style.textDecoration = 'line-through';
+                }else{
+                    subArray[j].tasks[i].done = false;
+                    console.log(subArray[j].tasks[i].done);
+                    p.style.textDecoration = 'none';
+                }
+            });
+            p.textContent = subArray[j].tasks[i].name.toUpperCase();
+            p.addEventListener('click', () => {
+                li.remove();
+                //remove from task array
+                subArray[j].tasks = subArray[j].tasks.filter(task => task.name !== p.textContent.toLowerCase().trim());
+                console.log(subArray[j].tasks);
+            });
+
+            li.appendChild(input);
+            li.appendChild(p);
+            ul.appendChild(li);
+        }
+        if (subArray[j].tasks.length===0){
+            const infoLi = document.createElement('li');
+            infoLi.textContent = translations[lang]['no_tasks_found'];
+            infoLi.class = 'emptyInfoLi';
+            infoLi.addEventListener('click', (event) => {
+                event.target.remove();
+            });
+            ul.appendChild(infoLi);
+        }
+        divContainer.appendChild(ul);
+        container.appendChild(divContainer);
+    }
+}
 
 const addSubject = () => {
     //get inputs
@@ -78,66 +200,6 @@ const addSubject = () => {
                 li.remove();
                 console.log(subArray);
             });
-            //create Ul for sub tasks
-            let subTaskUl = document.createElement('ul');
-            subTaskUl.id = li.id + 'TaskList';
-            subTaskUl.style.display = 'none';
-            li.appendChild(subTaskUl);
-            //create add sub task button
-            let addTask = document.createElement('div');
-            addTask.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="current color"><path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z"/></svg>'
-            addTask.id = li.id + 'AddTask';
-            addTask.style.display = 'none';
-            li.appendChild(addTask);
-            //add input for task
-            addTask.addEventListener('click', function(){
-                const taskInput = document.createElement('input');
-                taskInput.type = 'text';
-                taskInput.placeholder = translations[lang]['task_input_placeholder'];
-                taskInput.focus();
-                //add task
-                taskInput.addEventListener('keydown', (event) => {
-                    if(event.key === 'Enter' && taskInput.value.trim() !== '' && taskInput.value.length >= 3 && taskInput.value.length <= 50){
-                        const newTask = document.createElement('li');
-                        const newTaskText = document.createElement('p');
-                        newTaskText.textContent = taskInput.value;
-                        //add task to sub object
-                        const newTaskObject = {name: newTaskText.textContent.toLowerCase().trim(), done: false};
-                        newSub.tasks.push(newTaskObject);
-                        console.log(newSub.tasks);
-
-                        const checkBox = document.createElement('input');
-                        checkBox.type = 'checkbox';
-                        checkBox.addEventListener('change', (event) => {
-                            if(event.target.checked){
-                                newTaskText.style.textDecoration = 'line-through';
-                                //task.done 
-                                newTaskObject.done = true;
-                                console.log(newSub.tasks);
-                            } else {
-                                newTaskText.style.textDecoration = 'none';
-                                //undo task.done
-                                newTaskObject.done = false;
-                                console.log(newSub.tasks);
-                            }
-                        })
-                        newTask.appendChild(checkBox);
-                        newTask.appendChild(newTaskText);
-    
-                        newTaskText.addEventListener('click', (event) => {
-                            newTask.remove();
-                            //remove from task array
-                            newSub.tasks = newSub.tasks.filter(task => task !== newTaskObject);
-                            console.log(newSub.tasks);
-                        });
-                        subTaskUl.appendChild(newTask);
-                        event.target.remove();
-                    }
-                })
-                subTaskUl.appendChild(taskInput);
-                taskInput.focus();
-            });
-            
             subUl.appendChild(li);
             //clear inputs
             subInput.value = '';
@@ -164,36 +226,50 @@ document.getElementById('addNewSub').addEventListener('click', addSubject);
 const subListDiv = document.getElementById('div6');
 const expandSubList = document.getElementById('expandSubList');
 const collapseSubList = document.getElementById('collapseSubList');
+const div6extended = document.getElementById('div6extended');
 
 const subListExpander = () => {
-    subListDiv.style.gridColumn = '1 / 5';
-    subListDiv.style.gridRow = '1 / 7';
-    subListDiv.style.zIndex = '5';
-    collapseSubList.classList.remove('hidden');
-    expandSubList.classList.add('hidden');
+    div6extended.classList.remove('hidden');
     //show all tasks etc
-    let subUlChildren = subUl.children;
+    /*let subUlChildren = subUl.children;
     for(sub of subUlChildren){
         let childrenArray = Array.from(sub.children);
         childrenArray.forEach(child => child.style.display = 'block');
-    }
+    }*/
+   const subUlDivExtended = document.getElementById('subUlDivExtended');
+   taskGenFunction(subUlDivExtended, 0, subArray.length);
 }
 
 expandSubList.addEventListener('click', subListExpander);
 
 //collapse sub list
 const subListCollapser = () => {
-    subListDiv.style.gridColumn = '4 / 5';
-    subListDiv.style.gridRow = '4 / 7';
-    subListDiv.style.zIndex = '1';
-    collapseSubList.classList.add('hidden');
-    expandSubList.classList.remove('hidden');
+    div6extended.classList.add('hidden');
     //hide all tasks etc
-    let subUlChildren = subUl.children;
-    for(sub of subUlChildren){
-        let childrenArray = Array.from(sub.children);
-        childrenArray.forEach(child => child.style.display = 'none');
+    const subUlDiv = document.getElementById('subUlDiv');
+    subUlDiv.innerHTML = '';
+    const ul = document.createElement('ul');
+    ul.id = 'subUl';
+    for(sub of subArray){
+        const li = document.createElement('li');
+        li.id = sub.name;
+        const span = document.createElement('span');
+        span.textContent = "🗑️";
+        li.textContent = sub.name.toUpperCase() + ' ' + sub.dueDate;
+        li.appendChild(span);
+        span.addEventListener('click', (event) => {   //add remove subject function
+            for (i=0; i < subArray.length; i++){
+                if(subArray[i].name === li.id){
+                    subArray.splice(i, 1);
+                }
+            }
+            event.target.remove();
+            li.remove();
+            console.log(subArray);
+        });
+        ul.appendChild(li);
     }
+    subUlDiv.appendChild(ul);
 }
 
 collapseSubList.addEventListener('click', subListCollapser);
@@ -488,3 +564,7 @@ skipSessionBtn.addEventListener('click', (event)=>{
     }
     console.log(sessionObject);
 });
+
+const inSessionTaskAdder = document.getElementById('inSessionTaskAdder');
+const subTaskList = document.getElementById('subTaskList');
+//inSessionTaskAdder.addEventListener('click', () => {addTaskEventFunction(subTaskList, subArray[0])});

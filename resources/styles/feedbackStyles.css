@@ -1,6 +1,6 @@
 body{
     background-color: var(--bg);
-    color: var(--bg-text);
+    color: var(--bgText);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -17,7 +17,7 @@ h1{
 }
 
 form{
-    background-color: #084734;
+    background-color: var(--div);
     width: 80%;
     max-width: 880px;
     min-height: 28rem;
@@ -39,13 +39,13 @@ textarea{
     padding: 1rem;
     margin-top: 1rem;
     font-family: 'Orbitron';
-    color: #084734;
+    color: var(--bg);
     font-size: 1.125rem;
     transition: all 0.2s ease;
 }
 
 textarea:hover, textarea:active, textarea:focus{
-    outline:2px solid #084734;
+    outline:2px solid var(--green);
     transform: translateY(-2px);
 }
 
@@ -57,8 +57,8 @@ button{
     box-shadow: 0px 3px 5px black;
     border-radius: 5px;
     font-family: 'Orbitron';
-    background-color: var(--accent);
-    color:var(--accent-text);
+    background-color: var(--green);
+    color: white;
     font-weight: 700;
     font-size: large;
     transition: all 0.2s ease;
@@ -69,10 +69,28 @@ button:hover{
 }
 
 button:focus{
-    outline: 2px solid #084734;
+    outline: 2px solid white;
     transform: translateY(-2px);
 }
 
 button:active {
     transform: translateY(4px);
+}
+
+#menuIcon{
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 2;
+    width: 3rem;
+    height: 3rem;
+    color: var(--divText);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+    border-radius: 5px;
+}
+
+#menuIcon:hover{
+    border: 2px solid var(--divText);
 }
