@@ -18,6 +18,7 @@ const translations = {
         mosaik_mode: "Mosaik",
         default_mode: "Normal",
         none_mode: "Farblos",
+        new_mode: 'Neu',
         quidey: "Quidey",
 
         //index page
@@ -98,7 +99,7 @@ const translations = {
         new_progress_h1: "Fortschritt",
         new_add: "Hinzufügen",
         new_add_sub: "Fach Hinzufügen",
-        your_subs: "Deine Fächer",
+        your_subs: "Fächer",
         new_session: "Neue Session",
         energy_h2: "Wie viel Enrgie hast du?",
         time_h2: "Wie viel Zeit hast du?",
@@ -147,6 +148,7 @@ const translations = {
         mosaik_mode: "Mosaic",
         default_mode: "Default",
         none_mode: "None",
+        new_mode: 'Neu',
         quidey: "Quidey",
 
         //index page
@@ -228,7 +230,7 @@ const translations = {
         new_progress_h1: "Progress",
         new_add: "Add",
         new_add_sub: "Add Subject",
-        your_subs: "Your Subjects",
+        your_subs: "Subjects",
         new_session: "New Session",
         energy_h2: "What's your energy level?",
         time_h2: "How much time do you have?",
