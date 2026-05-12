@@ -117,6 +117,8 @@ const translations = {
         yes: 'Ja',
         no: 'Nein',
         task_input_placeholder: 'Aufgabe...',
+        session_sub_tasks: "Aufgaben",
+        no_tasks_found: "Du hast für dieses Fach noch keine Aufgaben.",
 
         //alerts
         no_double_alert: "Du kannst das selbe Fach nicht zwei Mal eingeben. Bitte nutze etwas anderes.",
@@ -245,6 +247,8 @@ const translations = {
         yes: 'Yes',
         no: 'No',
         task_input_placeholder: 'Task...',
+        session_sub_tasks: "Tasks",
+        no_tasks_found: "You don't have any tasks for this subjects yet.",
 
         //alerts
         no_double_alert: "You can't enter the same subject twice. Please use something else.",

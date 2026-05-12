@@ -5,7 +5,7 @@ const updateTimeDate = () => {
     const timeH1 = document.getElementById('timeH1');
 
     const now = new Date();
-    const time = now.toLocaleTimeString();
+    const time = now.toLocaleTimeString().slice(0,5) + ' ' + now.toLocaleTimeString().slice(-2);
     const date = now.toLocaleDateString();
     dateH1.textContent = date;
     timeH1.textContent = time;
@@ -273,7 +273,7 @@ const startSession = () => {
 
     if (subArray[0] && Number(sessionMin.value) + Number(sessionHour.value) !== 0){
         if((Number(sessionMin.value) + Number(sessionHour.value)*60) >= Number(sessionLengthInput.value)){
-                sessionObject.reset(); //make sure the sessionobject is in starting mode
+            sessionObject.reset(); //make sure the sessionobject is in starting mode
 
             let sessionTime = Number(sessionMin.value) + Number(sessionHour.value) * 60;
             sessionObject.sessionLength = sessionLengthInput.value;
@@ -305,7 +305,9 @@ const startSession = () => {
 
             const div7 = document.getElementById('div7');
             div7.style.zIndex = '1';
-            div7.style.gridColumn = '1 / 5'
+
+            const div8 = document.getElementById('div8');
+            div8.classList.remove('hidden');
 
             const div5 = document.getElementById('div5');
             div5.style.display = 'none';
@@ -341,7 +343,9 @@ const endSession = () => {
 
     const div7 = document.getElementById('div7');
     div7.style.zIndex = '0';
-    div7.style.gridColumn = '1 / 4'
+
+    const div8 = document.getElementById('div8');
+    div8.classList.add('hidden');
 
     const div5 = document.getElementById('div5');
     div5.style.display = 'flex';
@@ -378,6 +382,36 @@ const sortSubs = () => {
     console.log(subArray);
     document.getElementById("currentTask").textContent = subArray[0].name.toUpperCase();
     sessionObject.subject = subArray[0].name;
+    //generate sub tasks
+    const subTaskList = document.getElementById('subTaskList');
+    subTaskList.innerHTML = '';
+    for(let i = 0; i < subArray[0].tasks.length;i++){
+        const li = document.createElement('li');
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.addEventListener('change', (event)=>{
+            if(event.target.checked){
+                subArray[0].tasks[i].done = true;
+                console.log(subArray[0].tasks[i].done);
+                p.style.textDecoration = 'line-through';
+            }else{
+                subArray[0].tasks[i].done = false;
+                console.log(subArray[0].tasks[i].done);
+                p.style.textDecoration = 'none';
+            }
+        });
+        const p = document.createElement('p');
+        p.innerHTML = subArray[0].tasks[i].name;
+
+        li.appendChild(input);
+        li.appendChild(p);
+        subTaskList.appendChild(li);
+    }
+    if (subArray[0].tasks.length===0){
+        const infoLi = document.createElement('li');
+        infoLi.textContent = translations[lang]['no_tasks_found'];
+        subTaskList.appendChild(infoLi);
+    }
 }
 
 let studyInterval;

@@ -165,9 +165,8 @@ main div{
     grid-column: 4 / 5;
     grid-row: 1 / 4;
     display: flex;
-        transition: all 0.2s ease;
-        
-
+    transition: all 0.2s ease;
+    z-index: 1;
 }
 
 #div6{
@@ -175,6 +174,7 @@ main div{
     grid-row: 4 / 7;
     transition: all 0.2s ease;
     overflow-y: scroll;
+    z-index: 1;
 }
 
 #div7{
@@ -182,5 +182,11 @@ main div{
     grid-row: 2 / 7;
     z-index: 0;
     transition: all 0.2s ease;  
+}
 
+#div8{
+    grid-column: 4 / 5;
+    grid-row: 2 / 7;
+    z-index: 0;
+    transition: all 0.2s ease;  
 }
