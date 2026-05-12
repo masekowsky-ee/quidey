@@ -192,21 +192,6 @@ const addSubject = () => {
                 li.remove();
                 console.log(subArray);
             });
-            /*
-            //create Ul for sub tasks
-            let subTaskUl = document.createElement('ul');
-            subTaskUl.id = li.id + 'TaskList';
-            subTaskUl.style.display = 'none';
-            li.appendChild(subTaskUl);
-            //create add sub task button
-            let addTask = document.createElement('div');
-            addTask.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="current color"><path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z"/></svg>'
-            addTask.id = li.id + 'AddTask';
-            addTask.style.display = 'none';
-            li.appendChild(addTask);
-            //add input for task
-            addTask.addEventListener('click', addTaskEventFunction(subTaskUl, newSub));
-            */
             subUl.appendChild(li);
             //clear inputs
             subInput.value = '';
@@ -233,32 +218,25 @@ document.getElementById('addNewSub').addEventListener('click', addSubject);
 const subListDiv = document.getElementById('div6');
 const expandSubList = document.getElementById('expandSubList');
 const collapseSubList = document.getElementById('collapseSubList');
+const div6extended = document.getElementById('div6extended');
 
 const subListExpander = () => {
-    subListDiv.style.gridColumn = '1 / 5';
-    subListDiv.style.gridRow = '1 / 7';
-    subListDiv.style.zIndex = '5';
-    collapseSubList.classList.remove('hidden');
-    expandSubList.classList.add('hidden');
+    div6extended.classList.remove('hidden');
     //show all tasks etc
     /*let subUlChildren = subUl.children;
     for(sub of subUlChildren){
         let childrenArray = Array.from(sub.children);
         childrenArray.forEach(child => child.style.display = 'block');
     }*/
-   const subUlDiv = document.getElementById('subUlDiv');
-   taskGenFunction(subUlDiv, 0, subArray.length);
+   const subUlDivExtended = document.getElementById('subUlDivExtended');
+   taskGenFunction(subUlDivExtended, 0, subArray.length);
 }
 
 expandSubList.addEventListener('click', subListExpander);
 
 //collapse sub list
 const subListCollapser = () => {
-    subListDiv.style.gridColumn = '4 / 5';
-    subListDiv.style.gridRow = '4 / 7';
-    subListDiv.style.zIndex = '1';
-    collapseSubList.classList.add('hidden');
-    expandSubList.classList.remove('hidden');
+    div6extended.classList.add('hidden');
     //hide all tasks etc
     const subUlDiv = document.getElementById('subUlDiv');
     subUlDiv.innerHTML = '';
