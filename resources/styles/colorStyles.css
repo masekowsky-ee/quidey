@@ -98,3 +98,17 @@
     --dark: #1e2a1f;            /* tiefer schwarz */
     --dark-text: #cdedb3;       /* Lime Green */
 }
+
+[data-theme="new"]{
+    --header: #222526;
+    --headerText: #bfbfbf;
+    --bg: #1a1a1a;
+    --bgText: #bfbfbf;
+    --div: #353a3e;
+    --divText: #e0e0e0;
+    --green: #9acd32;
+    --blue: #2d3e9f; /*used to be #2d3e56*/
+    --red: #ff3131;
+    --yellow: #ffd166;
+
+}

@@ -1,30 +1,4 @@
 /*menu styles*/
-#menuIcon{
-    all: unset;
-    position: fixed;
-    top: 0;
-    left:0;
-    z-index: 1001;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--bg);
-    border-bottom-right-radius: 1rem;
-    box-sizing: border-box;
-}
-
-#menuIcon svg{
-    margin: auto;
-    height: 80%;
-    color: var(--bg-text);
-}
-
-#menuIcon svg:hover{
-    border: 2px solid var(--bg-text);
-    border-radius: 5px;
-}
 
 #menuHTML{
     z-index: 1010;

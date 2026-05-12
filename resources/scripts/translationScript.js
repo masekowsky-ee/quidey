@@ -18,6 +18,7 @@ const translations = {
         mosaik_mode: "Mosaik",
         default_mode: "Normal",
         none_mode: "Farblos",
+        new_mode: 'Neu',
         quidey: "Quidey",
 
         //index page
@@ -147,6 +148,7 @@ const translations = {
         mosaik_mode: "Mosaic",
         default_mode: "Default",
         none_mode: "None",
+        new_mode: 'Neu',
         quidey: "Quidey",
 
         //index page
