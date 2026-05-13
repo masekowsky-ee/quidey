@@ -20,6 +20,16 @@ const updateTimeDate = () => {
     timeH1.textContent = time;
 }
 
+//alert
+const triggerAlert = (alert_data_i18n_key) => {
+    alertDiv.classList.remove('hidden');
+    alertH2.textContent = translations[lang][alert_data_i18n_key];
+}
+
+const hideAlertDiv = () => {
+    alertDiv.classList.add('hidden');
+}
+
 //add a subject
 const addTaskEventFunction = (container, sub) => {
     console.log('add task event function triggered');
@@ -201,16 +211,16 @@ const addSubject = () => {
             dateInput.value = '';
             confInput.value = '3';
         } else if (daysAvailable < 0){
-            window.alert(translations[lang]["no_oldDate_alert"]);
+            triggerAlert("no_oldDate_alert");
         } else if (dateInput.value){ // if no sub
-            window.alert(translations[lang]["no_empty_alert"]);
+            triggerAlert("no_empty_alert");
         } else if (subInput.value){ //if no date
-            window.alert(translations[lang]["no_date_alert"]);
+            triggerAlert("no_date_alert");
         } else { //if none
-            window.alert(translations[lang]["no_empty_alert"] + ' ' + translations[lang]["no_date_alert"]);
+            triggerAlert("no_empty_alert");
         }
     } else {
-        window.alert(translations[lang]["no_double_alert"]);
+        triggerAlert("no_double_alert");
     }
     console.log(subArray);
 }
@@ -310,10 +320,10 @@ const startSession = () => {
             document.getElementById('stateH1').textContent = translations[lang]['study'];
             timerMins.textContent = sessionObject.sessionLength;
         } else {
-            window.alert(translations[lang]["too_short_alert"]) 
+            triggerAlert("too_short_alert");
         }
     } else {
-        window.alert(translations[lang]["no_empty_alert"])
+        triggerAlert("no_empty_alert");
     }
 }
 
@@ -552,6 +562,7 @@ let subUl = document.getElementById('subUl');//add children to this ul for new s
 const subTaskList = document.getElementById('subTaskList');
 const timerMins = document.getElementById('timerMins');
 const timerSecs = document.getElementById('timerSecs');
+const alertH2 = document.getElementById('alertH2');
 
 //button & input selectors
 const expandSubList = document.getElementById('expandSubList');//expand button in sublist
@@ -561,6 +572,7 @@ const startSessionBtn = document.getElementById('startSession');
 const endSessionBtn = document.getElementById('endSession');
 const nextSessionBtn = document.getElementById('nextSession');
 const skipSessionBtn = document.getElementById('skipSession');
+const alertOkBtn = document.getElementById('alertOkButton');
 
 const breaksYes = document.getElementById('breaksYes');
 const inSessionTaskAdder = document.getElementById('inSessionTaskAdder'); //  ?
@@ -572,6 +584,7 @@ startSessionBtn.addEventListener('click', startSession);
 endSessionBtn.addEventListener('click', endSession);
 nextSessionBtn.addEventListener('click', nextSessionOnClick);
 skipSessionBtn.addEventListener('click', skipSessionEvent);
+alertOkBtn.addEventListener('click', hideAlertDiv);
 
 console.log('newScript.js: application logic loaded');
 console.log('newScript.js is fully loaded');

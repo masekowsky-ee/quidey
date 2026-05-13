@@ -622,3 +622,48 @@ input[type="checkbox"]{
         height: 20rem;
     }
 }
+
+/*Alert Styles*/
+#alertDiv{
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+#innerAlertDiv{
+    width: 80%;
+    height: 80%;
+    max-width: 20rem;
+    max-height: 15rem;
+    z-index: 2001;
+    background-color: var(--div);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3rem;
+    padding: 1rem;
+}
+
+#alertH2{
+    margin: 0;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#alertOkButton{
+    background-color: var(--red);
+    height: 3rem;
+    width: 4.5rem;
+    border-radius: 1.5rem;
+    outline: 3px solid var(--div);
+    outline-offset: -4px;
+    justify-self: flex-end;
+    margin: auto;
+}
