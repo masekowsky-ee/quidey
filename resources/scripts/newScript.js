@@ -1,5 +1,6 @@
 console.log('newScript.js is running');
-//time and date
+console.log('newScript.js is loading functions');
+//functions 
 const updateTimeDate = () => {
     const dateH1 = document.getElementById('dateH1');
     const timeH1 = document.getElementById('timeH1');
@@ -19,16 +20,17 @@ const updateTimeDate = () => {
     timeH1.textContent = time;
 }
 
-setInterval(updateTimeDate ,1000);
+//alert
+const triggerAlert = (alert_data_i18n_key) => {
+    alertDiv.classList.remove('hidden');
+    alertH2.textContent = translations[lang][alert_data_i18n_key];
+}
+
+const hideAlertDiv = () => {
+    alertDiv.classList.add('hidden');
+}
 
 //add a subject
-
-let subArray = [];
-
-const lang = localStorage.getItem("lang") || "de";
-
-let subUl = document.getElementById('subUl');   //add child
-
 const addTaskEventFunction = (container, sub) => {
     console.log('add task event function triggered');
     const taskInput = document.createElement('input');
@@ -61,6 +63,7 @@ const addTaskEventFunction = (container, sub) => {
                     newTaskObject.done = false;
                     console.log(currentSub.tasks);
                 }
+                sortTasks(sub);
             });
             newTask.appendChild(checkBox);
             newTask.appendChild(newTaskText);
@@ -91,6 +94,7 @@ const taskGenFunction = (container, subIndexStart, subAmount) => {
         h3.textContent = subArray[j].name.toUpperCase() + ' ' + subArray[j].dueDate;
         const addTask = '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="currentColor"><path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z"/></svg>';
         const addTaskDiv = document.createElement('div');
+        addTaskDiv.classList.add('addTaskSvgDiv');
         const ul = document.createElement('ul');
         addTaskDiv.insertAdjacentHTML('beforeend', addTask);
         addTaskDiv.addEventListener('click', () => {addTaskEventFunction(ul, subArray[j])});
@@ -109,13 +113,14 @@ const taskGenFunction = (container, subIndexStart, subAmount) => {
             input.addEventListener('change', (event)=>{
                 if(event.target.checked){
                     subArray[j].tasks[i].done = true;
-                    console.log(subArray[j].tasks[i].done);
+                    console.log(subArray[j].tasks[i]);
                     p.style.textDecoration = 'line-through';
                 }else{
                     subArray[j].tasks[i].done = false;
-                    console.log(subArray[j].tasks[i].done);
+                    console.log(subArray[j].tasks[i]);
                     p.style.textDecoration = 'none';
                 }
+                sortTasks(subArray[j]);
             });
             p.textContent = subArray[j].tasks[i].name.toUpperCase();
             p.addEventListener('click', () => {
@@ -207,58 +212,33 @@ const addSubject = () => {
             dateInput.value = '';
             confInput.value = '3';
         } else if (daysAvailable < 0){
-            window.alert(translations[lang]["no_oldDate_alert"]);
+            triggerAlert("no_oldDate_alert");
         } else if (dateInput.value){ // if no sub
-            window.alert(translations[lang]["no_empty_alert"]);
+            triggerAlert("no_empty_alert");
         } else if (subInput.value){ //if no date
-            window.alert(translations[lang]["no_date_alert"]);
+            triggerAlert("no_date_alert");
         } else { //if none
-            window.alert(translations[lang]["no_empty_alert"] + ' ' + translations[lang]["no_date_alert"]);
+            triggerAlert("no_empty_alert");
         }
     } else {
-        window.alert(translations[lang]["no_double_alert"]);
+        triggerAlert("no_double_alert");
     }
     console.log(subArray);
 }
 
-document.getElementById('addNewSub').addEventListener('click', addSubject);
-
-//expand sub list
-const div1 = document.getElementById('div1');
-const div2 = document.getElementById('div2');
-const div3 = document.getElementById('div3');
-const div4 = document.getElementById('div4');
-const div5 = document.getElementById('div5');
-const subListDiv = document.getElementById('div6');
-const expandSubList = document.getElementById('expandSubList');
-const collapseSubList = document.getElementById('collapseSubList');
-const div6extended = document.getElementById('div6extended');
-const div7 = document.getElementById('div7');
-const div8 = document.getElementById('div8');
-const divs = [div1, div2, div3, div4, div5, subListDiv, div6extended, div7, div8];
-
+//collapse sub list
 const subListExpander = () => {
     divs.forEach(div => {
         div.classList.add('hidden');
     });
     div6extended.classList.remove('hidden');
-    //show all tasks etc
-    /*let subUlChildren = subUl.children;
-    for(sub of subUlChildren){
-        let childrenArray = Array.from(sub.children);
-        childrenArray.forEach(child => child.style.display = 'block');
-    }*/
     const subUlDivExtended = document.getElementById('subUlDivExtended');
     taskGenFunction(subUlDivExtended, 0, subArray.length);
     document.querySelector('#extendedSubsH2').scrollIntoView({ 
         behavior: 'smooth' 
     });
-
 }
 
-expandSubList.addEventListener('click', subListExpander);
-
-//collapse sub list
 const subListCollapser = () => {
     divs.forEach(div => {
         div.classList.remove('hidden');
@@ -295,9 +275,206 @@ const subListCollapser = () => {
     subUlDiv.appendChild(ul);
 }
 
-collapseSubList.addEventListener('click', subListCollapser);
+const startSession = () => {
+    const sessionHour = document.getElementById("sessionHourInput");
+    const sessionMin = document.getElementById("sessionMinInput");
+    const sessionLengthInput = document.getElementById("sessionLengthInput");
+
+    if (subArray[0] && Number(sessionMin.value) + Number(sessionHour.value) !== 0){
+        if((Number(sessionMin.value) + Number(sessionHour.value)*60) >= Number(sessionLengthInput.value)){
+            sessionObject.reset(); //make sure the sessionobject is in starting mode
+
+            let sessionTime = Number(sessionMin.value) + Number(sessionHour.value) * 60;
+            sessionObject.sessionLength = sessionLengthInput.value;
+            
+            if(breaksYes.checked){
+                if(sessionTime > Number(sessionLengthInput.value)){
+                    console.log('breaks is checked')
+                    sessionObject.amountLeft = Math.floor(sessionTime / (sessionLengthInput.value + 5));
+                    console.log("Session Time: " + sessionTime);
+                    sessionObject.breaks = true;
+                } else if(sessionTime === Number(sessionLengthInput.value)){
+                    console.log('breaks is checked but time ===')
+                    sessionObject.amountLeft = 1;
+                    console.log("Session Time: " + sessionTime);
+                    sessionObject.breaks = false;
+                }
+            } else {
+                console.log('breaks not checked');
+                sessionObject.amountLeft = Math.floor(sessionTime / sessionLengthInput.value);
+                console.log("Session Time: " + sessionTime); 
+                sessionObject.breaks = false;
+            }
+
+            console.log("SubArray");
+            console.log(subArray);
+            sortSubs();
+
+            divs.forEach(div => {
+                div.classList.add('hidden');
+            });
+            div1.classList.remove('hidden');
+            div2.classList.remove('hidden');
+            div7.classList.remove('hidden');
+            div8.classList.remove('hidden');
+            
+            document.getElementById('stateH1').textContent = translations[lang]['study'];
+            timerMins.textContent = sessionObject.sessionLength;
+        } else {
+            triggerAlert("too_short_alert");
+        }
+    } else {
+        triggerAlert("no_empty_alert");
+    }
+}
+
+const endSession = () => {
+    divs.forEach(div => {
+        div.classList.remove('hidden');
+    });
+    div1.classList.add('hidden');
+    div2.classList.add('hidden');
+    div7.classList.add('hidden');
+    div8.classList.add('hidden');
+    div6extended.classList.add('hidden');
+    //reset page to prep for next
+    nextSessionBtn.classList.remove('hidden');
+    endSessionBtn.classList.remove('hidden');
+    timerMins.textContent = '00'
+    timerSecs.textContent = "00"
+    document.getElementById('stateH1').textContent = translations[lang]['study'];
+    progressor.style.width = '0%';
+    sessionObject.started = false;
+}
+
+const sortTasks = (sub) => {
+    sub.tasks.sort((a,b)=>{
+        return a.done - b.done;
+    });
+}
+
+const sortSubs = () => {
+    subArray.forEach(sub => {
+        sub.calcUrgency();
+
+    });
+    const compareUrgency = (a,b) => {
+        return a.urgency - b.urgency ;
+    }
+    subArray.sort(compareUrgency);
+    console.log("New Sorted SubArray:");
+    console.log(subArray);
+    document.getElementById("currentTask").textContent = subArray[0].name.toUpperCase();
+    sessionObject.subject = subArray[0].name;
+    //generate sub tasks
+    subTaskList.innerHTML = '';
+    for(let i = 0; i < subArray[0].tasks.length;i++){
+        const li = document.createElement('li');
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        const p = document.createElement('p');
+        p.innerHTML = subArray[0].tasks[i].name;
+
+        if(subArray[0].tasks[i].done){
+            input.checked = true;
+            p.style.textDecoration = 'line-through';
+        }
+        input.addEventListener('change', (event)=>{
+            if(event.target.checked){
+                subArray[0].tasks[i].done = true;
+                console.log(subArray[0].tasks[i].done);
+                p.style.textDecoration = 'line-through';
+            }else{
+                subArray[0].tasks[i].done = false;
+                console.log(subArray[0].tasks[i].done);
+                p.style.textDecoration = 'none';
+            }
+            sortTasks(subArray[i]);
+        });
+        li.appendChild(input);
+        li.appendChild(p);
+        subTaskList.appendChild(li);
+    }
+    if (subArray[0].tasks.length===0){
+        const infoLi = document.createElement('li');
+        infoLi.textContent = translations[lang]['no_tasks_found'];
+        subTaskList.appendChild(infoLi);
+    }
+}
+
+const nextSessionOnClick = () => {
+    if (sessionObject.counting === false){
+        sessionObject.next();
+        let secsToStudy;
+        //check for current state and assign minutes
+        if(sessionObject.state === 'study'){
+            secsToStudy = sessionObject.sessionLength * 60;
+        } else if(sessionObject.state === 'break'){
+            secsToStudy = sessionObject.breakLength * 60;
+        }
+        nextSessionBtn.classList.add('hidden');
+        endSessionBtn.classList.add('hidden');
+        skipSessionBtn.classList.remove('hidden');
+
+        if(sessionObject.state === 'study'){
+            document.getElementById('stateH1').textContent = translations[lang]['study'];
+        } else if (sessionObject.state === 'break'){
+            document.getElementById('stateH1').textContent = translations[lang]['break'];
+        }
+
+        let progressor = document.getElementById('progressor');
+        let progressBits = secsToStudy;
+
+        studyInterval = setInterval(()=>{
+            secsToStudy--;
+            //update progress bar
+            progressor.style.width = `${100 - secsToStudy*99/progressBits}%`;
+            //update timer
+            timerSecs.textContent = String(secsToStudy % 60).padStart(2, '0');
+            timerMins.textContent = Math.floor(secsToStudy/60);
+            //check clearing condition
+            if(secsToStudy === 0){
+                clearInterval(studyInterval);
+                sessionObject.counting = false;
+                nextSessionBtn.classList.remove('hidden');
+                if(sessionObject.amountLeft === 0) {
+                    nextSessionBtn.classList.add('hidden');
+                };
+                endSessionBtn.classList.remove('hidden');
+                skipSessionBtn.classList.add('hidden');
+            }
+        }, 1000);
+    }
+}
+
+const skipSessionEvent = ()=>{
+    clearInterval(studyInterval);
+    sessionObject.counting = false;
+    nextSessionBtn.classList.remove('hidden');
+    if(sessionObject.amountLeft === 0) {
+        nextSessionBtn.classList.add('hidden');
+    };
+    endSessionBtn.classList.remove('hidden');
+    skipSessionBtn.classList.add('hidden');
+
+    if(sessionObject.state === "study"){
+        timerMins.textContent = '00';
+        timerSecs.textContent = "00";
+        progressor.style.width = '0%';
+        document.getElementById('stateH1').textContent = translations[lang]['break'];
+    } else if (sessionObject.state === "break"){
+        timerMins.textContent = '00';
+        timerSecs.textContent = "00";
+        progressor.style.width = '0%';
+        document.getElementById('stateH1').textContent = translations[lang]['study'];
+    }
+    console.log(sessionObject);
+};
+
+console.log('newScript.js: functions loaded');
 
 //sessionObject
+console.log('newScript.js is loading sessionObject');
 let sessionObject = {
     state: "study",                             //break or study
     subject: "",
@@ -359,256 +536,56 @@ let sessionObject = {
         this.amountDone = 0;
     }
 };
+console.log('newScript.js: sessionObject loaded');
 
-//start a session
-const startSessionBtn = document.getElementById('startSession');
-const breaksYes = document.getElementById('breaksYes');
+//application logic
+console.log('newScript.js is starting application logic');
+const lang = localStorage.getItem("lang") || "de"; //load language from local storage or default to german
+setInterval(updateTimeDate ,1000); //clock and date update every second
 
-
-const startSession = () => {
-    const sessionHour = document.getElementById("sessionHourInput");
-    const sessionMin = document.getElementById("sessionMinInput");
-    const sessionLengthInput = document.getElementById("sessionLengthInput");
-
-    if (subArray[0] && Number(sessionMin.value) + Number(sessionHour.value) !== 0){
-        if((Number(sessionMin.value) + Number(sessionHour.value)*60) >= Number(sessionLengthInput.value)){
-            sessionObject.reset(); //make sure the sessionobject is in starting mode
-
-            let sessionTime = Number(sessionMin.value) + Number(sessionHour.value) * 60;
-            sessionObject.sessionLength = sessionLengthInput.value;
-            
-            if(breaksYes.checked){
-                if(sessionTime > Number(sessionLengthInput.value)){
-                    console.log('breaks is checked')
-                    sessionObject.amountLeft = Math.floor(sessionTime / (sessionLengthInput.value + 5));
-                    console.log("Session Time: " + sessionTime);
-                    sessionObject.breaks = true;
-                } else if(sessionTime === Number(sessionLengthInput.value)){
-                    console.log('breaks is checked but time ===')
-                    sessionObject.amountLeft = 1;
-                    console.log("Session Time: " + sessionTime);
-                    sessionObject.breaks = false;
-                }
-            } else {
-                console.log('breaks not checked');
-                sessionObject.amountLeft = Math.floor(sessionTime / sessionLengthInput.value);
-                console.log("Session Time: " + sessionTime); 
-                sessionObject.breaks = false;
-            }
-
-            console.log("SubArray");
-            console.log(subArray);
-            sortSubs();
-            /*
-            const div4 = document.getElementById('div4');
-            div4.style.zIndex = '0';
-
-            const div7 = document.getElementById('div7');
-            div7.style.zIndex = '1';
-
-            const div8 = document.getElementById('div8');
-            div8.classList.remove('hidden');
-
-            const div5 = document.getElementById('div5');
-            div5.style.display = 'none';
-            const div6 = document.getElementById('div6');
-            div6.style.display = 'none';
-            const div3 = document.getElementById('div3');
-            div3.style.display = 'none';
-            const div1 = document.getElementById('div1');
-            div1.style.gridColumn = '1 / 3';
-            const div2 = document.getElementById('div2');
-            div2.style.gridColumn = '3/5';
-            */
-
-            divs.forEach(div => {
-                div.classList.add('hidden');
-            });
-            div1.classList.remove('hidden');
-            div2.classList.remove('hidden');
-            div7.classList.remove('hidden');
-            div8.classList.remove('hidden');
-            
-            document.getElementById('stateH1').textContent = translations[lang]['study'];
-            timerMins.textContent = sessionObject.sessionLength;
-        } else {
-            window.alert(translations[lang]["too_short_alert"]) 
-        }
-    } else {
-        window.alert(translations[lang]["no_empty_alert"])
-    }
-}
-
-const timerMins = document.getElementById('timerMins');
-const timerSecs = document.getElementById('timerSecs');
-
-startSessionBtn.addEventListener('click', startSession);
-
-//end a session
-const endSessionBtn = document.getElementById('endSession');
-
-const endSession = () => {
-    /*
-    const div4 = document.getElementById('div4');
-    div4.style.zIndex = '1';
-
-    const div7 = document.getElementById('div7');
-    div7.style.zIndex = '0';
-
-    const div8 = document.getElementById('div8');
-    div8.classList.add('hidden');
-
-    const div5 = document.getElementById('div5');
-    div5.style.display = 'flex';
-    const div6 = document.getElementById('div6');
-    div6.style.display = 'flex';
-    const div3 = document.getElementById('div3');
-    div3.style.display = 'flex';
-    const div1 = document.getElementById('div1');
-    div1.style.gridColumn = '1 / 2';
-    const div2 = document.getElementById('div2');
-    div2.style.gridColumn = '3 / 4';
-    */
-    divs.forEach(div => {
-        div.classList.remove('hidden');
-    });
-    div1.classList.add('hidden');
-    div2.classList.add('hidden');
-    div7.classList.add('hidden');
-    div8.classList.add('hidden');
-    div6extended.classList.add('hidden');
-    //reset page to prep for next
-    nextSessionBtn.classList.remove('hidden');
-    endSessionBtn.classList.remove('hidden');
-    timerMins.textContent = '00'
-    timerSecs.textContent = "00"
-    document.getElementById('stateH1').textContent = translations[lang]['study'];
-    progressor.style.width = '0%';
-    sessionObject.started = false;
-}
-
-endSessionBtn.addEventListener('click', endSession);
-
-//generate session
-const sortSubs = () => {
-    subArray.forEach(sub => {
-        sub.calcUrgency();
-    });
-    const compareUrgency = (a,b) => {
-        return a.urgency - b.urgency ;
-    }
-    subArray.sort(compareUrgency);
-    console.log("New Sorted SubArray:");
-    console.log(subArray);
-    document.getElementById("currentTask").textContent = subArray[0].name.toUpperCase();
-    sessionObject.subject = subArray[0].name;
-    //generate sub tasks
-    const subTaskList = document.getElementById('subTaskList');
-    subTaskList.innerHTML = '';
-    for(let i = 0; i < subArray[0].tasks.length;i++){
-        const li = document.createElement('li');
-        const input = document.createElement('input');
-        input.type = 'checkbox';
-        input.addEventListener('change', (event)=>{
-            if(event.target.checked){
-                subArray[0].tasks[i].done = true;
-                console.log(subArray[0].tasks[i].done);
-                p.style.textDecoration = 'line-through';
-            }else{
-                subArray[0].tasks[i].done = false;
-                console.log(subArray[0].tasks[i].done);
-                p.style.textDecoration = 'none';
-            }
-        });
-        const p = document.createElement('p');
-        p.innerHTML = subArray[0].tasks[i].name;
-
-        li.appendChild(input);
-        li.appendChild(p);
-        subTaskList.appendChild(li);
-    }
-    if (subArray[0].tasks.length===0){
-        const infoLi = document.createElement('li');
-        infoLi.textContent = translations[lang]['no_tasks_found'];
-        subTaskList.appendChild(infoLi);
-    }
-}
-
+let subArray = []; 
 let studyInterval;
 
-const nextSessionOnClick = () => {
-    if (sessionObject.counting === false){
-        sessionObject.next();
-        let secsToStudy;
-        //check for current state and assign minutes
-        if(sessionObject.state === 'study'){
-            secsToStudy = sessionObject.sessionLength * 60;
-        } else if(sessionObject.state === 'break'){
-            secsToStudy = sessionObject.breakLength * 60;
-        }
-        nextSessionBtn.classList.add('hidden');
-        endSessionBtn.classList.add('hidden');
-        skipSessionBtn.classList.remove('hidden');
+//div & container & element selectors
+const div1 = document.getElementById('div1'); //progress bar and timer div in session page
+const div2 = document.getElementById('div2'); //state div in session page (displays study/break)
+const div3 = document.getElementById('div3'); //date and time div in front page
+const div4 = document.getElementById('div4'); //start session div in front page
+const div5 = document.getElementById('div5'); //add subject div in front page
+const subListDiv = document.getElementById('div6'); //sublist in front page (only subjects)
+const div6extended = document.getElementById('div6extended'); //sublist extended with tasks etc
+const div7 = document.getElementById('div7'); //in session main div (current subject, nav buttons)
+const div8 = document.getElementById('div8'); //in session task div (task list, add task button)
+const divs = [div1, div2, div3, div4, div5, subListDiv, div6extended, div7, div8];
+const alertDiv = document.getElementById('alertDiv');
 
-        if(sessionObject.state === 'study'){
-            document.getElementById('stateH1').textContent = translations[lang]['study'];
-        } else if (sessionObject.state === 'break'){
-            document.getElementById('stateH1').textContent = translations[lang]['break'];
-        }
-
-        let progressor = document.getElementById('progressor');
-        let progressBits = secsToStudy;
-
-        studyInterval = setInterval(()=>{
-            secsToStudy--;
-            //update progress bar
-            progressor.style.width = `${100 - secsToStudy*99/progressBits}%`;
-            //update timer
-            timerSecs.textContent = String(secsToStudy % 60).padStart(2, '0');
-            timerMins.textContent = Math.floor(secsToStudy/60);
-            //check clearing condition
-            if(secsToStudy === 0){
-                clearInterval(studyInterval);
-                sessionObject.counting = false;
-                nextSessionBtn.classList.remove('hidden');
-                if(sessionObject.amountLeft === 0) {
-                    nextSessionBtn.classList.add('hidden');
-                };
-                endSessionBtn.classList.remove('hidden');
-                skipSessionBtn.classList.add('hidden');
-            }
-        }, 1000);
-    }
-}
-
-const nextSessionBtn = document.getElementById('nextSession');
-nextSessionBtn.addEventListener('click', nextSessionOnClick);
-
-const skipSessionBtn = document.getElementById('skipSession');
-skipSessionBtn.addEventListener('click', (event)=>{
-    clearInterval(studyInterval);
-    sessionObject.counting = false;
-    nextSessionBtn.classList.remove('hidden');
-    if(sessionObject.amountLeft === 0) {
-        nextSessionBtn.classList.add('hidden');
-    };
-    endSessionBtn.classList.remove('hidden');
-    skipSessionBtn.classList.add('hidden');
-
-    if(sessionObject.state === "study"){
-        timerMins.textContent = '00';
-        timerSecs.textContent = "00";
-        progressor.style.width = '0%';
-        document.getElementById('stateH1').textContent = translations[lang]['break'];
-    } else if (sessionObject.state === "break"){
-        timerMins.textContent = '00';
-        timerSecs.textContent = "00";
-        progressor.style.width = '0%';
-        document.getElementById('stateH1').textContent = translations[lang]['study'];
-    }
-    console.log(sessionObject);
-});
-
-const inSessionTaskAdder = document.getElementById('inSessionTaskAdder');
+let subUl = document.getElementById('subUl');//add children to this ul for new subjects (let bc must be accessible/updatable in addSubject function)
 const subTaskList = document.getElementById('subTaskList');
-//inSessionTaskAdder.addEventListener('click', () => {addTaskEventFunction(subTaskList, subArray[0])});
+const timerMins = document.getElementById('timerMins');
+const timerSecs = document.getElementById('timerSecs');
+const alertH2 = document.getElementById('alertH2');
+
+//button & input selectors
+const expandSubList = document.getElementById('expandSubList');//expand button in sublist
+const collapseSubList = document.getElementById('collapseSubList');//collapse button in extended sublist
+const addNewSubBtn = document.getElementById('addNewSub');
+const startSessionBtn = document.getElementById('startSession');
+const endSessionBtn = document.getElementById('endSession');
+const nextSessionBtn = document.getElementById('nextSession');
+const skipSessionBtn = document.getElementById('skipSession');
+const alertOkBtn = document.getElementById('alertOkButton');
+
+const breaksYes = document.getElementById('breaksYes');
+const inSessionTaskAdder = document.getElementById('inSessionTaskAdder'); //  ?
+//button event listeners
+expandSubList.addEventListener('click', subListExpander);
+collapseSubList.addEventListener('click', subListCollapser);
+addNewSubBtn.addEventListener('click', addSubject);
+startSessionBtn.addEventListener('click', startSession);
+endSessionBtn.addEventListener('click', endSession);
+nextSessionBtn.addEventListener('click', nextSessionOnClick);
+skipSessionBtn.addEventListener('click', skipSessionEvent);
+alertOkBtn.addEventListener('click', hideAlertDiv);
+
+console.log('newScript.js: application logic loaded');
+console.log('newScript.js is fully loaded');

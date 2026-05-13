@@ -89,7 +89,7 @@ const translations = {
 
         //about page
         what_h1: "Was ist Quidey",
-        about_p: "Quidey ist ein intelligentes Lernsystem, das Schülern hilft, Klarheit in ihren Alltag zu bringen. Anstatt selbst herausfinden zu müssen, was als Nächstes zu tun ist, gibt Quidey eine klare Richtung vor und nimmt dem Nutzer die mentale Last der Planung ab.<br><br>Das Ziel von Quidey ist es, Lernen einfacher, strukturierter und gleichzeitig individueller zu machen. Basierend auf Faktoren wie verfügbaren Zeit, Deadlines und persönlicher Sicherheit in einzelnen Themen erstellt das System einen angepassten Lernplan, der sich dynamisch verändert und an das tatsächliche Verhalten des Nutzers anpasst.<br><br>Die Mission von Quidey ist es, Menschen vom Grübeln ins Handeln zu bringen. Nicht durch Druck oder starre Vorgaben, sondern durch ein System, das versteht, unterstützt und motiviert. Quidey soll dafür sorgen, dass der nächste Schritt immer klar ist – damit Lernen nicht überwältigend wirkt, sondern machbar wird.",
+        about_p: "Quidey ist ein intelligentes Lernsystem, das Schülern hilft, Klarheit in ihren Alltag zu bringen. Anstatt selbst herausfinden zu müssen, was als Nächstes zu tun ist, gibt Quidey eine klare Richtung vor und nimmt dem Nutzer die mentale Last der Planung ab. Das Ziel von Quidey ist es, Lernen einfacher, strukturierter und gleichzeitig individueller zu machen. Basierend auf Faktoren wie verfügbaren Zeit, Deadlines und persönlicher Sicherheit in einzelnen Themen erstellt das System einen angepassten Lernplan, der sich dynamisch verändert und an das tatsächliche Verhalten des Nutzers anpasst. Die Mission von Quidey ist es, Menschen vom Grübeln ins Handeln zu bringen. Nicht durch Druck oder starre Vorgaben, sondern durch ein System, das versteht, unterstützt und motiviert. Quidey soll dafür sorgen, dass der nächste Schritt immer klar ist – damit Lernen nicht überwältigend wirkt, sondern machbar wird.",
         news_h1: "Change Log",
 
         contact_us_h1: "Kontaktiere uns",
@@ -220,7 +220,7 @@ const translations = {
 
         //about page
         what_h1: "What is Quidey",
-        about_p: "Quidey is an intelligent learning system designed to help students bring clarity into their daily lives.<br><br>Instead of having to figure out what to do next, Quidey provides clear direction and removes the mental burden of planning.<br><br>The goal of Quidey is to make learning simpler, more structured, and at the same time more personalized. Based on factors such as available time, deadlines, and individual confidence in different subjects, the system creates a customized study plan that adapts dynamically to the user's actual behavior.<br><br>Quidey’s mission is to move people from overthinking to action. Not through pressure or rigid rules, but through a system that understands, supports, and motivates.<br><br>Quidey ensures that the next step is always clear—so learning feels manageable instead of overwhelming.",
+        about_p: "Quidey is an intelligent learning system designed to help students bring clarity into their daily lives. Instead of having to figure out what to do next, Quidey provides clear direction and removes the mental burden of planning. The goal of Quidey is to make learning simpler, more structured, and at the same time more personalized. Based on factors such as available time, deadlines, and individual confidence in different subjects, the system creates a customized study plan that adapts dynamically to the user's actual behavior.<br><br>Quidey’s mission is to move people from overthinking to action. Not through pressure or rigid rules, but through a system that understands, supports, and motivates. Quidey ensures that the next step is always clear—so learning feels manageable instead of overwhelming.",
         news_h1: "Change Log",
 
         contact_us_h1: "Contact us",
@@ -293,8 +293,6 @@ function setLanguage(lang) {
             console.warn("Missing translation:", key);
         }
 
-        console.log("LANG:", lang, "KEY:", key, "TEXT:", text);
-
         el.textContent = text || key;
     });
 
@@ -306,9 +304,6 @@ function setLanguage(lang) {
         if (!text) {
             console.warn("Missing translation:", key);
         }
-
-        console.log("LANG:", lang, "KEY:", key, "TEXT:", text);
-
         el.placeholder = text || key;
     });
 
@@ -320,9 +315,6 @@ function setLanguage(lang) {
         if (!text) {
             console.warn("Missing translation:", key);
         }
-
-        console.log("LANG:", lang, "KEY:", key, "TEXT:", text);
-
         el.value = text || key;
     });
 
@@ -334,9 +326,6 @@ function setLanguage(lang) {
         if (!text) {
             console.warn("Missing translation:", key);
         }
-
-        console.log("LANG:", lang, "KEY:", key, "TEXT:", text);
-
         el.title = text || key;
     });
 }
