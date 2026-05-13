@@ -288,6 +288,10 @@ main div{
     scroll-snap-type: y mandatory;
 }
 
+.addTaskSvgDiv{
+    margin: 0 auto 0 0!important;
+}
+
 #subUlDivExtended div{
     display: inline-flex;
     width: auto;
@@ -295,10 +299,19 @@ main div{
     align-items: center;
     justify-content: space-between;
     margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+#subUlDivExtended div h3{
+    display: inline-block;
+    font-size: 1.1rem;
+    height: 1.6rem;
+    padding: 0.25rem;
+    margin: 0 0 0 auto;
 }
 
 #subUlDivExtended ul {
-    width: 100%;
+    width: auto;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -336,7 +349,11 @@ li p{
 
 @media screen and (max-width: 750px) {
     #subUlDivExtended div{
-        flex-direction: column;
+        flex-direction: row;
+        width: 90%
+    }
+    #subUlDivExtended ul {
+        width: 100%;
     }
 }
 
@@ -359,6 +376,7 @@ li p{
     align-items: center;
     justify-content: flex-start;
     width: 80%;
+    border-radius: 0;
 }
 
 button{

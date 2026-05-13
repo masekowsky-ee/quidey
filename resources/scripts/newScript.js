@@ -94,6 +94,7 @@ const taskGenFunction = (container, subIndexStart, subAmount) => {
         h3.textContent = subArray[j].name.toUpperCase() + ' ' + subArray[j].dueDate;
         const addTask = '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="currentColor"><path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z"/></svg>';
         const addTaskDiv = document.createElement('div');
+        addTaskDiv.classList.add('addTaskSvgDiv');
         const ul = document.createElement('ul');
         addTaskDiv.insertAdjacentHTML('beforeend', addTask);
         addTaskDiv.addEventListener('click', () => {addTaskEventFunction(ul, subArray[j])});
