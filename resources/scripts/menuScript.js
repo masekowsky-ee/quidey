@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch("./resources/html/menu.html")
         .then(res => res.text())
         .then(html => {
-            console.log("MENU HTML:", html);
             document.body.insertAdjacentHTML("afterbegin", html);
             initMenuEvents();
             applyTranslations();

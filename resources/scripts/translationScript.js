@@ -293,8 +293,6 @@ function setLanguage(lang) {
             console.warn("Missing translation:", key);
         }
 
-        console.log("LANG:", lang, "KEY:", key, "TEXT:", text);
-
         el.textContent = text || key;
     });
 
@@ -306,9 +304,6 @@ function setLanguage(lang) {
         if (!text) {
             console.warn("Missing translation:", key);
         }
-
-        console.log("LANG:", lang, "KEY:", key, "TEXT:", text);
-
         el.placeholder = text || key;
     });
 
@@ -320,9 +315,6 @@ function setLanguage(lang) {
         if (!text) {
             console.warn("Missing translation:", key);
         }
-
-        console.log("LANG:", lang, "KEY:", key, "TEXT:", text);
-
         el.value = text || key;
     });
 
@@ -334,9 +326,6 @@ function setLanguage(lang) {
         if (!text) {
             console.warn("Missing translation:", key);
         }
-
-        console.log("LANG:", lang, "KEY:", key, "TEXT:", text);
-
         el.title = text || key;
     });
 }
