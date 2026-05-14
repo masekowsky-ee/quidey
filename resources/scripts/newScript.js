@@ -48,7 +48,12 @@ const addTaskEventFunction = (container, sub) => {
             const newTaskObject = {name: newTaskText.textContent.toLowerCase().trim(), done: false};
             currentSub.tasks.push(newTaskObject);
             console.log(currentSub.tasks);
-
+            const editBtn = document.createElement('button');
+            editBtn.classList.add('editBtn');
+            editBtn.insertAdjacentHTML('beforeend', '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="currentColor"><path d="M180-180h44l472-471-44-44-472 471v44Zm-30 60q-13 0-21.5-8.5T120-150v-73q0-12 5-23.5t13-19.5l557-556q8-8 19-12.5t23-4.5q11 0 22 4.5t20 12.5l44 44q9 9 13 20t4 22q0 11-4.5 22.5T823-694L266-138q-8 8-19.5 13t-23.5 5h-73Zm629-617-41-41 41 41Zm-105 64-22-22 44 44-22-22Z"/></svg>');
+            editBtn.addEventListener('click', () => {
+                editTaskEventFunction(newTaskObject);
+            });
             const checkBox = document.createElement('input');
             checkBox.type = 'checkbox';
             checkBox.addEventListener('change', (event) => {
@@ -67,6 +72,7 @@ const addTaskEventFunction = (container, sub) => {
             });
             newTask.appendChild(checkBox);
             newTask.appendChild(newTaskText);
+            newTask.appendChild(editBtn);
         
             newTaskText.addEventListener('click', (event) => {
                 newTask.remove();
@@ -83,6 +89,17 @@ const addTaskEventFunction = (container, sub) => {
     }); 
     container.appendChild(taskInput);
     taskInput.focus();
+}
+
+const editTaskEventFunction = (task) => {
+    const outerDiv = document.createElement('div');
+    outerDiv.classList.add('temporaryDivBg');
+    const editDiv = document.createElement('div');
+    editDiv.classList.add('abcDiv');
+    editDiv.classList.add('innerAlertDiv');
+
+    outerDiv.appendChild(editDiv);
+    document.body.appendChild(outerDiv);
 }
 
 const taskGenFunction = (container, subIndexStart, subAmount) => {
@@ -108,6 +125,12 @@ const taskGenFunction = (container, subIndexStart, subAmount) => {
         for(let i = 0; i < subArray[j].tasks.length; i++){
             const li = document.createElement('li');
             const input = document.createElement('input');
+            const editBtn = document.createElement('button');
+            editBtn.classList.add('editBtn');
+            editBtn.insertAdjacentHTML('beforeend', '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="currentColor"><path d="M180-180h44l472-471-44-44-472 471v44Zm-30 60q-13 0-21.5-8.5T120-150v-73q0-12 5-23.5t13-19.5l557-556q8-8 19-12.5t23-4.5q11 0 22 4.5t20 12.5l44 44q9 9 13 20t4 22q0 11-4.5 22.5T823-694L266-138q-8 8-19.5 13t-23.5 5h-73Zm629-617-41-41 41 41Zm-105 64-22-22 44 44-22-22Z"/></svg>');
+            editBtn.addEventListener('click', () => {
+                editTaskEventFunction(subArray[j].tasks[i]);
+            });
             input.type = 'checkbox';
             const p = document.createElement('p');
             if(subArray[j].tasks[i].done){
@@ -136,6 +159,7 @@ const taskGenFunction = (container, subIndexStart, subAmount) => {
 
             li.appendChild(input);
             li.appendChild(p);
+            li.appendChild(editBtn);
             ul.appendChild(li);
         }
         if (subArray[j].tasks.length===0){

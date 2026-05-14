@@ -640,3 +640,39 @@ input[type="checkbox"]{
     justify-self: flex-end;
     margin: auto;
 }
+
+.editBtn{
+    border: 1px dashed var(--divText);
+    padding: 0;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    height: 3rem;
+    width: 3rem;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.temporaryDivBg{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.abcDiv{
+    z-index: 3001;
+    background-color: var(--div);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20rem;
+    height: 10rem;
+}
