@@ -90,12 +90,16 @@ const taskGenFunction = (container, subIndexStart, subAmount) => {
     container.innerHTML = '';
     for(let j = subIndexStart; j < subAmount; j++){
         const divContainer = document.createElement('div');
+        divContainer.classList.add('tgContainerDiv');
         const h3 = document.createElement('h3');
+        h3.classList.add('tgContainerDivH3');
         h3.textContent = subArray[j].name.toUpperCase() + ' ' + subArray[j].dueDate;
         const addTask = '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="currentColor"><path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z"/></svg>';
         const addTaskDiv = document.createElement('div');
+        addTaskDiv.classList.add('tgContainerDivAddTaskDiv');
         addTaskDiv.classList.add('addTaskSvgDiv');
         const ul = document.createElement('ul');
+        ul.classList.add('tgContainerDivUl');
         addTaskDiv.insertAdjacentHTML('beforeend', addTask);
         addTaskDiv.addEventListener('click', () => {addTaskEventFunction(ul, subArray[j])});
         divContainer.appendChild(h3);
@@ -367,39 +371,7 @@ const sortSubs = () => {
     document.getElementById("currentTask").textContent = subArray[0].name.toUpperCase();
     sessionObject.subject = subArray[0].name;
     //generate sub tasks
-    subTaskList.innerHTML = '';
-    for(let i = 0; i < subArray[0].tasks.length;i++){
-        const li = document.createElement('li');
-        const input = document.createElement('input');
-        input.type = 'checkbox';
-        const p = document.createElement('p');
-        p.innerHTML = subArray[0].tasks[i].name;
-
-        if(subArray[0].tasks[i].done){
-            input.checked = true;
-            p.style.textDecoration = 'line-through';
-        }
-        input.addEventListener('change', (event)=>{
-            if(event.target.checked){
-                subArray[0].tasks[i].done = true;
-                console.log(subArray[0].tasks[i].done);
-                p.style.textDecoration = 'line-through';
-            }else{
-                subArray[0].tasks[i].done = false;
-                console.log(subArray[0].tasks[i].done);
-                p.style.textDecoration = 'none';
-            }
-            sortTasks(subArray[i]);
-        });
-        li.appendChild(input);
-        li.appendChild(p);
-        subTaskList.appendChild(li);
-    }
-    if (subArray[0].tasks.length===0){
-        const infoLi = document.createElement('li');
-        infoLi.textContent = translations[lang]['no_tasks_found'];
-        subTaskList.appendChild(infoLi);
-    }
+    taskGenFunction(subTaskList, 0, 1);
 }
 
 const nextSessionOnClick = () => {
