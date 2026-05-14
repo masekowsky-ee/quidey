@@ -641,8 +641,8 @@ input[type="checkbox"]{
     margin: auto;
 }
 
-.editBtn{
-    border: 1px dashed var(--divText);
+.editBtn, .closeBtn{
+    border: 1px solid var(--divText);
     padding: 0;
     margin-left: 0.5rem;
     cursor: pointer;
@@ -652,6 +652,10 @@ input[type="checkbox"]{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.closeBtn{
+    color: var(--red);
 }
 
 .temporaryDivBg{

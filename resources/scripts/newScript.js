@@ -97,7 +97,14 @@ const editTaskEventFunction = (task) => {
     const editDiv = document.createElement('div');
     editDiv.classList.add('abcDiv');
     editDiv.classList.add('innerAlertDiv');
+    const closeBtn = document.createElement('button');
+    closeBtn.classList.add('closeBtn');
+    closeBtn.insertAdjacentHTML('beforeend', '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="currentColor"><path d="M480-438 270-228q-9 9-21 9t-21-9q-9-9-9-21t9-21l210-210-210-210q-9-9-9-21t9-21q9-9 21-9t21 9l210 210 210-210q9-9 21-9t21 9q9 9 9 21t-9 21L522-480l210 210q9 9 9 21t-9 21q-9 9-21 9t-21-9L480-438Z"/></svg>')
+    closeBtn.addEventListener('click', () => {
+        outerDiv.remove();
+    });
 
+    editDiv.appendChild(closeBtn);
     outerDiv.appendChild(editDiv);
     document.body.appendChild(outerDiv);
 }
