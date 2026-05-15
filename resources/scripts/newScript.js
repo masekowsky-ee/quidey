@@ -1,4 +1,8 @@
 console.log('newScript.js is running');
+console.log('newScript.js is loading modules');
+
+import { StudySubject, Task } from './classModule.js';
+
 console.log('newScript.js is loading functions');
 //functions 
 const updateTimeDate = () => {
