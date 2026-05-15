@@ -1,13 +1,19 @@
+let subArray = [];
+let sessionArray = [];
+
 class StudySubject {
     constructor(name, dueDate, confidenceLevel) {
         this.name = name;
         this.dueDate = dueDate;
-        this.creationDate = new Date();
+        this.now = new Date();
+        this.creationDate = this.now.toLocaleDateString();
         this.confidence = confidenceLevel;
-        this.daysLeft = this.calculateDaysLeft();
+        this.daysLeft = 0;
         this.practicedAmount = 1;
         this.urgency = this.calculateUrgency();
         this.tasks = [];
+
+        this.calculateDaysLeft();
 
         subArray.push(this);
         console.log(this);
@@ -15,7 +21,7 @@ class StudySubject {
 
     calculateDaysLeft() {
         const today = new Date();
-        const timeDiff = this.dueDate - today;
+        const timeDiff = Number(this.dueDate - today);
         this.daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
     }
 
@@ -72,4 +78,4 @@ class Task {
     }
 }
 
-export { StudySubject, Task };
+export { StudySubject, Task, subArray, sessionArray };

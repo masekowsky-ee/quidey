@@ -1,7 +1,7 @@
 console.log('newScript.js is running');
 console.log('newScript.js is loading modules');
 
-import { StudySubject, Task } from './classModule.js';
+import { StudySubject, Task, subArray, sessionArray } from './classModule.js';
 
 console.log('newScript.js is loading functions');
 //functions 
@@ -532,7 +532,6 @@ console.log('newScript.js is starting application logic');
 const lang = localStorage.getItem("lang") || "de"; //load language from local storage or default to german
 setInterval(updateTimeDate ,1000); //clock and date update every second
 
-let subArray = []; 
 let studyInterval;
 
 //div & container & element selectors
