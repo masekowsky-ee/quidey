@@ -12,6 +12,12 @@ const intervalFunction = () => {
     }, 1000);
 }
 
+const saveSession = () => {
+    sessionArray.push(
+        {date: new Date(Date.now()).toISOString().split('T')[0], totalTime: state.session.timeSpent,}
+    );
+}
+
 const state = {
     inSession: false,
     start(){
@@ -35,6 +41,19 @@ const state = {
             active: false
         },
         finished: false,
+        subjectsStudied = [],
+        step(){
+            if (this.sessionsDone === 0){
+                this.start();
+            } else if (this.sessionsDone < this.sessionAmount) {
+                this.next();
+            } else if (this.sessionsDone === this.sessionAmount){
+                this.finish();
+            }
+        },
+
+        // only call step function  
+
         start(){ //start session 
             this.interval.intervalState = this.sessionLength; //assign countdown
             intervalFunction();
@@ -45,6 +64,8 @@ const state = {
                     if(this.breaks){ //breaks - check if session or break
                         if(this.sessionsDone === this.breaksDone){//when coming out of a session
                             this.sessionsDone ++;
+                            subArray[0].practicedAmount ++;
+                            sortSubs();
                             this.interval.intervalState = this.breakLength;
                             intervalFunction();
                         } else{ // when coming out of a break
@@ -54,6 +75,9 @@ const state = {
                         }
                     }else{ //no breaks - instant continue
                         this.sessionsDone ++;
+                        subArray[0].practicedAmount ++;
+                        sortSubs();
+                        //update state session subject !!!
                         this.interval.intervalState = this.sessionLength;
                         intervalFunction();
                     }
