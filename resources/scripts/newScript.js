@@ -73,6 +73,7 @@ const addTaskEventFunction = (container, sub) => {
                     console.log(currentSub.tasks);
                 }
                 sortTasks(sub);
+                saveSubArray();
             });
             newTask.appendChild(checkBox);
             newTask.appendChild(newTaskText);
@@ -83,6 +84,7 @@ const addTaskEventFunction = (container, sub) => {
                 //remove from task array
                 currentSub.tasks = currentSub.tasks.filter(task => task !== newTaskObject);
                 console.log(currentSub.tasks);
+                saveSubArray();
             });
             container.appendChild(newTask);
             event.target.remove();
@@ -93,6 +95,7 @@ const addTaskEventFunction = (container, sub) => {
     }); 
     container.appendChild(taskInput);
     taskInput.focus();
+    saveSubArray();
 }
 
 const editTaskEventFunction = (task) => {
@@ -141,6 +144,7 @@ const taskGenFunction = (container, subIndexStart, subAmount) => {
             editBtn.insertAdjacentHTML('beforeend', '<svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="currentColor"><path d="M180-180h44l472-471-44-44-472 471v44Zm-30 60q-13 0-21.5-8.5T120-150v-73q0-12 5-23.5t13-19.5l557-556q8-8 19-12.5t23-4.5q11 0 22 4.5t20 12.5l44 44q9 9 13 20t4 22q0 11-4.5 22.5T823-694L266-138q-8 8-19.5 13t-23.5 5h-73Zm629-617-41-41 41 41Zm-105 64-22-22 44 44-22-22Z"/></svg>');
             editBtn.addEventListener('click', () => {
                 editTaskEventFunction(subArray[j].tasks[i]);
+                saveSubArray();
             });
             input.type = 'checkbox';
             const p = document.createElement('p');
@@ -159,6 +163,7 @@ const taskGenFunction = (container, subIndexStart, subAmount) => {
                     p.style.textDecoration = 'none';
                 }
                 sortTasks(subArray[j]);
+                saveSubArray();
             });
             p.textContent = subArray[j].tasks[i].name.toUpperCase();
             p.addEventListener('click', () => {
@@ -166,6 +171,7 @@ const taskGenFunction = (container, subIndexStart, subAmount) => {
                 //remove from task array
                 subArray[j].tasks = subArray[j].tasks.filter(task => task.name !== p.textContent.toLowerCase().trim());
                 console.log(subArray[j].tasks);
+                saveSubArray();
             });
 
             li.appendChild(input);
@@ -243,6 +249,7 @@ const addSubject = () => {
                 event.target.remove();
                 li.remove();
                 console.log(subArray);
+                saveSubArray();
             });
             subUl = document.getElementById('subUl');   //update subUl for new li
             subUl.appendChild(li);
@@ -303,6 +310,7 @@ const subListCollapser = () => {
             for (i=0; i < subArray.length; i++){
                 if(subArray[i].name === li.id){
                     subArray.splice(i, 1);
+                    saveSubArray();
                 }
             }
             event.target.remove();
@@ -365,6 +373,7 @@ const startSession = () => {
     } else {
         triggerAlert("no_empty_alert");
     }
+    saveSubArray();
 }
 
 const endSession = () => {
@@ -384,12 +393,14 @@ const endSession = () => {
     document.getElementById('stateH1').textContent = translations[lang]['study'];
     progressor.style.width = '0%';
     sessionObject.started = false;
+    saveSubArray();
 }
 
 const sortTasks = (sub) => {
     sub.tasks.sort((a,b)=>{
         return a.done - b.done;
     });
+    saveSubArray();
 }
 
 const sortSubs = () => {
@@ -407,6 +418,7 @@ const sortSubs = () => {
     sessionObject.subject = subArray[0].name;
     //generate sub tasks
     taskGenFunction(subTaskList, 0, 1);
+    saveSubArray();
 }
 
 const nextSessionOnClick = () => {
@@ -452,6 +464,7 @@ const nextSessionOnClick = () => {
             }
         }, 1000);
     }
+    saveSubArray();
 }
 
 const skipSessionEvent = ()=>{
@@ -476,7 +489,12 @@ const skipSessionEvent = ()=>{
         document.getElementById('stateH1').textContent = translations[lang]['study'];
     }
     console.log(sessionObject);
+    saveSubArray();
 };
+
+const saveSubArray = () => {
+    localStorage.setItem('subArray', JSON.stringify(subArray));
+}
 
 console.log('newScript.js: functions loaded');
 
@@ -552,6 +570,8 @@ setInterval(updateTimeDate ,1000); //clock and date update every second
 
 let subArray = []; 
 let studyInterval;
+
+localStorage.setItem('subArray', JSON.stringify(subArray));
 
 //div & container & element selectors
 const div1 = document.getElementById('div1'); //progress bar and timer div in session page
