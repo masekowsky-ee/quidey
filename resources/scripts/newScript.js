@@ -571,7 +571,9 @@ setInterval(updateTimeDate ,1000); //clock and date update every second
 let subArray = []; 
 let studyInterval;
 
+subArray = JSON.parse(localStorage.getItem('subArray')) ?? []
 localStorage.setItem('subArray', JSON.stringify(subArray));
+
 
 //div & container & element selectors
 const div1 = document.getElementById('div1'); //progress bar and timer div in session page
