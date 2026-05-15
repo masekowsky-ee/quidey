@@ -1,4 +1,16 @@
-import { subArray } from "./classModule";
+import { subArray, sessionArray } from "./classModule";
+
+const intervalFunction = () => {
+    this.interval.active = true;
+    this.interval.sessionInterval = setInterval(()=>{
+        this.interval.intervalState--; // count
+        console.log(this.interval.intervalState);    //log timer to console for test purposes
+        if(this.interval.intervalState === 0 || this.interval.pauseInterval === true || this.interval.skipInterval === true){ //check for condition to finish
+            clearInterval(this.interval.sessionInterval);
+            this.interval.active = false;
+        }
+    }, 1000);
+}
 
 const state = {
     inSession: false,
@@ -24,60 +36,34 @@ const state = {
         },
         finished: false,
         start(){ //start session 
-            if (breaks === false){ //no breaks
-                this.interval.intervalState = this.totalLength; //assign countdown
-                this.interval.active = true;
-                this.interval.sessionInterval = setInterval(()=>{
-                    this.interval.intervalState--; // count
-                    console.log(this.interval.intervalState);    //log timer to console for test purposes
-                    if(this.interval.intervalState === 0 || this.interval.pauseInterval === true || this.interval.skipInterval === true){ //check for condition to finish
-                        clearInterval(this.interval.sessionInterval);
-                        this.interval.active = false;
-                    }
-                }, 1000);
-            } else if (breaks === true){
-                this.interval.intervalState = this.sessionLength; //assign countdown
-                this.sessionsDone ++;
-                this.interval.active = true;
-                this.interval.sessionInterval = setInterval(()=>{
-                    this.interval.intervalState--; // count
-                    console.log(this.interval.intervalState);    //log timer to console for test purposes
-                    if(this.interval.intervalState === 0 || this.interval.pauseInterval === true || this.interval.skipInterval === true){ //check for condition to finish
-                        clearInterval(this.interval.sessionInterval);
-                        this.interval.active = false;
-                    }
-                }, 1000);
-            }
+            this.interval.intervalState = this.sessionLength; //assign countdown
+            intervalFunction();
         },
         next(){
             if(this.interval.active === false){ //check that interval is not currently running
-                if(this.breaks){ //next logic if breaks included
-                    if(this.sessionAmount > this.sessionsDone){
-                        this.sessionsLeft -= 1;
-                        this.timeSpent += this.sessionLength;
-                        sortSubs();
-                    } else {
-                        this.finished = true;
-                    }                           
-                } else{ //next logic without breaks
-                    if(this.interval.intervalState === 0 || this.interval.skipInterval === true){ //finish session if all time done or time is skipped
-                        console.log("Session Done");
-                        this.finished = true;
-                    }else{
-                        this.interval.active = true;
-                        this.interval.sessionInterval = setInterval(()=>{
-                            this.interval.intervalState--; // count
-                            console.log(this.interval.intervalState);    //log timer to console for test purposes
-                            if(this.interval.intervalState === 0 || this.interval.pauseInterval === true || this.interval.skipInterval === true){ //check for condition to finish
-                                clearInterval(this.interval.sessionInterval);
-                                this.interval.active = false;
-                            }
-                        }, 1000);
+                if(this.interval.intervalState === 0){//go to next 
+                    if(this.breaks){ //breaks - check if session or break
+                        if(this.sessionsDone === this.breaksDone){//when coming out of a session
+                            this.sessionsDone ++;
+                            this.interval.intervalState = this.breakLength;
+                            intervalFunction();
+                        } else{ // when coming out of a break
+                            this.breaksDone ++;
+                            this.interval.intervalState = this.sessionLength;
+                            intervalFunction();
+                        }
+                    }else{ //no breaks - instant continue
+                        this.sessionsDone ++;
+                        this.interval.intervalState = this.sessionLength;
+                        intervalFunction();
                     }
+                } else{ //continue countdown
+                    this.interval.intervalState = this.sessionLength;
+                    intervalFunction();
                 }
             }
         },
-        finish(){
+        finish(){   // finish session
             saveSession();
             state.inSession = false;
         }
