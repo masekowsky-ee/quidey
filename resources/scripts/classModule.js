@@ -10,6 +10,7 @@ class StudySubject {
         this.tasks = [];
 
         subArray.push(this);
+        console.log(this);
     }
 
     calculateDaysLeft() {
@@ -35,6 +36,12 @@ class StudySubject {
         this.practicedAmount += 1;
         this.calculateUrgency();
     }
+
+    sortTasks(){
+    this.tasks.sort((a,b)=>{
+        return a.done - b.done;
+    });
+}
 }
 
 class Task {

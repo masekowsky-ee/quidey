@@ -49,7 +49,7 @@ const addTaskEventFunction = (container, sub) => {
             const newTaskText = document.createElement('p');
             newTaskText.textContent = taskInput.value.toUpperCase();
             //add task to sub object
-            const newTaskObject = {name: newTaskText.textContent.toLowerCase().trim(), done: false};
+            const newTaskObject = new Task(taskInput.value.toLowerCase().trim(), currentSub);
             currentSub.tasks.push(newTaskObject);
             console.log(currentSub.tasks);
             const editBtn = document.createElement('button');
@@ -207,25 +207,7 @@ const addSubject = () => {
 
         if (subInput.value && dateInput.value && daysAvailable >= 0){ //check whether input is not empty and valid
 
-            const newSub = {
-                name: subInput.value.toLowerCase().trim(), 
-                dueDate: dateInput.value, 
-                confidence: Number(confInput.value),
-                daysLeft: daysAvailable,
-                calcDays(){
-                    this.daysLeft = Math.ceil((this.dueDate - new Date())/(1000*60*60*24))
-                },
-                practicedAmount: 1,
-                urgency: 0,
-                calcUrgency(){
-                    this.urgency = this.daysLeft * this.confidence * this.practicedAmount;
-                },
-                tasks: []
-            }
-
-            subArray.push(newSub);
-            subArray.at(-1).calcUrgency();
-            console.log(subArray.at(-1));
+            const newSub = new StudySubject(subInput.value.toLowerCase().trim(), dateInput.value, Number(confInput.value));
             //add li subject
             const li = document.createElement('li');
             li.id = subInput.value.toLowerCase().trim();
@@ -385,13 +367,13 @@ const endSession = () => {
     progressor.style.width = '0%';
     sessionObject.started = false;
 }
-
+/*
 const sortTasks = (sub) => {
     sub.tasks.sort((a,b)=>{
         return a.done - b.done;
     });
 }
-
+*/
 const sortSubs = () => {
     subArray.forEach(sub => {
         sub.calcUrgency();
