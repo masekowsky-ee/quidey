@@ -6,14 +6,15 @@ class StudySubject {
         this.name = name;
         this.dueDate = dueDate;
         this.now = new Date();
-        this.creationDate = this.now.toLocaleDateString();
+        this.creationDate = new Date(Date.now()).toISOString().split('T')[0];
         this.confidence = confidenceLevel;
         this.daysLeft = 0;
         this.practicedAmount = 1;
-        this.urgency = this.calculateUrgency();
+        this.urgency = 0;
         this.tasks = [];
 
         this.calculateDaysLeft();
+        this.calculateUrgency();
 
         subArray.push(this);
         console.log(this);
@@ -21,7 +22,7 @@ class StudySubject {
 
     calculateDaysLeft() {
         const today = new Date();
-        const timeDiff = Number(this.dueDate - today);
+        const timeDiff = new Date(this.dueDate) - today;
         this.daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
     }
 
