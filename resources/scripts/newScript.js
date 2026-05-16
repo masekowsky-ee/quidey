@@ -92,6 +92,7 @@ const addTaskEventFunction = (container, sub) => {
                 container.firstElementChild.remove();
             }
         }
+        saveSubArray();
     }); 
     container.appendChild(taskInput);
     taskInput.focus();
@@ -193,6 +194,29 @@ const taskGenFunction = (container, subIndexStart, subAmount) => {
     }
 }
 
+const subBuilder = (sub) => {    
+            const li = document.createElement('li');
+            li.id = sub.name;
+            const span = document.createElement('span');
+            span.textContent = "🗑️";
+            span.id = `${sub.name.toLowerCase().trim()}Remove`;
+            li.textContent = sub.name + ' ' + sub.dueDate;
+            li.appendChild(span);
+            span.addEventListener('click', (event) => {   //add remove subject function
+                for (i=0; i < subArray.length; i++){
+                    if(subArray[i].name === li.id){
+                        subArray.splice(i, 1);
+                    }
+                }
+                event.target.remove();
+                li.remove();
+                console.log(subArray);
+                saveSubArray();
+            });
+            subUl = document.getElementById('subUl');   //update subUl for new li
+            subUl.appendChild(li);
+        }
+
 const addSubject = () => {
     //get inputs
     const subInput = document.getElementById('subjectInput');
@@ -233,26 +257,7 @@ const addSubject = () => {
             subArray.at(-1).calcUrgency();
             console.log(subArray.at(-1));
             //add li subject
-            const li = document.createElement('li');
-            li.id = subInput.value.toLowerCase().trim();
-            const span = document.createElement('span');
-            span.textContent = "🗑️";
-            span.id = `${subInput.value.toLowerCase().trim()}Remove`;
-            li.textContent = subInput.value + ' ' + dateInput.value;
-            li.appendChild(span);
-            span.addEventListener('click', (event) => {   //add remove subject function
-                for (i=0; i < subArray.length; i++){
-                    if(subArray[i].name === li.id){
-                        subArray.splice(i, 1);
-                    }
-                }
-                event.target.remove();
-                li.remove();
-                console.log(subArray);
-                saveSubArray();
-            });
-            subUl = document.getElementById('subUl');   //update subUl for new li
-            subUl.appendChild(li);
+            subBuilder(newSub);
             //clear inputs
             subInput.value = '';
             dateInput.value = '';
@@ -270,6 +275,7 @@ const addSubject = () => {
         triggerAlert("no_double_alert");
     }
     console.log(subArray);
+    saveSubArray();
 }
 
 //collapse sub list
@@ -494,6 +500,7 @@ const skipSessionEvent = ()=>{
 
 const saveSubArray = () => {
     localStorage.setItem('subArray', JSON.stringify(subArray));
+    console.log('Saved subArray to localStorage');
 }
 
 console.log('newScript.js: functions loaded');
@@ -571,8 +578,8 @@ setInterval(updateTimeDate ,1000); //clock and date update every second
 let subArray = []; 
 let studyInterval;
 
-subArray = JSON.parse(localStorage.getItem('subArray')) ?? []
-localStorage.setItem('subArray', JSON.stringify(subArray));
+subArray = JSON.parse(localStorage.getItem('subArray'));
+
 
 
 //div & container & element selectors
@@ -616,5 +623,8 @@ nextSessionBtn.addEventListener('click', nextSessionOnClick);
 skipSessionBtn.addEventListener('click', skipSessionEvent);
 alertOkBtn.addEventListener('click', hideAlertDiv);
 
+if(subArray[0]){
+    subArray.forEach(sub => subBuilder(sub));
+}
 console.log('newScript.js: application logic loaded');
 console.log('newScript.js is fully loaded');
