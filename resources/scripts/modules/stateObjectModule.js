@@ -22,9 +22,22 @@ const saveSession = () => {
 }
 
 export const state = {
-    inSession: false,
-    startSession(){
-        this.inSession = true;
+    stateList: ['home', 'session', 'subList'],
+    _state: 'home',
+    set state(strOrNum){
+        if(typeof strOrNum === 'number'){
+            if(strOrNum >= 0 && strOrNum < this.stateList.length){
+                this._state = this.stateList[strOrNum];
+            } else{
+                throw Error('state setter only takes numbers that fit an index of the state list');
+            }
+        }else if(typeof strOrNum === 'string'){
+            if(this.stateList.includes(strOrNum)){
+                this._state = strOrNum;
+            } else{
+                throw Error('must enter valid state from state list to set state');
+            }
+        }
     },
     session: {
         _subject: subArray[0],
@@ -155,7 +168,7 @@ export const state = {
         },
         finish(){   // finish session
             saveSession();
-            state.inSession = false;
+            state.state('home');
         }
     }
 }
