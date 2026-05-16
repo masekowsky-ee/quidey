@@ -1,7 +1,7 @@
 console.log('newScript.js is running');
 console.log('newScript.js is loading modules');
 
-import { StudySubject, Task, subArray, sessionArray } from './classModule.js';
+import { StudySubject, Task } from './modules/classModule.js';
 
 console.log('newScript.js is loading functions');
 //functions 

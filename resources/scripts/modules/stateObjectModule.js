@@ -1,0 +1,157 @@
+const intervalFunction = () => {
+    this.interval.active = true;
+    this.interval.sessionInterval = setInterval(()=>{
+        this.interval.intervalState--; // count
+        console.log(this.interval.intervalState);    //log timer to console for test purposes
+        if(this.interval.intervalState === 0 || this.interval.pauseInterval === true || this.interval.skipInterval === true){ //check for condition to finish
+            clearInterval(this.interval.sessionInterval);
+            this.interval.active = false;
+        }
+    }, 1000);
+}
+
+const saveSession = () => {
+    sessionArray.push(
+        {date: new Date(Date.now()).toISOString().split('T')[0], totalTime: state.session.timeSpent,}
+    );
+}
+
+const state = {
+    inSession: false,
+    startSession(){
+        this.inSession = true;
+    },
+    session: {
+        _subject: subArray[0],
+        _breaks: true,
+        _timeSpent: 0,
+        _sessionAmount: 3,
+        _sessionsDone: 0,
+        _breaksDone: 0,
+        _breakLength: 5*60,     //break length in secs
+        _sessionLength: 25*60,  //session length in secs
+        _totalLength: 90*60,     //total length in secs
+        interval: {
+            sessionInterval: null,  // key for interval
+            _intervalState: null,    //countdown key
+            pauseInterval: false,   //pause
+            skipInterval: false,     //skip
+            active: false,
+            set intervalState(){
+                this.intervalState = state.session._sessionLength;
+            },
+
+
+        },
+        finished: false,
+        subjectsStudied = [],
+
+        set subject(){
+            this._subject = subArray[0];
+        },
+        set breaks(bool){
+            if(bool === true || bool === false){
+                this._breaks = bool;
+            } else {
+                throw Error('state.session.breaks must be set equal to a boolean value');
+            }
+        },
+        calcSessionAmount(){
+            if(this._breaks){
+                this._sessionAmount = Math.floor(this._totalLength / (this._sessionLength + this._breakLength));
+            } else {
+                this._sessionAmount = Math.floor(this._totalLength / this._sessionLength);
+            }
+        },
+        set breakLength(num){
+            if(num > 60){
+                this._breakLength = num;
+            }else {
+                console.warn('breakLength must be a number greater than 60 (seconds)')
+            }
+        },
+        set sessionLength(num){
+            if(num >= 15*60){
+                this._sessionLength = num;
+            } else {
+                console.warn('sessionLength must be a number greater than 900 (seconds)')
+            }
+        },
+        set totalLength(num){
+            if(this._totalLength >= 15*60){
+                this._totalLength = num;
+            } else {
+                console.warn('totalLength must be a number greater than 900 (seconds)')
+            }
+        },
+        set finished(bool){
+            if(bool === true || bool === false){
+                this._finished = bool;
+            } else {
+                throw Error('state.session.breaks must be set equal to a boolean value');
+            }
+        },
+        incTimeSpent(){
+            this._timeSpent++;
+        },
+        incSessionsDone(){
+            this._sessionsDone++;
+        },
+        incBreaksDone(){
+            this._breaksDone++;
+        },
+
+        step(){
+            if (this.sessionsDone === 0){
+                this.start();
+            } else if (this.sessionsDone < this.sessionAmount) {
+                this.next();
+            } else if (this.sessionsDone === this.sessionAmount){
+                this.finish();
+            }
+        },
+
+        // only call step function  
+
+        start(){ //start session 
+            this.interval.intervalState(); //assign countdown
+            intervalFunction();
+        },
+        next(){
+            if(this.interval.active === false){ //check that interval is not currently running
+                if(this.interval._intervalState === 0){//go to next 
+                    if(this._breaks){ //breaks - check if session or break
+                        if(this._sessionsDone === this._breaksDone){//when coming out of a session
+                            this.incSessionsDone();
+                            subArray[0].practicedAmount ++;
+                            sortSubs();
+                            this.subject();
+                            this.interval.intervalState(this._breakLength);
+                            intervalFunction();
+                        } else{ // when coming out of a break
+                            this.incBreaksDone();
+                            this.interval.intervalState(this._sessionLength);
+                            intervalFunction();
+                        }
+                    }else{ //no breaks - instant continue
+                        this.incSessionsDone();
+                        subArray[0].practicedAmount ++;
+                        sortSubs();
+                        this.subject();
+                        this.interval.intervalState(this._sessionLength);
+                        intervalFunction();
+                    }
+                } else{ //continue countdown
+                    this.interval.intervalState(this.sessionLength);
+                    intervalFunction();
+                }
+            }
+        },
+        finish(){   // finish session
+            saveSession();
+            state.inSession = false;
+        }
+    }
+}
+
+export default state;

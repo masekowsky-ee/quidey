@@ -1,6 +1,3 @@
-let subArray = [];
-let sessionArray = [];
-
 class StudySubject {
     constructor(name, dueDate, confidenceLevel) {
         this.name = name;
@@ -13,27 +10,13 @@ class StudySubject {
         this.urgency = 0;
         this.tasks = [];
 
-        this.calculateDaysLeft();
-        this.calculateUrgency();
+        calculateDaysLeft(this);
+        calculateUrgency(this);
 
         subArray.push(this);
         console.log(this);
     }
-
-    calculateDaysLeft() {
-        const today = new Date();
-        const timeDiff = new Date(this.dueDate) - today;
-        this.daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-    }
-
-    calculateUrgency() {
-        this.urgency = this.daysLeft * this.confidence * this.practicedAmount;
-    }
-
-    addTask(taskName){
-        new Task(taskName, this);
-    }
-
+/*
     addSession(timeSpent) {
         const session = {
             date: new Date(),
@@ -43,12 +26,7 @@ class StudySubject {
         this.practicedAmount += 1;
         this.calculateUrgency();
     }
-
-    sortTasks(){
-    this.tasks.sort((a,b)=>{
-        return a.done - b.done;
-    });
-}
+*/
 }
 
 class Task {
@@ -78,5 +56,39 @@ class Task {
         this.done = true;
     }
 }
+//creator functions
+function calcUrgency(sub){
+    sub.urgency = sub.daysLeft * sub.confidence * sub.practicedAmount;
+}
 
-export { StudySubject, Task, subArray, sessionArray };
+function addTask(name, sub){
+    new Task(name, sub);
+}
+
+function sortTasks(criteria){
+    this.tasks.sort((a,b)=>{
+        return a.criteria - b.criteria;
+    });
+}
+
+function calculateDaysLeft(sub){
+    const today = new Date();
+    const timeDiff = new Date(sub.dueDate) - today;
+    sub.daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+}
+
+//
+
+const sortSubs = () => {
+    subArray.forEach(sub => {
+        calcUrgency(sub);
+    });
+    const compareUrgency = (a,b) => {
+        return a.urgency - b.urgency ;
+    }
+    subArray.sort(compareUrgency);
+    console.log("New Sorted SubArray: " + subArray);
+}
+
+export { StudySubject, Task };
+export { calcUrgency, addTask, sortTasks, calculateDaysLeft, sortSubs };
