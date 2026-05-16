@@ -200,7 +200,7 @@ const subBuilder = (sub) => {
             const span = document.createElement('span');
             span.textContent = "🗑️";
             span.id = `${sub.name.toLowerCase().trim()}Remove`;
-            li.textContent = sub.name + ' ' + sub.dueDate;
+            li.textContent = sub.name.toUpperCase() + ' ' + sub.dueDate;
             li.appendChild(span);
             span.addEventListener('click', (event) => {   //add remove subject function
                 for (i=0; i < subArray.length; i++){
@@ -222,11 +222,12 @@ const addSubject = () => {
     const subInput = document.getElementById('subjectInput');
     const dateInput = document.getElementById('dateInput');
     const confInput = document.getElementById('confidenceInput');
-
     let doubles = [];     //check if subject is already in list
-    doubles = subArray.filter(sub => {
-        return sub.name === subInput.value.toLowerCase().trim();
-    });
+    if (subArray[0]){
+        doubles = subArray.filter(sub => {
+            return sub.name === subInput.value.toLowerCase().trim();
+        });
+    }
     console.log('Add subject triggered')
     if(doubles.length === 0 || subArray.length === 0){    //only add if not in list yet
         //calculate days until due date
@@ -242,19 +243,13 @@ const addSubject = () => {
                 dueDate: dateInput.value, 
                 confidence: Number(confInput.value),
                 daysLeft: daysAvailable,
-                calcDays(){
-                    this.daysLeft = Math.ceil((this.dueDate - new Date())/(1000*60*60*24))
-                },
                 practicedAmount: 1,
                 urgency: 0,
-                calcUrgency(){
-                    this.urgency = this.daysLeft * this.confidence * this.practicedAmount;
-                },
                 tasks: []
             }
 
             subArray.push(newSub);
-            subArray.at(-1).calcUrgency();
+            calcUrgency(subArray.at(-1));
             console.log(subArray.at(-1));
             //add li subject
             subBuilder(newSub);
@@ -276,6 +271,14 @@ const addSubject = () => {
     }
     console.log(subArray);
     saveSubArray();
+}
+
+function calcUrgency(sub){
+    sub.urgency = sub.daysLeft * sub.confidence * sub.practicedAmount;
+}
+
+function calcDays(sub){
+    sub.daysLeft = Math.ceil((this.dueDate - new Date())/(1000*60*60*24))
 }
 
 //collapse sub list
@@ -305,7 +308,7 @@ const subListCollapser = () => {
     subUlDiv.innerHTML = '';
     const ul = document.createElement('ul');
     ul.id = 'subUl';
-    for(sub of subArray){
+    for(let sub of subArray){
         const li = document.createElement('li');
         li.id = sub.name;
         const span = document.createElement('span');
@@ -406,14 +409,10 @@ const sortTasks = (sub) => {
     sub.tasks.sort((a,b)=>{
         return a.done - b.done;
     });
-    saveSubArray();
 }
 
 const sortSubs = () => {
-    subArray.forEach(sub => {
-        sub.calcUrgency();
-
-    });
+    subArray.forEach(sub =>calcUrgency(sub));
     const compareUrgency = (a,b) => {
         return a.urgency - b.urgency ;
     }
@@ -500,7 +499,8 @@ const skipSessionEvent = ()=>{
 
 const saveSubArray = () => {
     localStorage.setItem('subArray', JSON.stringify(subArray));
-    console.log('Saved subArray to localStorage');
+    console.log('Saved subArray to localStorage:');
+    console.log(subArray);
 }
 
 console.log('newScript.js: functions loaded');
