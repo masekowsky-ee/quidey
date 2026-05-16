@@ -1,9 +1,14 @@
+import renderFunction from './renderModule.js';
+
+let subArray = [];
+let sessionArray = [];
+
 const intervalFunction = () => {
     this.interval.active = true;
     this.interval.sessionInterval = setInterval(()=>{
-        this.interval.intervalState--; // count
-        console.log(this.interval.intervalState);    //log timer to console for test purposes
-        if(this.interval.intervalState === 0 || this.interval.pauseInterval === true || this.interval.skipInterval === true){ //check for condition to finish
+        this.interval._intervalState--; // count
+        console.log(this.interval._intervalState);    //log timer to console for test purposes
+        if(this.interval._intervalState === 0 || this.interval.pauseInterval === true || this.interval.skipInterval === true){ //check for condition to finish
             clearInterval(this.interval.sessionInterval);
             this.interval.active = false;
         }
@@ -12,11 +17,11 @@ const intervalFunction = () => {
 
 const saveSession = () => {
     sessionArray.push(
-        {date: new Date(Date.now()).toISOString().split('T')[0], totalTime: state.session.timeSpent,}
+        {date: new Date(Date.now()).toISOString().split('T')[0], totalTime: state.session._timeSpent,}
     );
 }
 
-const state = {
+export const state = {
     inSession: false,
     startSession(){
         this.inSession = true;
@@ -37,16 +42,16 @@ const state = {
             pauseInterval: false,   //pause
             skipInterval: false,     //skip
             active: false,
-            set intervalState(){
+            setIntervalState(){
                 this.intervalState = state.session._sessionLength;
             },
 
 
         },
         finished: false,
-        subjectsStudied = [],
+        subjectsStudied: [],
 
-        set subject(){
+        setSubject(){
             this._subject = subArray[0];
         },
         set breaks(bool){
@@ -114,7 +119,7 @@ const state = {
         // only call step function  
 
         start(){ //start session 
-            this.interval.intervalState(); //assign countdown
+            this.interval.setIntervalState(); //assign countdown
             intervalFunction();
         },
         next(){
@@ -124,13 +129,14 @@ const state = {
                         if(this._sessionsDone === this._breaksDone){//when coming out of a session
                             this.incSessionsDone();
                             subArray[0].practicedAmount ++;
+                            this.subjectsStudied.push(this._subject);
                             sortSubs();
-                            this.subject();
-                            this.interval.intervalState(this._breakLength);
+                            this.setSubject();
+                            this.interval.setIntervalState(this._breakLength);
                             intervalFunction();
                         } else{ // when coming out of a break
                             this.incBreaksDone();
-                            this.interval.intervalState(this._sessionLength);
+                            this.interval.setIntervalState(this._sessionLength);
                             intervalFunction();
                         }
                     }else{ //no breaks - instant continue
@@ -138,11 +144,11 @@ const state = {
                         subArray[0].practicedAmount ++;
                         sortSubs();
                         this.subject();
-                        this.interval.intervalState(this._sessionLength);
+                        this.interval.setIntervalState(this._sessionLength);
                         intervalFunction();
                     }
                 } else{ //continue countdown
-                    this.interval.intervalState(this.sessionLength);
+                    this.interval.setIntervalState(this.sessionLength);
                     intervalFunction();
                 }
             }
@@ -154,4 +160,4 @@ const state = {
     }
 }
 
-export default state;
+export {subArray, sessionArray, renderFunction};
